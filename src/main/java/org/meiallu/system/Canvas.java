@@ -3,6 +3,7 @@ package org.meiallu.system;
 import org.meiallu.system.type.Object;
 import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;

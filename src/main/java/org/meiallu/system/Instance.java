@@ -1,7 +1,11 @@
 package org.meiallu.system;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
 public class Instance {
@@ -17,11 +21,12 @@ public class Instance {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setMinimumSize( new Dimension(w + 16, h + 39) );
         frame.getContentPane().setBackground( Color.BLACK );
+        frame.getContentPane().setLayout( new BorderLayout() );
         frame.setLocationRelativeTo(null);
 
         new Canvas();
         new Game();
-
+        
         frame.setVisible(true);
     }
 
