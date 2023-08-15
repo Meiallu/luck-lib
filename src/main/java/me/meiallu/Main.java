@@ -1,6 +1,5 @@
 package me.meiallu;
 
-import org.meiallu.system.Canvas;
 import org.meiallu.system.Instance;
 import org.meiallu.system.type.Animation;
 import org.meiallu.system.type.Object;

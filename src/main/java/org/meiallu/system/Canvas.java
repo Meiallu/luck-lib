@@ -1,6 +1,8 @@
 package org.meiallu.system;
 
 import org.meiallu.system.type.Object;
+import org.meiallu.util.Camera;
+
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -12,6 +14,7 @@ import javax.swing.JPanel;
 
 public class Canvas extends JPanel {
     private int scale = 1;
+    private static Camera cam = new Camera();
     private int offX = 0;
     private int offY = 0;
 
@@ -45,9 +48,11 @@ public class Canvas extends JPanel {
                     Image img = o.getAnimation().getFrame( o.getFrame() );
                     int x = (int) ( o.getX() * scale );
                     int y = (int) ( o.getY() * scale );
+
                     if ( o.isOffsetable() )
-                        x -= offX;
-                        y -= offY;
+                        x -= offX + cam.getX();
+                        y -= offY + cam.getY();
+                        
                     int width = (int) ( ( o.getWidth() * o.getScale() ) * scale );
                     int height = (int) ( ( o.getHeight() * o.getScale() ) * scale );
 
@@ -71,6 +76,9 @@ public class Canvas extends JPanel {
             offX = ( (Instance.width * scale) / 2 ) - (this.getWidth() / 2);
             offY = ( (Instance.height * scale) / 2 ) - (this.getHeight() / 2);
     }
+
+    public static void setCamera(Camera camera) { cam = camera; }
+    public static Camera getCamera() { return cam; }
 
     public static void setResizable(boolean stt) { resizable = stt; }
     public static void setDrawable(boolean stt) { drawable = stt; }
