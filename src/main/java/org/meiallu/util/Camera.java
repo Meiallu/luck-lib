@@ -1,12 +1,12 @@
 package org.meiallu.util;
 
 public class Camera {
-    private int x = 0;
-    private int y = 0;
+    private static int x = 0;
+    private static int y = 0;
 
-    public void setX(int xx) { x = xx; }
-    public int getX() { return x; }
+    public static void setX(int xx) { x = xx; }
+    public static int getX() { return x; }
 
-    public void setY(int yy) { y = yy; }
-    public int getY() { return y; }
+    public static void setY(int yy) { y = yy; }
+    public static int getY() { return y; }
 }

@@ -6,6 +6,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import org.meiallu.system.Game;
+import org.meiallu.system.Layer;
 import org.meiallu.system.Scene;
 
 public class Object {
@@ -66,7 +67,7 @@ public class Object {
         Object obj = new Object(image);
         obj.ID = Game.getScene().lastID;
         setup(obj, x, y);
-        Game.getScene().getObjects().add(obj);
+        Game.getScene().getLayers().get(0).getObjects().add(obj);
         return obj;
     }
 
@@ -75,7 +76,25 @@ public class Object {
         Object obj = new Object(image);
         obj.ID = cena.lastID;
         setup(obj, x, y);
-        cena.getObjects().add(obj);
+        cena.getLayers().get(0).getObjects().add(obj);
+        return obj;
+    }
+
+    public Object create(double x, double y, Layer lay) {
+        Game.getScene().lastID++;
+        Object obj = new Object(image);
+        obj.ID = Game.getScene().lastID;
+        setup(obj, x, y);
+        lay.getObjects().add(obj);
+        return obj;
+    }
+
+    public Object create(double x, double y, Scene cena, Layer lay) {
+        cena.lastID++;
+        Object obj = new Object(image);
+        obj.ID = cena.lastID;
+        setup(obj, x, y);
+        lay.getObjects().add(obj);
         return obj;
     }
 

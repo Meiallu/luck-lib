@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 
 public class Canvas extends JPanel {
     private int scale = 1;
-    private static Camera cam = new Camera();
     private int offX = 0;
     private int offY = 0;
 
@@ -42,40 +41,42 @@ public class Canvas extends JPanel {
         Graphics2D g2D = (Graphics2D) g;
         super.paintComponent(g2D);
 
-        if (drawable) {        
-            for ( Object o : Game.getScene().getObjects() ) {
-                if ( o.isVisible() ) {
-                    g2D.setComposite( AlphaComposite.getInstance( AlphaComposite.SRC_OVER, o.getOpacity() ) );
+        if (drawable) {    
+            for ( Layer l : Game.getScene().getLayers() ) {            
+                for ( Object o : l.getObjects() ) {
+                    if ( o.isVisible() ) {
+                        g2D.setComposite( AlphaComposite.getInstance( AlphaComposite.SRC_OVER, o.getOpacity() ) );
 
-                    Image img = o.getAnimation().getFrame( o.getFrame() );
-                    int x = (int) ( o.getX() * scale );
-                    int y = (int) ( o.getY() * scale );
+                        Image img = o.getAnimation().getFrame( o.getFrame() );
+                        int x = (int) ( o.getX() * scale );
+                        int y = (int) ( o.getY() * scale );
 
-                    if ( o.isOffsetable() )
-                        x -= offX + cam.getX();
-                        y -= offY + cam.getY();
-                        
-                    int width = (int) ( ( o.getWidth() * o.getScale() ) * scale );
-                    int height = (int) ( ( o.getHeight() * o.getScale() ) * scale );
+                        if ( o.isOffsetable() )
+                            x -= offX + Camera.getX();
+                            y -= offY + Camera.getY();
+                            
+                        int width = (int) ( ( o.getWidth() * o.getScale() ) * scale );
+                        int height = (int) ( ( o.getHeight() * o.getScale() ) * scale );
 
-                    g2D.drawImage(img, x, y, width, height, null);
+                        g2D.drawImage(img, x, y, width, height, null);
+                    }
                 }
-            }
-            
-            for ( Text t : Game.getScene().getTexts() ) {
-                if ( t.isVisible() ) {
-                    g2D.setComposite( AlphaComposite.getInstance( AlphaComposite.SRC_OVER, t.getOpacity() ) );
 
-                    int x = (int) ( t.getX() * scale );
-                    int y = (int) ( t.getY() * scale );
+                for ( Text t : l.getTexts() ) {
+                    if ( t.isVisible() ) {
+                        g2D.setComposite( AlphaComposite.getInstance( AlphaComposite.SRC_OVER, t.getOpacity() ) );
 
-                    if ( t.isOffsetable() )
-                        x -= offX + cam.getX();
-                        y -= offY + cam.getY();
+                        int x = (int) ( t.getX() * scale );
+                        int y = (int) ( t.getY() * scale );
 
-                    g2D.setColor( t.getColor() );
-                    g2D.setFont( new Font( t.getFont(), t.getStyle(), (t.getSize() * scale) ) );
-                    g2D.drawString(t.getText(), x, y);
+                        if ( t.isOffsetable() )
+                            x -= offX + Camera.getX();
+                            y -= offY + Camera.getY();
+
+                        g2D.setColor( t.getColor() );
+                        g2D.setFont( new Font( t.getFont(), t.getStyle(), (t.getSize() * scale) ) );
+                        g2D.drawString(t.getText(), x, y);
+                    }
                 }
             }
         }
@@ -95,9 +96,6 @@ public class Canvas extends JPanel {
             offX = ( (Instance.width * scale) / 2 ) - (this.getWidth() / 2);
             offY = ( (Instance.height * scale) / 2 ) - (this.getHeight() / 2);
     }
-
-    public static void setCamera(Camera camera) { cam = camera; }
-    public static Camera getCamera() { return cam; }
 
     public static void setResizable(boolean stt) { resizable = stt; }
     public static void setDrawable(boolean stt) { drawable = stt; }

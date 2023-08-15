@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.meiallu.system.Game;
+import org.meiallu.system.Layer;
 import org.meiallu.system.Scene;
 
 public class Text {
@@ -22,14 +23,28 @@ public class Text {
         x = xx;
         y = yy;
         text = string;
-        Game.getScene().getTexts().add(this);
+        Game.getScene().getLayers().get(0).getTexts().add(this);
     }
 
     public Text(String string, int xx, int yy, Scene scene) {
         x = xx;
         y = yy;
         text = string;
-        scene.getTexts().add(this);
+        scene.getLayers().get(0).getTexts().add(this);
+    }
+
+    public Text(String string, int xx, int yy, Layer lay) {
+        x = xx;
+        y = yy;
+        text = string;
+        lay.getTexts().add(this);
+    }
+
+    public Text(String string, int xx, int yy, Scene scene, Layer lay) {
+        x = xx;
+        y = yy;
+        text = string;
+        lay.getTexts().add(this);
     }
 
     public int getX() { return x; }

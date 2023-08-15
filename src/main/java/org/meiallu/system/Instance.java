@@ -6,6 +6,8 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import org.meiallu.util.Camera;
+
 public class Instance {
     private static JFrame frame;
     public static int width = 500;
@@ -22,6 +24,7 @@ public class Instance {
         frame.getContentPane().setLayout( new BorderLayout() );
         frame.setLocationRelativeTo(null);
 
+        new Camera();
         new Canvas();
         new Game();
         

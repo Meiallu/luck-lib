@@ -1,13 +1,9 @@
 package me.meiallu;
 
-import java.awt.Color;
-import java.awt.Font;
-
 import org.meiallu.system.Instance;
 import org.meiallu.system.type.Animation;
 import org.meiallu.system.type.Object;
 import org.meiallu.system.type.Sprite;
-import org.meiallu.util.Text;
 
 public class Main {
 	
