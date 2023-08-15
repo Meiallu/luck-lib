@@ -1,5 +1,6 @@
 package org.meiallu.util.input;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -12,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Keyboard implements KeyListener {
+    private static List<Character> keys = new ArrayList<Character>();
     private JFrame window = Instance.getWindow();
     private GraphicsDevice dev = GraphicsEnvironment
             .getLocalGraphicsEnvironment()
@@ -29,10 +31,19 @@ public class Keyboard implements KeyListener {
                 setFullScreen();
             else
                 setNormal();
+        if ( !keys.contains( e.getKeyChar() ))
+            keys.add(keys.size(), e.getKeyChar());
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) {
+        if (keys.contains( e.getKeyChar() ))
+            keys.remove(keys.indexOf( e.getKeyChar() ));
+    }
+
+    public static boolean isPressed(char key) {
+        return ( keys.contains(key) );
+    }
 
     private void setFullScreen() {
         window.dispose();

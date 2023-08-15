@@ -3,6 +3,7 @@ package org.meiallu.system;
 import org.meiallu.system.type.Object;
 import org.meiallu.util.Camera;
 import org.meiallu.util.Text;
+import org.meiallu.util.input.Keyboard;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
