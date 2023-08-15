@@ -15,6 +15,10 @@ public class Canvas extends JPanel {
     private int offX = 0;
     private int offY = 0;
 
+    private static boolean resizable = true;
+    private static boolean drawable = true;
+    private static boolean offsetable = true;
+
     public Canvas() {
         super.setBackground( Color.WHITE );
         Instance.getWindow().add(this);
@@ -30,34 +34,42 @@ public class Canvas extends JPanel {
     }
 
     public void paintComponent(Graphics g) {
-        Graphics2D g2D = (Graphics2D) g;
-        super.paintComponent(g2D);
+        if (drawable) {        
+            Graphics2D g2D = (Graphics2D) g;
+            super.paintComponent(g2D);
 
-        for ( Object o : Game.getScene().getObjects() ) {
-            if ( o.isVisible() ) {
-                g2D.setComposite( AlphaComposite.getInstance( AlphaComposite.SRC_OVER, o.getOpacity() ) );
+            for ( Object o : Game.getScene().getObjects() ) {
+                if ( o.isVisible() ) {
+                    g2D.setComposite( AlphaComposite.getInstance( AlphaComposite.SRC_OVER, o.getOpacity() ) );
 
-                Image img = o.getAnimation().getFrame( o.getFrame() );
-                int x = (int) ( o.getX() * scale ) - offX;
-                int y = (int) ( o.getY() * scale ) - offY;
-                int width = (int) ( ( o.getWidth() * o.getScale() ) * scale );
-                int height = (int) ( ( o.getHeight() * o.getScale() ) * scale );
+                    Image img = o.getAnimation().getFrame( o.getFrame() );
+                    int x = (int) ( o.getX() * scale ) - offX;
+                    int y = (int) ( o.getY() * scale ) - offY;
+                    int width = (int) ( ( o.getWidth() * o.getScale() ) * scale );
+                    int height = (int) ( ( o.getHeight() * o.getScale() ) * scale );
 
-                g2D.drawImage(img, x, y, width, height, null);
+                    g2D.drawImage(img, x, y, width, height, null);
+                }
             }
         }
     }
 
     public void AdjustResizing() {
-        scale = 1;
-        while ( (Instance.width * scale) < Instance.getWindow().getWidth() - 16
-              || (Instance.height * scale) < Instance.getWindow().getHeight() - 39 ) {
-            scale ++;
-        }
+        if (resizable)
+            scale = 1;
+            while ( (Instance.width * scale) < Instance.getWindow().getWidth() - 16
+                || (Instance.height * scale) < Instance.getWindow().getHeight() - 39 ) {
+                scale ++;
+            }
     }
 
     public void AdjustOffset() {
-        offX = ( (Instance.width * scale) / 2 ) - (this.getWidth() / 2);
-        offY = ( (Instance.height * scale) / 2 ) - (this.getHeight() / 2);
+        if (offsetable)
+            offX = ( (Instance.width * scale) / 2 ) - (this.getWidth() / 2);
+            offY = ( (Instance.height * scale) / 2 ) - (this.getHeight() / 2);
     }
+
+    public static void setResizable(boolean stt) { resizable = stt; }
+    public static void setDrawable(boolean stt) { drawable = stt; }
+    public static void setOffsetable(boolean stt) { offsetable = stt; }
 }
