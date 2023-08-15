@@ -20,4 +20,4 @@ Object Player = new Object(playerSpr);
 Player.create(10, 10);
 ```
 
-Please fell free to change the framework's code and commit it to us. I'm open to feedbacks and commits.
+Please fell free to change the framework's code and commit it. I'm open to feedbacks.
