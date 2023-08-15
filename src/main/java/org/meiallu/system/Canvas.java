@@ -3,7 +3,6 @@ package org.meiallu.system;
 import org.meiallu.system.type.Object;
 import java.awt.AlphaComposite;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -12,6 +11,9 @@ import java.util.TimerTask;
 import javax.swing.JPanel;
 
 public class Canvas extends JPanel {
+    private static float scale = 1.0f;
+    private static int OffsetX = 0;
+    private static int OffsetY = 0;
 
     public Canvas() {
         super.setBackground( Color.WHITE );
@@ -20,7 +22,7 @@ public class Canvas extends JPanel {
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                Adjust();
+                AdjustResizing();
                 repaint();
             }
         }, 0, 16);
@@ -35,20 +37,17 @@ public class Canvas extends JPanel {
                 g2D.setComposite( AlphaComposite.getInstance( AlphaComposite.SRC_OVER, o.getOpacity() ) );
 
                 Image img = o.getAnimation().getFrame( o.getFrame() );
-                int x = (int) o.getX();
-                int y = (int) o.getY();
-                int width = (int) ( o.getWidth() * o.getScale() );
-                int height = (int) ( o.getHeight() * o.getScale() );
+                int x = (int) ( o.getX() - (OffsetX * scale) );
+                int y = (int) ( o.getY() - (OffsetY * scale) );
+                int width = (int) ( ( o.getWidth() * o.getScale() ) * scale );
+                int height = (int) ( ( o.getHeight() * o.getScale() ) * scale );
 
                 g2D.drawImage(img, x, y, width, height, null);
             }
         }
     }
 
-    public void Adjust() {
-        super.setSize(Instance.width, Instance.height);
-        int x = (Instance.getWindow().getWidth() / 2) - (Instance.width / 2);
-        int y = (Instance.getWindow().getHeight() / 2) - (Instance.height / 2);
-        super.setLocation(x - 8, y - 19);
+    public void AdjustResizing() {
+        
     }
 }

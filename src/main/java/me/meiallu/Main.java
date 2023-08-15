@@ -17,6 +17,6 @@ public class Main {
 		Object Jogador = new Object(Player);
 		Jogador.create(10, 10);
 
-		Jogador.setSpeed(32.0f);		
+		Jogador.setSpeed(12.0f);
 	}
 }
