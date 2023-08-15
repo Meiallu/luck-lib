@@ -34,10 +34,10 @@ public class Canvas extends JPanel {
     }
 
     public void paintComponent(Graphics g) {
+        Graphics2D g2D = (Graphics2D) g;
+        super.paintComponent(g2D);
+        
         if (drawable) {        
-            Graphics2D g2D = (Graphics2D) g;
-            super.paintComponent(g2D);
-
             for ( Object o : Game.getScene().getObjects() ) {
                 if ( o.isVisible() ) {
                     g2D.setComposite( AlphaComposite.getInstance( AlphaComposite.SRC_OVER, o.getOpacity() ) );
