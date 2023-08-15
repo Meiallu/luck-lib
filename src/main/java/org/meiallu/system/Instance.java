@@ -6,6 +6,8 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import org.meiallu.util.input.Keyboard;
+
 public class Instance {
     private static JFrame frame;
     public static int width = 500;
@@ -23,6 +25,7 @@ public class Instance {
         frame.setLocationRelativeTo(null);
 
         new Canvas();
+        new Keyboard();
         new Game();
         
         frame.setVisible(true);

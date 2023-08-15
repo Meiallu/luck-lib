@@ -52,8 +52,8 @@ public class Canvas extends JPanel {
                         int y = (int) ( o.getY() * scale );
 
                         if ( o.isOffsetable() )
-                            x -= offX + Camera.getX();
-                            y -= offY + Camera.getY();
+                            x -= offX + (Camera.getX() * scale);
+                            y -= offY + (Camera.getY() * scale);
                             
                         int width = (int) ( ( o.getWidth() * o.getScale() ) * scale );
                         int height = (int) ( ( o.getHeight() * o.getScale() ) * scale );
