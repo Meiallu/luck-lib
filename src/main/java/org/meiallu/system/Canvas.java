@@ -11,9 +11,9 @@ import java.util.TimerTask;
 import javax.swing.JPanel;
 
 public class Canvas extends JPanel {
-    private static float scale = 1.0f;
-    private static int OffsetX = 0;
-    private static int OffsetY = 0;
+    private int scale = 1;
+    private int offX = 0;
+    private int offY = 0;
 
     public Canvas() {
         super.setBackground( Color.WHITE );
@@ -23,6 +23,7 @@ public class Canvas extends JPanel {
             @Override
             public void run() {
                 AdjustResizing();
+                AdjustOffset();
                 repaint();
             }
         }, 0, 16);
@@ -37,8 +38,8 @@ public class Canvas extends JPanel {
                 g2D.setComposite( AlphaComposite.getInstance( AlphaComposite.SRC_OVER, o.getOpacity() ) );
 
                 Image img = o.getAnimation().getFrame( o.getFrame() );
-                int x = (int) ( o.getX() - (OffsetX * scale) );
-                int y = (int) ( o.getY() - (OffsetY * scale) );
+                int x = (int) ( o.getX() * scale ) - offX;
+                int y = (int) ( o.getY() * scale ) - offY;
                 int width = (int) ( ( o.getWidth() * o.getScale() ) * scale );
                 int height = (int) ( ( o.getHeight() * o.getScale() ) * scale );
 
@@ -48,6 +49,15 @@ public class Canvas extends JPanel {
     }
 
     public void AdjustResizing() {
-        
+        scale = 1;
+        while ( (Instance.width * scale) < Instance.getWindow().getWidth() - 16
+              || (Instance.height * scale) < Instance.getWindow().getHeight() - 39 ) {
+            scale ++;
+        }
+    }
+
+    public void AdjustOffset() {
+        offX = ( (Instance.width * scale) / 2 ) - (this.getWidth() / 2);
+        offY = ( (Instance.height * scale) / 2 ) - (this.getHeight() / 2);
     }
 }

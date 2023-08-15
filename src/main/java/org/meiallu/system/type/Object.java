@@ -63,7 +63,7 @@ public class Object {
         Game.getScene().lastID++;
         Object obj = new Object(image);
         obj.ID = Game.getScene().lastID;
-        setup(obj);
+        setup(obj, x, y);
         Game.getScene().getObjects().add(obj);
         return obj;
     }
@@ -72,17 +72,21 @@ public class Object {
         cena.lastID++;
         Object obj = new Object(image);
         obj.ID = cena.lastID;
-        setup(obj);
+        setup(obj, x, y);
         cena.getObjects().add(obj);
         return obj;
     }
 
-    private void setup(Object o) {
-        o.x = x; o.y = y;
-        o.frame = frame; o.speed = speed;
+    private void setup(Object o, double x, double y) {
+        o.x = x; 
+        o.y = y;
+        o.frame = frame; 
+        o.speed = speed;
         o.scale = scale;
-        o.width = width; o.height = height;
-        o.opacity = opacity; o.visible = visible;
+        o.width = width; 
+        o.height = height;
+        o.opacity = opacity; 
+        o.visible = visible;
         o.father = this;
         childs.add(o);
     }

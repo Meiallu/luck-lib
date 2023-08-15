@@ -15,8 +15,7 @@ public class Main {
 		Sprite Player = new Sprite(idle);
 
 		Object Jogador = new Object(Player);
-		Jogador.create(10, 10);
-
 		Jogador.setSpeed(12.0f);
+		Jogador.create(160, 90);
 	}
 }
