@@ -2,9 +2,11 @@ package org.meiallu.system;
 
 import org.meiallu.system.type.Object;
 import org.meiallu.util.Camera;
+import org.meiallu.util.Text;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -57,6 +59,23 @@ public class Canvas extends JPanel {
                     int height = (int) ( ( o.getHeight() * o.getScale() ) * scale );
 
                     g2D.drawImage(img, x, y, width, height, null);
+                }
+            }
+            
+            for ( Text t : Game.getScene().getTexts() ) {
+                if ( t.isVisible() ) {
+                    g2D.setComposite( AlphaComposite.getInstance( AlphaComposite.SRC_OVER, t.getOpacity() ) );
+
+                    int x = (int) ( t.getX() * scale );
+                    int y = (int) ( t.getY() * scale );
+
+                    if ( t.isOffsetable() )
+                        x -= offX + cam.getX();
+                        y -= offY + cam.getY();
+
+                    g2D.setColor( t.getColor() );
+                    g2D.setFont( new Font( t.getFont(), t.getStyle(), (t.getSize() * scale) ) );
+                    g2D.drawString(t.getText(), x, y);
                 }
             }
         }
