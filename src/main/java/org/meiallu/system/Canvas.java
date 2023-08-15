@@ -36,15 +36,18 @@ public class Canvas extends JPanel {
     public void paintComponent(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
         super.paintComponent(g2D);
-        
+
         if (drawable) {        
             for ( Object o : Game.getScene().getObjects() ) {
                 if ( o.isVisible() ) {
                     g2D.setComposite( AlphaComposite.getInstance( AlphaComposite.SRC_OVER, o.getOpacity() ) );
 
                     Image img = o.getAnimation().getFrame( o.getFrame() );
-                    int x = (int) ( o.getX() * scale ) - offX;
-                    int y = (int) ( o.getY() * scale ) - offY;
+                    int x = (int) ( o.getX() * scale );
+                    int y = (int) ( o.getY() * scale );
+                    if ( o.isOffsetable() )
+                        x -= offX;
+                        y -= offY;
                     int width = (int) ( ( o.getWidth() * o.getScale() ) * scale );
                     int height = (int) ( ( o.getHeight() * o.getScale() ) * scale );
 

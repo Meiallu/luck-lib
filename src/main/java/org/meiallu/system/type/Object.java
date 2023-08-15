@@ -16,6 +16,8 @@ public class Object {
     private List<Object> childs = new ArrayList<Object>();
     private Object father;
     private int ID;
+    
+    private boolean offsetable = true;
 
     private Animation anim;
     private int frame = 0;
@@ -214,6 +216,14 @@ public class Object {
         if (father == null)
             for ( Object o : childs )
                 o.setVisible(i);
+    }
+
+    public boolean isOffsetable() { return offsetable; }
+    public void setOffsetable(boolean i) {
+        offsetable = i; 
+        if (father == null)
+            for ( Object o : childs )
+                o.setOffsetable(i);
     }
 
     // public float getAngle() { return angle; }
