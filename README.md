@@ -11,7 +11,7 @@ new Instance("Title", 320, 180);
 
 // This creates the Animation and Sprite Objects.
 Animation idle = new Animation();
-idle.setupFrames("player", "run", ".png");
+idle.setupFrames("images/", "run", ".png");
 Sprite playerSpr = new Sprite(idle);
 
 // This creates a Object type
