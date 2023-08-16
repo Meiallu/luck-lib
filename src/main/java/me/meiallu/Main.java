@@ -15,7 +15,9 @@ public class Main extends onTick {
     public Main() {
 		new Instance("Bullet Hellween", 320, 180);
 		
-		AudioManager.play( new Audio("audios/test.wav") );
+		Audio i = new Audio("audios/test.wav");
+		i.setVolume(-10);
+		AudioManager.play(i);
 
 		Animation idle = new Animation();
 		idle.setupFrames("images/run/", "run", ".png");

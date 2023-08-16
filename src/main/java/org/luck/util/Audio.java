@@ -9,18 +9,22 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Audio {
     private AudioInputStream str;
+    private float vol = 0.0f;
 
     public Audio() {} 
+
     public Audio(String path) {
         try {
-            File f = new File(path);
-            str = AudioSystem.getAudioInputStream(f.toURI().toURL()); 
+            str = AudioSystem.getAudioInputStream( new File(path).toURI().toURL() ); 
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException e) { 
+            e.printStackTrace(); 
         }
     }
 
     public AudioInputStream getStream() { return str; }
+
+    public float getVolume() { return vol; }
+    public void setVolume(float volume) { vol = volume; }
 }
