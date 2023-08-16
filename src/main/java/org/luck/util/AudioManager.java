@@ -32,5 +32,10 @@ public class AudioManager {
         gc.setValue( a.getVolume() );
 
         clip.start();
+        a.setClip(clip);
+    }
+
+    public static void stop(Audio a) {
+        a.getClip().stop();
     }
 }
