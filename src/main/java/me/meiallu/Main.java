@@ -7,19 +7,19 @@ import org.luck.system.type.Object;
 import org.luck.system.type.Sprite;
 import org.luck.util.Keyboard;
 
-public class Index extends onTick {
+public class Main extends onTick {
 	Object Jogador;
 
-    public Index() {
+    public Main() {
 		new Instance("Bullet Hellween", 320, 180);
 
 		Animation idle = new Animation();
-		idle.setupFrames("run", "run", ".png");
+		idle.setupFrames("images/run/", "run", ".png");
 		Sprite Player = new Sprite(idle);
 
 		Object Type = new Object(Player);
-		Type.setSpeed(12.0f);
 		Jogador = Type.create(160, 90);
+		Type.setSpeed(12.0f);
     }
 
 	@Override

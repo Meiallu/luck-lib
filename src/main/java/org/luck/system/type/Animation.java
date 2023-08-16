@@ -14,7 +14,7 @@ public class Animation {
 
     public void setupFrames(String folder, String prefix, String suffix) {
         int a = 1;
-        File f = new File("images/" + folder + "/" + prefix + a + suffix);
+        File f = new File(folder + prefix + a + suffix);
         while ( f.exists() ) {
             Image img;
             try {
@@ -24,7 +24,7 @@ public class Animation {
                 e.printStackTrace();
             }
             a++;
-            f = new File("images/" + folder + "/" + prefix + a + suffix);
+            f = new File(folder + prefix + a + suffix);
         }
     }
 
