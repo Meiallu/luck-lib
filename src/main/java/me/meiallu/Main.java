@@ -5,6 +5,8 @@ import org.luck.system.nes.Instance;
 import org.luck.system.type.Animation;
 import org.luck.system.type.Object;
 import org.luck.system.type.Sprite;
+import org.luck.util.Audio;
+import org.luck.util.AudioManager;
 import org.luck.util.Keyboard;
 
 public class Main extends onTick {
@@ -12,6 +14,8 @@ public class Main extends onTick {
 
     public Main() {
 		new Instance("Bullet Hellween", 320, 180);
+		
+		AudioManager.play( new Audio("audios/test.wav") );
 
 		Animation idle = new Animation();
 		idle.setupFrames("images/run/", "run", ".png");
