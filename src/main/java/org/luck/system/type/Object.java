@@ -1,13 +1,13 @@
-package org.meiallu.system.type;
+package org.luck.system.type;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.meiallu.system.Game;
-import org.meiallu.system.Layer;
-import org.meiallu.system.Scene;
+import org.luck.system.nes.Game;
+import org.luck.system.nes.Layer;
+import org.luck.system.nes.Scene;
 
 public class Object {
 

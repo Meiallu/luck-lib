@@ -1,4 +1,4 @@
-package org.meiallu.system.type;
+package org.luck.system.type;
 
 import java.util.ArrayList;
 import java.util.List;

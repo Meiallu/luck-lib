@@ -1,9 +1,7 @@
-package org.meiallu.system;
+package org.luck.system.nes;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import me.meiallu.Index;
 
 public class Game {
     private static Scene cena = new Scene("room");
@@ -11,10 +9,6 @@ public class Game {
 
     public static Scene getScene() { return cena; }
     public static List<Scene> getScenes() { return cenas; }
-
-    public static void main(String[] args) {
-		Index idx = new Index();
-	}
 
     public static void setScene(Scene scene) {
         cena = scene;

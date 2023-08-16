@@ -1,11 +1,15 @@
 package me.meiallu;
 
-import org.meiallu.system.Instance;
-import org.meiallu.system.type.Animation;
-import org.meiallu.system.type.Sprite;
-import org.meiallu.system.type.Object;
+import org.luck.listener.onTick;
+import org.luck.system.nes.Instance;
+import org.luck.system.type.Animation;
+import org.luck.system.type.Object;
+import org.luck.system.type.Sprite;
+import org.luck.util.Keyboard;
 
-public class Index {
+public class Index extends onTick {
+	Object Jogador;
+
     public Index() {
 		new Instance("Bullet Hellween", 320, 180);
 
@@ -13,8 +17,16 @@ public class Index {
 		idle.setupFrames("run", "run", ".png");
 		Sprite Player = new Sprite(idle);
 
-		Object Jogador = new Object(Player);
-		Jogador.setSpeed(12.0f);
-		Jogador.create(160, 90);
+		Object Type = new Object(Player);
+		Type.setSpeed(12.0f);
+		Jogador = Type.create(160, 90);
     }
+
+	@Override
+	public void everyTick() {
+		if ( Keyboard.isPressed('d') ) Jogador.setX( Jogador.getX() + 1 );
+		if ( Keyboard.isPressed('a') ) Jogador.setX( Jogador.getX() - 1 );
+		if ( Keyboard.isPressed('w') ) Jogador.setY( Jogador.getY() - 1 );
+		if ( Keyboard.isPressed('s') ) Jogador.setY( Jogador.getY() + 1 );
+	}
 }

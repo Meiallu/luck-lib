@@ -1,11 +1,11 @@
-package org.meiallu.util;
+package org.luck.util;
 
 import java.awt.Color;
 import java.awt.Font;
 
-import org.meiallu.system.Game;
-import org.meiallu.system.Layer;
-import org.meiallu.system.Scene;
+import org.luck.system.nes.Game;
+import org.luck.system.nes.Layer;
+import org.luck.system.nes.Scene;
 
 public class Text {
     private int x;

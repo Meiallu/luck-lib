@@ -1,4 +1,4 @@
-package org.meiallu.system.type;
+package org.luck.system.type;
 
 import java.awt.Image;
 import java.io.File;

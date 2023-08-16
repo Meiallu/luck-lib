@@ -1,4 +1,4 @@
-package org.meiallu.system;
+package org.luck.system.nes;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -6,7 +6,7 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-import org.meiallu.util.input.Keyboard;
+import org.luck.util.Keyboard;
 
 public class Instance {
     private static JFrame frame;

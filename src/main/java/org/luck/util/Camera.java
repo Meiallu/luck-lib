@@ -1,4 +1,4 @@
-package org.meiallu.util;
+package org.luck.util;
 
 public class Camera {
     private static int x = 0;

@@ -1,8 +1,4 @@
-package org.meiallu.system;
-
-import org.meiallu.system.type.Object;
-import org.meiallu.util.Camera;
-import org.meiallu.util.Text;
+package org.luck.system.nes;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -13,6 +9,10 @@ import java.awt.Image;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JPanel;
+
+import org.luck.system.type.Object;
+import org.luck.util.Camera;
+import org.luck.util.Text;
 
 public class Canvas extends JPanel {
     private int scale = 1;

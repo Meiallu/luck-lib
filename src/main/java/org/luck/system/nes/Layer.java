@@ -1,10 +1,10 @@
-package org.meiallu.system;
+package org.luck.system.nes;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.meiallu.util.Text;
-import org.meiallu.system.type.Object;
+import org.luck.system.type.Object;
+import org.luck.util.Text;
 
 public class Layer {
     private List<Object> objects = new ArrayList<Object>();

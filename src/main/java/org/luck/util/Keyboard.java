@@ -1,11 +1,11 @@
-package org.meiallu.util.input;
+package org.luck.util;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
 
-import org.meiallu.system.Instance;
+import org.luck.system.nes.Instance;
 
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
