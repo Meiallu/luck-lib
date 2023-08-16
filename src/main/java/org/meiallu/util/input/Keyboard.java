@@ -41,9 +41,7 @@ public class Keyboard implements KeyListener {
             keys.remove(keys.indexOf( e.getKeyChar() ));
     }
 
-    public static boolean isPressed(char key) {
-        return ( keys.contains(key) );
-    }
+    public static boolean isPressed(char key) { return ( keys.contains(key) ); }
 
     private void setFullScreen() {
         window.dispose();
