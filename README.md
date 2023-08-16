@@ -19,11 +19,11 @@ Sprite playerSprite = new Sprite(run);
 Object Player = new Object(playerSprite);
 Player.create(10, 10);
 ```
-Or, you may want to easily play an audio:
+Oh, you want to easily play an audio? well, there you go:
 ```java
 Audio myWav = new Audio("./audios/test.wav");
-myWav.setVolume(-10.0f);
 AudioManager.play(myWav);
 ```
 
+There's no limits.
 Please fell free to change the framework's code and commit it. I'm open to feedbacks.
