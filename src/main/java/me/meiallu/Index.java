@@ -9,7 +9,6 @@ import org.luck.util.Keyboard;
 
 public class Index extends onTick {
 	Object Jogador;
-	int tick = 0;
 
     public Index() {
 		new Instance("Bullet Hellween", 320, 180);
