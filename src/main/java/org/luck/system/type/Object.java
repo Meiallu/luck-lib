@@ -248,5 +248,63 @@ public class Object {
     // public float getAngle() { return angle; }
     // public void setAngle(float i) { angle = i; }
 
+    public Layer getLayer() {
+        for ( Layer l : Game.getScene().getLayers() )
+            if ( l.getObjects().contains(this) ) {
+                return l;
+            }
+        return null;            
+    }
+
+    public Layer getLayer(Scene scene) {
+        for ( Layer l : scene.getLayers() )
+            if ( l.getObjects().contains(this) ) {
+                return l;
+            }
+        return null;            
+    }
+
+    public void setZ(int index) {
+        if (father == null) {
+            for (Object o : childs) {
+                Layer l = o.getLayer();
+                int bf = l.getObjects().indexOf(o);
+                l.getObjects().add(index, o);
+                l.getObjects().remove(bf);
+            }
+        } else {
+            Layer l = getLayer();
+            int bf = l.getObjects().indexOf(this);
+            l.getObjects().add(index, this);
+            l.getObjects().remove(bf);
+        }
+    }
+
+    public void setZ(int index, Scene scene) {
+        if (father == null) {
+            for (Object o : childs) {
+                Layer l = o.getLayer(scene);
+                int bf = l.getObjects().indexOf(o);
+                l.getObjects().add(index, o);
+                l.getObjects().remove(bf);
+            }
+        } else {
+            Layer l = getLayer(scene);
+            int bf = l.getObjects().indexOf(this);
+            l.getObjects().add(index, this);
+            l.getObjects().remove(bf);
+        }
+    }
+
+    public int getZ() {
+        Layer l = getLayer();
+        return l.getObjects().indexOf(this);
+    }
+
+    public int getZ(Scene scene) {
+        Layer l = getLayer(scene);
+        return l.getObjects().indexOf(this);
+    }
+
     public int getID() { return ID; }
 }
