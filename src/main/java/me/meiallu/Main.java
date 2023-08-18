@@ -20,6 +20,8 @@ public class Main extends onTick {
 		Object Type = new Object(Player);
 		Instance = Type.create(160, 90);
 		Type.setSpeed(12.0f);
+
+		Instance.setFlipped(true);
     }
 
 	@Override

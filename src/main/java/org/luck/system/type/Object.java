@@ -23,6 +23,8 @@ public class Object {
     private Animation anim;
     private int frame = 0;
     private float speed = 5.0f;
+    private boolean mirrored = false;
+    private boolean flipped = false;
     private float scale = 1.0f;
     private int width = 32;
     private int height = 32;
@@ -316,15 +318,14 @@ public class Object {
         }
     }
 
-    public int getZ() {
-        Layer l = getLayer();
-        return l.getObjects().indexOf(this);
-    }
+    public int getZ() { return getLayer().getObjects().indexOf(this); }
+    public int getZ(Scene scene) { return getLayer(scene).getObjects().indexOf(this); }
 
-    public int getZ(Scene scene) {
-        Layer l = getLayer(scene);
-        return l.getObjects().indexOf(this);
-    }
+    public boolean isMirrored() { return mirrored; }
+    public boolean isFlipped() { return flipped; }
+
+    public void setMirrored(boolean i) { mirrored = i; }
+    public void setFlipped(boolean i) { flipped = i; }
 
     public int getID() { return ID; }
 }

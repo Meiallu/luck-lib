@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JPanel;
@@ -58,6 +59,12 @@ public class Canvas extends JPanel {
                         int width = (int) ( ( o.getWidth() * o.getScale() ) * scale );
                         int height = (int) ( ( o.getHeight() * o.getScale() ) * scale );
 
+                        if ( o.isMirrored() )
+                            img = getMirroredImage(img);
+
+                        if ( o.isFlipped() )
+                            img = getFlippedImage(img);
+
                         g2D.drawImage(img, x, y, width, height, null);
                     }
                 }
@@ -82,7 +89,39 @@ public class Canvas extends JPanel {
         }
     }
 
-    public void AdjustResizing() {
+    public static Image getMirroredImage(Image img) {
+        BufferedImage b = (BufferedImage) img;
+        BufferedImage i = new BufferedImage(
+                                b.getWidth(), 
+                                b.getHeight(), 
+                                BufferedImage.TYPE_INT_ARGB);
+        for (int x = 1; x < b.getWidth(); x++) {
+            for (int y = 1; y < b.getHeight(); y++) {
+                int xx = b.getWidth() - x;
+                int color = b.getRGB(x, y);
+                i.setRGB(xx, y, color);
+            }
+        }
+        return (Image) i;
+    }
+
+    public static Image getFlippedImage(Image img) {
+        BufferedImage b = (BufferedImage) img;
+        BufferedImage i = new BufferedImage(
+                                b.getWidth(), 
+                                b.getHeight(), 
+                                BufferedImage.TYPE_INT_ARGB);
+        for (int x = 1; x < b.getWidth(); x++) {
+            for (int y = 1; y < b.getHeight(); y++) {
+                int yy = b.getHeight() - y;
+                int color = b.getRGB(x, y);
+                i.setRGB(x, yy, color);
+            }
+        }
+        return (Image) i;
+    }
+
+    private void AdjustResizing() {
         if (resizable)
             scale = 1;
             while ( (Instance.width * scale) < Instance.getWindow().getWidth() - 16
@@ -91,7 +130,7 @@ public class Canvas extends JPanel {
             }
     }
 
-    public void AdjustOffset() {
+    private void AdjustOffset() {
         if (offsetable)
             offX = ( (Instance.width * scale) / 2 ) - (this.getWidth() / 2);
             offY = ( (Instance.height * scale) / 2 ) - (this.getHeight() / 2);
