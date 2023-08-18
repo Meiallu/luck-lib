@@ -5,13 +5,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import org.luck.util.Keyboard;
 
 public class Instance {
     private static JFrame frame;
-    public static int width = 500;
-    public static int height = 500;
+    private static int width = 500;
+    private static int height = 500;
+    private static JPanel panel;
     
     public Instance(String title, int w, int h) {
         width = w;
@@ -24,7 +26,7 @@ public class Instance {
         frame.getContentPane().setLayout( new BorderLayout() );
         frame.setLocationRelativeTo(null);
 
-        new Canvas();
+        panel = new Canvas();
         new Keyboard();
         new Game();
         
@@ -32,4 +34,7 @@ public class Instance {
     }
 
     public static JFrame getWindow() { return frame; }
+    public static int getWidth() { return width; }
+    public static int getHeight() { return height; }
+    public static JPanel getPanel() { return panel; }
 }

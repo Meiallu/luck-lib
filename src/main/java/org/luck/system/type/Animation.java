@@ -61,5 +61,5 @@ public class Animation {
     public List<Image> getFrames() { return frames; }
 
     public float getSpeed() { return speed; }
-    public void setSpeed(float spd) { speed = spd; }
+    public void setSpeed(float fps) { speed = fps; }
 }

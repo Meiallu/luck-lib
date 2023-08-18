@@ -46,33 +46,27 @@ public class Canvas extends JPanel {
             for ( Layer l : Game.getScene().getLayers() ) {            
                 for ( Object o : l.getObjects() ) {
                     if ( o.isVisible() ) {
-                        g2D.setComposite( AlphaComposite.getInstance( AlphaComposite.SRC_OVER, o.getOpacity() ) );
-
                         Image img = o.getAnimation().getFrame( o.getFrame() );
                         int x = (int) ( o.getX() * scale );
-                        int y = (int) ( o.getY() * scale );
+                        int y = (int) ( o.getY() * scale );                        
+                        int width = (int) ( ( o.getWidth() * o.getScale() ) * scale );
+                        int height = (int) ( ( o.getHeight() * o.getScale() ) * scale );
 
                         if ( o.isOffsetable() )
                             x -= offX + (Camera.getX() * scale);
                             y -= offY + (Camera.getY() * scale);
-                            
-                        int width = (int) ( ( o.getWidth() * o.getScale() ) * scale );
-                        int height = (int) ( ( o.getHeight() * o.getScale() ) * scale );
-
                         if ( o.isMirrored() )
                             img = getMirroredImage(img);
-
                         if ( o.isFlipped() )
                             img = getFlippedImage(img);
 
+                        g2D.setComposite( AlphaComposite.getInstance( AlphaComposite.SRC_OVER, o.getOpacity() ) );
                         g2D.drawImage(img, x, y, width, height, null);
                     }
                 }
 
                 for ( Text t : l.getTexts() ) {
                     if ( t.isVisible() ) {
-                        g2D.setComposite( AlphaComposite.getInstance( AlphaComposite.SRC_OVER, t.getOpacity() ) );
-
                         int x = (int) ( t.getX() * scale );
                         int y = (int) ( t.getY() * scale );
 
@@ -82,6 +76,7 @@ public class Canvas extends JPanel {
 
                         g2D.setColor( t.getColor() );
                         g2D.setFont( new Font( t.getFont(), t.getStyle(), (t.getSize() * scale) ) );
+                        g2D.setComposite( AlphaComposite.getInstance( AlphaComposite.SRC_OVER, t.getOpacity() ) );
                         g2D.drawString(t.getText(), x, y);
                     }
                 }
@@ -124,16 +119,16 @@ public class Canvas extends JPanel {
     private void AdjustResizing() {
         if (resizable)
             scale = 1;
-            while ( (Instance.width * scale) < Instance.getWindow().getWidth() - 16
-                || (Instance.height * scale) < Instance.getWindow().getHeight() - 39 ) {
+            while ( (Instance.getWidth() * scale) < Instance.getWindow().getWidth() - 16
+                || (Instance.getHeight() * scale) < Instance.getWindow().getHeight() - 39 ) {
                 scale ++;
             }
     }
 
     private void AdjustOffset() {
         if (offsetable)
-            offX = ( (Instance.width * scale) / 2 ) - (this.getWidth() / 2);
-            offY = ( (Instance.height * scale) / 2 ) - (this.getHeight() / 2);
+            offX = ( (Instance.getWidth() * scale) / 2 ) - (this.getWidth() / 2);
+            offY = ( (Instance.getHeight() * scale) / 2 ) - (this.getHeight() / 2);
     }
 
     public static void setResizable(boolean stt) { resizable = stt; }

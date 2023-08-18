@@ -33,21 +33,20 @@ public class Object {
 
     private Timer t = new Timer();
 
-    public void resetSpeed() {      
-        t.scheduleAtFixedRate( new TimerTask() {
+    public void resetSpeed() {
+        t.cancel();
+        t = new Timer();
+
+        t.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                if ( anim.getFrames().size() == frame + 1 ) {
+                if ( anim.getFrames().size() == frame + 1 )
                     frame = 0;
-                } else {
+                else
                     frame++;
-                }
             }
         }, 0, (int) (1000 / speed) );
     }
-
-    public Timer getTimer() { return t; }
-    public void setTimer(Timer timer) { t = timer; }
 
     public Object(Sprite sprite) {
         image = sprite;
@@ -137,24 +136,24 @@ public class Object {
 
     public Animation getAnimation() {return anim; }
     public void setAnimation(Animation i) {
-        anim = i;
-        width = i.getFrame(0).getWidth(null);
-        height = i.getFrame(0).getHeight(null);
-        if ( i.getSpeed() != speed )
-            speed = i.getSpeed();
-            t.cancel();
-            t = new Timer();
-            resetSpeed();
+        if (anim != i) {
+            anim = i;
+            width = i.getFrame(0).getWidth(null);
+            height = i.getFrame(0).getHeight(null);
+            if (i.getSpeed() != speed)
+                speed = i.getSpeed();
+                resetSpeed();
+        }
         if (father == null) {
-            for ( Object o : childs ) {
-                o.setAnimation(i);
-                o.setWidth( i.getFrame(0).getWidth(null) );
-                o.setHeight( i.getFrame(0).getHeight(null) );
-                if ( i.getSpeed() != o.getSpeed() )
-                    o.setSpeed( i.getSpeed() );
-                    o.getTimer().cancel();
-                    o.setTimer( new Timer() );
-                    o.resetSpeed();
+            for (Object o : childs) {
+                if (o.getAnimation() != i) {
+                    o.setAnimation(i);
+                    o.setWidth( i.getFrame(0).getWidth(null) );
+                    o.setHeight( i.getFrame(0).getHeight(null) );
+                    if ( i.getSpeed() != o.getSpeed() )
+                        o.setSpeed( i.getSpeed() );
+                        o.resetSpeed();
+                }
             }
         }
     }
@@ -168,18 +167,14 @@ public class Object {
     }
 
     public float getSpeed() { return speed; }
-    public void setSpeed(float i) { 
-        if (i != speed)
-            speed = i;
-            t.cancel();
-            t = new Timer();
+    public void setSpeed(float fps) { 
+        if (fps != speed)
+            speed = fps;
             resetSpeed();
         if (father == null) {
             for ( Object o : childs ) {
-                if ( i != o.getSpeed() )
-                    o.setSpeed(i);
-                    o.getTimer().cancel();
-                    o.setTimer( new Timer() );
+                if ( fps != o.getSpeed() )
+                    o.setSpeed(fps);
                     o.resetSpeed();
             }
         }
