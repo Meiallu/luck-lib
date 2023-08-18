@@ -8,27 +8,35 @@ import org.luck.system.type.Sprite;
 import org.luck.util.Keyboard;
 
 public class Main extends onTick {
-	Object Instance;
+	public Object ins;
 
     public Main() {
 		new Instance("Bullet Hellween", 320, 180);
 
 		Animation idle = new Animation();
+		idle.setSpeed(12.0f);
 		idle.setupFrames("images/run/", "run", ".png");
 		Sprite Player = new Sprite(idle);
 
 		Object Type = new Object(Player);
-		Instance = Type.create(160, 90);
-		Type.setSpeed(12.0f);
-
-		Instance.setFlipped(true);
+		ins = Type.create(160, 90);
     }
 
 	@Override
 	public void everyTick() {
-		if ( Keyboard.isPressed('d') ) Instance.setX( Instance.getX() + 1 );
-		if ( Keyboard.isPressed('a') ) Instance.setX( Instance.getX() - 1 );
-		if ( Keyboard.isPressed('w') ) Instance.setY( Instance.getY() - 1 );
-		if ( Keyboard.isPressed('s') ) Instance.setY( Instance.getY() + 1 );
+		if ( Keyboard.isPressed('d') ) {
+			ins.setX( ins.getX() + 1 );
+			ins.setMirrored(false);
+		}
+		if ( Keyboard.isPressed('a') ) {
+			ins.setX( ins.getX() - 1 );
+			ins.setMirrored(true);
+		}
+		if ( Keyboard.isPressed('w') ) {
+			ins.setY( ins.getY() - 1 );
+		}
+		if ( Keyboard.isPressed('s') ) {
+			ins.setY( ins.getY() + 1 );
+		}
 	}
 }

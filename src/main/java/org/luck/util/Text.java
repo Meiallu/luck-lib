@@ -124,15 +124,8 @@ public class Text {
         l.getTexts().remove(bf);
     }
 
-    public int getZ() {
-        Layer l = getLayer();
-        return l.getTexts().indexOf(this);
-    }
-
-    public int getZ(Scene scene) {
-        Layer l = getLayer(scene);
-        return l.getTexts().indexOf(this);
-    }
+    public int getZ() { return getLayer().getTexts().indexOf(this); }
+    public int getZ(Scene scene) { return getLayer(scene).getTexts().indexOf(this); }
 
     public boolean isOffsetable() { return offsetable; }
     public void setOffsetable(boolean i) { offsetable = i; } 

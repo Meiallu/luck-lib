@@ -28,6 +28,7 @@ public class Animation {
         }
     }
 
+    public void addFrame(Image img) { frames.add(img); }
     public void addFrame(String path) {
         File f = new File(path);
         if ( f.exists() ) {
@@ -39,10 +40,6 @@ public class Animation {
                 e.printStackTrace();
             }
         }
-    }
-
-    public void addFrame(Image img) {
-        frames.add(img);
     }
 
     public void addFrame(File file) {
@@ -57,27 +54,12 @@ public class Animation {
         }
     }
 
-    public void removeFrame(int index) {
-        frames.remove(index);
-    }
+    public void removeFrame(int index) { frames.remove(index); }
+    public void removeFrame(Image img) { frames.remove(img); }
 
-    public void removeFrame(Image img) {
-        frames.remove(img);
-    }
+    public Image getFrame(int index) { return frames.get(index); }
+    public List<Image> getFrames() { return frames; }
 
-    public Image getFrame(int index) {
-        return frames.get(index);
-    }
-
-    public List<Image> getFrames() {
-        return frames;
-    }
-
-    public float getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(float spd) {
-        speed = spd;
-    }
+    public float getSpeed() { return speed; }
+    public void setSpeed(float spd) { speed = spd; }
 }

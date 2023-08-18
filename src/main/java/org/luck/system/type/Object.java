@@ -10,7 +10,6 @@ import org.luck.system.nes.Layer;
 import org.luck.system.nes.Scene;
 
 public class Object {
-
     private double x;
     private double y;
     private Sprite image;
@@ -47,13 +46,8 @@ public class Object {
         }, 0, (int) (1000 / speed) );
     }
 
-    public Timer getTimer() {
-        return t;
-    }
-
-    public void setTimer(Timer timer) {
-        t = timer;
-    }
+    public Timer getTimer() { return t; }
+    public void setTimer(Timer timer) { t = timer; }
 
     public Object(Sprite sprite) {
         image = sprite;
