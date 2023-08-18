@@ -74,6 +74,66 @@ public class Text {
     public int getStyle() { return style; };
     public void setStyle(int styl) { style = styl; }
 
+    public void setLayer(Layer l) {
+        getLayer().getTexts().remove(this);
+        l.getTexts().add(this);
+    }
+
+    public void setLayer(Layer l, int index) {
+        getLayer().getTexts().remove(this);
+        l.getTexts().add(index, this);
+    }
+
+    public void setLayer(Layer l, Scene scene) {
+        getLayer(scene).getTexts().remove(this);
+        l.getTexts().add(this);
+    }
+
+    public void setLayer(Layer l, int index, Scene scene) {
+        getLayer(scene).getTexts().remove(this);
+        l.getTexts().add(index, this);
+    }
+
+    public Layer getLayer() {
+        for ( Layer l : Game.getScene().getLayers() )
+            if ( l.getTexts().contains(this) ) {
+                return l;
+            }
+        return null;            
+    }
+
+    public Layer getLayer(Scene scene) {
+        for ( Layer l : scene.getLayers() )
+            if ( l.getTexts().contains(this) ) {
+                return l;
+            }
+        return null;            
+    }
+
+    public void setZ(int index) {
+        Layer l = getLayer();
+        int bf = l.getTexts().indexOf(this);
+        l.getTexts().add(index, this);
+        l.getTexts().remove(bf);
+    }
+
+    public void setZ(int index, Scene scene) {
+        Layer l = getLayer(scene);
+        int bf = l.getTexts().indexOf(this);
+        l.getTexts().add(index, this);
+        l.getTexts().remove(bf);
+    }
+
+    public int getZ() {
+        Layer l = getLayer();
+        return l.getTexts().indexOf(this);
+    }
+
+    public int getZ(Scene scene) {
+        Layer l = getLayer(scene);
+        return l.getTexts().indexOf(this);
+    }
+
     public boolean isOffsetable() { return offsetable; }
     public void setOffsetable(boolean i) { offsetable = i; } 
 }

@@ -248,6 +248,26 @@ public class Object {
     // public float getAngle() { return angle; }
     // public void setAngle(float i) { angle = i; }
 
+    public void setLayer(Layer l) {
+        getLayer().getObjects().remove(this);
+        l.getObjects().add(this);
+    }
+
+    public void setLayer(Layer l, int index) {
+        getLayer().getObjects().remove(this);
+        l.getObjects().add(index, this);
+    }
+
+    public void setLayer(Layer l, Scene scene) {
+        getLayer(scene).getObjects().remove(this);
+        l.getObjects().add(this);
+    }
+
+    public void setLayer(Layer l, int index, Scene scene) {
+        getLayer(scene).getObjects().remove(this);
+        l.getObjects().add(index, this);
+    }
+
     public Layer getLayer() {
         for ( Layer l : Game.getScene().getLayers() )
             if ( l.getObjects().contains(this) ) {
