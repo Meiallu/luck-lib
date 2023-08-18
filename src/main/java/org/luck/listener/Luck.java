@@ -3,16 +3,18 @@ package org.luck.listener;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public abstract class onTick {
+public abstract class Luck {
     
-    public onTick() {        
+    public Luck() {     
+        start();   
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                everyTick();
+                update();
             }
         }, 0, 16);
     }
 
-    public abstract void everyTick();
+    public abstract void start();
+    public abstract void update();
 }
