@@ -1,5 +1,6 @@
 package org.luck.system.type;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -8,6 +9,7 @@ import java.util.TimerTask;
 import org.luck.system.nes.Game;
 import org.luck.system.nes.Layer;
 import org.luck.system.nes.Scene;
+import org.luck.util.Util;
 
 public class Object {
     private double x;
@@ -315,6 +317,43 @@ public class Object {
 
     public void setMirrored(boolean i) { mirrored = i; }
     public void setFlipped(boolean i) { flipped = i; }
+
+    public boolean isPlaceMeeting(double xDif, double yDif, Object obj) {
+        if ( obj.father == null ) {
+            for (Object o : obj.childs) {
+                boolean xx = false; boolean yy = false;
+                if (Util.isBetween( x + xDif, o.x, o.x + o.width ) || 
+                    Util.isBetween( x + width + xDif, o.x, o.x + o.width ) ||
+                    Util.isBetween(o.x, x + xDif, x + width + xDif) ||
+                    Util.isBetween(o.x + o.width, x + xDif, x + width + xDif)) {
+                        xx = true;
+                }
+                if (Util.isBetween( y + yDif, o.y, o.y + o.height ) || 
+                    Util.isBetween( y + height + yDif, o.y, o.y + o.height ) ||
+                    Util.isBetween(o.y, y + yDif, y + height + yDif) ||
+                    Util.isBetween(o.y + obj.height, y + yDif, y + height + yDif)) {
+                        yy = true;
+                }
+                if (xx && yy) { return true; }
+            }
+        } else {
+            boolean xx = false; boolean yy = false;
+            if (Util.isBetween( x + xDif, obj.x, obj.x + obj.width ) || 
+                Util.isBetween( x + width + xDif, obj.x, obj.x + obj.width ) ||
+                Util.isBetween(obj.x, x + xDif, x + width + xDif) ||
+                Util.isBetween(obj.x + obj.width, x + xDif, x + width + xDif)) {
+                    xx = true;
+            }
+            if (Util.isBetween( y + yDif, obj.y, obj.y + obj.height ) || 
+                Util.isBetween( y + height + yDif, obj.y, obj.y + obj.height ) ||
+                Util.isBetween(obj.y, y + yDif, y + height + yDif) ||
+                Util.isBetween(obj.y + obj.height, y + yDif, y + height + yDif)) {
+                    yy = true;
+            }
+            if (xx && yy) { return true; } else { return false; }
+        }
+        return false;
+    }
 
     public int getID() { return ID; }
 }

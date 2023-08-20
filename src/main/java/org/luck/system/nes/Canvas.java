@@ -52,13 +52,11 @@ public class Canvas extends JPanel {
                         int width = (int) ( ( o.getWidth() * o.getScale() ) * scale );
                         int height = (int) ( ( o.getHeight() * o.getScale() ) * scale );
 
+                        if ( o.isMirrored() ) img = getMirroredImage(img);
+                        if ( o.isFlipped() ) img = getFlippedImage(img);
                         if ( o.isOffsetable() )
                             x -= offX + (Camera.getX() * scale);
                             y -= offY + (Camera.getY() * scale);
-                        if ( o.isMirrored() )
-                            img = getMirroredImage(img);
-                        if ( o.isFlipped() )
-                            img = getFlippedImage(img);
 
                         g2D.setComposite( AlphaComposite.getInstance( AlphaComposite.SRC_OVER, o.getOpacity() ) );
                         g2D.drawImage(img, x, y, width, height, null);

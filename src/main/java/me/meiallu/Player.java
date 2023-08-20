@@ -8,6 +8,7 @@ import org.luck.system.type.Object;
 
 public class Player extends Luck {
 	Object obj;
+	Object solid;
 
     float speed = 1;
     float xv = 0;
@@ -19,6 +20,11 @@ public class Player extends Luck {
 
     @Override
     public void start() {
+
+        // -------------------------------------------
+        // Player setup
+        // -------------------------------------------
+
         idle = new Animation();
         run = new Animation();
         roll = new Animation();
@@ -37,6 +43,20 @@ public class Player extends Luck {
 
 		Object Type = new Object(Player);
 		obj = Type.create(160, 90);
+
+        // -------------------------------------------
+        // Solid setup
+        // -------------------------------------------
+
+        Animation def = new Animation();
+        def.addFrame("images/solid.png");
+
+        Sprite spr = new Sprite(def);
+
+        solid = new Object(spr);
+        solid.setSize(64, 64);
+        solid.create(200, 100);
+        solid.create(220, 70);
     }
 
     @Override
@@ -53,8 +73,13 @@ public class Player extends Luck {
         else if ( Keyboard.isPressed('s') ) { yv = 1; } 
         else { yv = 0; }
 
-        obj.setX(obj.getX() + xv * speed);
-        obj.setY(obj.getY() + yv * speed);
+        if (yv != 0 && xv != 0) speed = 0.75f;
+        else speed = 1;
+        
+        if ( !obj.isPlaceMeeting(xv * speed, 0, solid) )
+            obj.setX(obj.getX() + xv * speed);
+        if ( !obj.isPlaceMeeting(0, yv * speed, solid) )
+            obj.setY(obj.getY() + yv * speed);
 
         if (obj.getAnimation() != roll) {
             if (xv == 0 && yv == 0) obj.setAnimation(idle);

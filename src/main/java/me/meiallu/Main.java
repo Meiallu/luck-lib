@@ -9,7 +9,7 @@ public class Main extends Luck {
 
 	@Override
 	public void start() {
-		new Instance("Bullet Hellween", 320, 180);
+		new Instance("Evolunhoca", 533, 266);
 		new Player();
 		Instance.getPanel().setBackground(Color.BLACK);
 	}
