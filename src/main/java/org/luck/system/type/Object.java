@@ -1,10 +1,7 @@
 package org.luck.system.type;
 
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import org.luck.system.nes.Game;
 import org.luck.system.nes.Layer;
@@ -12,54 +9,36 @@ import org.luck.system.nes.Scene;
 import org.luck.util.Util;
 
 public class Object {
-    private double x;
-    private double y;
+    private float x;
+    private float y;
     private Sprite image;
-    private List<Object> childs = new ArrayList<Object>();
+    private List<Object> childs = new ArrayList<>();
     private Object father;
     private int ID;
     
     private boolean offsetable = true;
 
     private Animation anim;
-    private int frame = 0;
-    private float speed = 5.0f;
+    private byte frame = 0;
+    private byte speed = 5;
     private boolean mirrored = false;
     private boolean flipped = false;
     private float scale = 1.0f;
-    private int width = 32;
-    private int height = 32;
+    private short width = 32;
+    private short height = 32;
     private float opacity = 1.0f;
     private boolean visible = true;
-    // private float angle = 0.0f;
-
-    private Timer t = new Timer();
-
-    public void resetSpeed() {
-        t.cancel();
-        t = new Timer();
-
-        t.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                if ( anim.getFrames().size() == frame + 1 )
-                    frame = 0;
-                else
-                    frame++;
-            }
-        }, 0, (int) (1000 / speed) );
-    }
+    private float angle = 0.0f;
 
     public Object(Sprite sprite) {
         image = sprite;
         anim = sprite.getDefault();
         speed = anim.getSpeed();
-        width = anim.getFrame(0).getWidth(null);
-        height = anim.getFrame(0).getHeight(null);
-        resetSpeed();
+        width = (short) anim.getFrame(0).getWidth(null);
+        height = (short) anim.getFrame(0).getHeight(null);
     }
 
-    public Object create(double x, double y) {
+    public Object create(float x, float y) {
         Game.getScene().lastID++;
         Object obj = new Object(image);
         obj.ID = Game.getScene().lastID;
@@ -68,7 +47,7 @@ public class Object {
         return obj;
     }
 
-    public Object create(double x, double y, Scene cena) {
+    public Object create(float x, float y, Scene cena) {
         cena.lastID++;
         Object obj = new Object(image);
         obj.ID = cena.lastID;
@@ -77,7 +56,7 @@ public class Object {
         return obj;
     }
 
-    public Object create(double x, double y, Layer lay) {
+    public Object create(float x, float y, Layer lay) {
         Game.getScene().lastID++;
         Object obj = new Object(image);
         obj.ID = Game.getScene().lastID;
@@ -86,7 +65,7 @@ public class Object {
         return obj;
     }
 
-    public Object create(double x, double y, Scene cena, Layer lay) {
+    public Object create(float x, float y, Scene cena, Layer lay) {
         cena.lastID++;
         Object obj = new Object(image);
         obj.ID = cena.lastID;
@@ -95,7 +74,7 @@ public class Object {
         return obj;
     }
 
-    private void setup(Object o, double x, double y) {
+    private void setup(Object o, float x, float y) {
         o.x = x; 
         o.y = y;
         o.frame = frame; 
@@ -117,17 +96,17 @@ public class Object {
                 o.setSprite(i);
     }
 
-    public double getX() { return x; }
+    public float getX() { return x; }
     public void setX(double i) {
-        x = i; 
+        x = (float) i; 
         if (father == null)
             for ( Object o : childs )
                 o.setX(i);
     }
 
-    public double getY() { return y; }
+    public float getY() { return y; }
     public void setY(double i) { 
-        y = i; 
+        y = (float) i; 
         if (father == null)
             for ( Object o : childs )
                 o.setY(i);
@@ -140,11 +119,9 @@ public class Object {
     public void setAnimation(Animation i) {
         if (anim != i) {
             anim = i;
-            width = i.getFrame(0).getWidth(null);
-            height = i.getFrame(0).getHeight(null);
-            if (i.getSpeed() != speed)
-                speed = i.getSpeed();
-                resetSpeed();
+            width = (short) i.getFrame(0).getWidth(null);
+            height = (short) i.getFrame(0).getHeight(null);
+            speed = i.getSpeed();
         }
         if (father == null) {
             for (Object o : childs) {
@@ -152,9 +129,7 @@ public class Object {
                     o.setAnimation(i);
                     o.setWidth( i.getFrame(0).getWidth(null) );
                     o.setHeight( i.getFrame(0).getHeight(null) );
-                    if ( i.getSpeed() != o.getSpeed() )
-                        o.setSpeed( i.getSpeed() );
-                        o.resetSpeed();
+                    o.setSpeed( i.getSpeed() );
                 }
             }
         }
@@ -162,22 +137,19 @@ public class Object {
 
     public int getFrame() { return frame; }
     public void setFrame(int i) { 
-        frame = i; 
+        frame = (byte) i; 
         if (father == null)
             for ( Object o : childs )
                 o.setFrame(i);
     }
 
-    public float getSpeed() { return speed; }
-    public void setSpeed(float fps) { 
+    public int getSpeed() { return speed; }
+    public void setSpeed(int fps) { 
         if (fps != speed)
-            speed = fps;
-            resetSpeed();
+            speed = (byte) fps;
         if (father == null) {
             for ( Object o : childs ) {
-                if ( fps != o.getSpeed() )
-                    o.setSpeed(fps);
-                    o.resetSpeed();
+                o.setSpeed(fps);
             }
         }
      }
@@ -192,15 +164,15 @@ public class Object {
 
     public int getWidth() { return width; }
     public void setWidth(int i) { 
-        width = i; 
+        width = (short) i; 
         if (father == null)
             for ( Object o : childs )
                 o.setHeight(i);
     }
 
     public void setSize(int w, int h) { 
-        width = w;
-        height = h;
+        width = (short) w;
+        height = (short) h;
         if (father == null)
             for ( Object o : childs )
                 o.setSize(w, h);
@@ -208,7 +180,7 @@ public class Object {
 
     public int getHeight() { return height; }
     public void setHeight(int i) { 
-        height = i; 
+        height = (short) i; 
         if (father == null)
             for ( Object o : childs )
                 o.setHeight(i);
@@ -238,8 +210,13 @@ public class Object {
                 o.setOffsetable(i);
     }
 
-    // public float getAngle() { return angle; }
-    // public void setAngle(float i) { angle = i; }
+    public float getAngle() { return angle; }
+    public void setAngle(float i) {
+        angle = i; 
+        if (father == null)
+            for ( Object o : childs )
+                o.setAngle(i);
+    }
 
     public void setLayer(Layer l) {
         getLayer().getObjects().remove(this);

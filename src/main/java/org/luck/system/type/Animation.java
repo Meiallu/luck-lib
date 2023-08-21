@@ -10,7 +10,7 @@ import javax.imageio.ImageIO;
 
 public class Animation {
     private List<Image> frames = new ArrayList<Image>();
-    private float speed = 5.0f;
+    private byte speed = 5;
 
     public void setupFrames(String folder, String prefix, String suffix) {
         int a = 1;
@@ -60,6 +60,6 @@ public class Animation {
     public Image getFrame(int index) { return frames.get(index); }
     public List<Image> getFrames() { return frames; }
 
-    public float getSpeed() { return speed; }
-    public void setSpeed(float fps) { speed = fps; }
+    public byte getSpeed() { return speed; }
+    public void setSpeed(int fps) { speed = (byte) fps; }
 }

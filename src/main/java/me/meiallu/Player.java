@@ -3,6 +3,7 @@ package me.meiallu;
 import org.luck.listener.Luck;
 import org.luck.system.type.Animation;
 import org.luck.system.type.Sprite;
+import org.luck.util.Camera;
 import org.luck.util.Keyboard;
 import org.luck.system.type.Object;
 
@@ -56,7 +57,6 @@ public class Player extends Luck {
         solid = new Object(spr);
         solid.setSize(64, 64);
         solid.create(200, 100);
-        solid.create(220, 70);
     }
 
     @Override
@@ -77,9 +77,9 @@ public class Player extends Luck {
         else speed = 1;
         
         if ( !obj.isPlaceMeeting(xv * speed, 0, solid) )
-            obj.setX(obj.getX() + xv * speed);
+            obj.setX( (float) obj.getX() + xv * speed);
         if ( !obj.isPlaceMeeting(0, yv * speed, solid) )
-            obj.setY(obj.getY() + yv * speed);
+            obj.setY( (float) obj.getY() + yv * speed);
 
         if (obj.getAnimation() != roll) {
             if (xv == 0 && yv == 0) obj.setAnimation(idle);

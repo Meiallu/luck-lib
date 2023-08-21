@@ -8,15 +8,15 @@ import org.luck.system.nes.Layer;
 import org.luck.system.nes.Scene;
 
 public class Text {
-    private int x;
-    private int y;
+    private float x;
+    private float y;
     private float opacity = 1.0f;
     private boolean visible = true;
     private boolean offsetable = true;
     private Color color = Color.BLACK;
-    private int style = Font.PLAIN;
+    private byte style = Font.PLAIN;
     private String font = "SansSerif";
-    private int size = 12;
+    private short size = 12;
     private String text = "";
 
     public Text(String string, int xx, int yy) {
@@ -47,10 +47,10 @@ public class Text {
         lay.getTexts().add(this);
     }
 
-    public int getX() { return x; }
+    public float getX() { return x; }
     public void setX(int xx) { x = xx; }
 
-    public int getY() { return y; }
+    public float getY() { return y; }
     public void setY(int yy) { y = yy; }
 
     public float getOpacity() { return opacity; }
@@ -63,7 +63,7 @@ public class Text {
     public void setText(String str) { text = str; }
 
     public int getSize() { return size; };
-    public void setSize(int i) { size = i; }
+    public void setSize(int i) { size = (short) i; }
 
     public String getFont() { return font; };
     public void setFont(String str) { font = str; }
@@ -72,7 +72,7 @@ public class Text {
     public void setColor(Color col) { color = col; }
 
     public int getStyle() { return style; };
-    public void setStyle(int styl) { style = styl; }
+    public void setStyle(int styl) { style = (byte) styl; }
 
     public void setLayer(Layer l) {
         getLayer().getTexts().remove(this);
