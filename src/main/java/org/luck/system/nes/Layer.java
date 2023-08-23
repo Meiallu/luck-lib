@@ -8,6 +8,7 @@ import org.luck.util.Text;
 public class Layer {
     private ArrayList<Object> objects = new ArrayList<Object>();
     private ArrayList<Text> texts = new ArrayList<Text>();
+    private boolean visible = true;
 
     public Layer() {
         Game.getScene().getLayers().add(this);
@@ -30,6 +31,9 @@ public class Layer {
     public int getIndex(Scene cena) {
         return cena.getLayers().indexOf(this);
     }
+
+    public void setVisible(boolean bool) { visible = bool; }
+    public boolean isVisible() { return visible; }
      
     public ArrayList<Object> getObjects() { return objects; }
     public ArrayList<Text> getTexts() { return texts; }

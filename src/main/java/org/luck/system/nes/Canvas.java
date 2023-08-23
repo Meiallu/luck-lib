@@ -42,45 +42,47 @@ public class Canvas extends JPanel {
         super.paintComponent(g2D);
         Adjust();
 
-        for ( Layer l : Game.getScene().getLayers() ) {            
-            for ( Object o : l.getObjects() ) {
-                if ( o.isVisible() ) {
-                    if (tick % ( 60 / o.getSpeed() ) == 0) {
-                        if (o.getAnimation().getFrames().size() == o.getFrame() + 1)
-                            o.setFrame(0);
-                        else
-                            o.setFrame(o.getFrame() + 1);
+        for ( Layer l : Game.getScene().getLayers() ) {
+            if ( l.isVisible() ) {
+                for ( Object o : l.getObjects() ) {
+                    if ( o.isVisible() ) {
+                        if (tick % ( 60 / o.getSpeed() ) == 0) {
+                            if (o.getAnimation().getFrames().size() == o.getFrame() + 1)
+                                o.setFrame(0);
+                            else
+                                o.setFrame(o.getFrame() + 1);
+                        }
+                        Image img = o.getAnimation().getFrame( o.getFrame() );
+                        int x = (int) ( o.getX() * scale );
+                        int y = (int) ( o.getY() * scale );                        
+                        int width = (int) ( ( o.getWidth() * o.getScale() ) * scale );
+                        int height = (int) ( ( o.getHeight() * o.getScale() ) * scale );
+
+                        if ( o.isMirrored() ) img = getMirroredImage(img);
+                        if ( o.isFlipped() ) img = getFlippedImage(img);
+                        if ( o.isOffsetable() )
+                            x -= offX + (Camera.getRealX() * scale);
+                            y -= offY + (Camera.getRealY() * scale);
+
+                        g2D.setComposite( AlphaComposite.getInstance( AlphaComposite.SRC_OVER, o.getOpacity() ) );
+                        g2D.drawImage(img, x, y, width, height, null);
                     }
-                    Image img = o.getAnimation().getFrame( o.getFrame() );
-                    int x = (int) ( o.getX() * scale );
-                    int y = (int) ( o.getY() * scale );                        
-                    int width = (int) ( ( o.getWidth() * o.getScale() ) * scale );
-                    int height = (int) ( ( o.getHeight() * o.getScale() ) * scale );
-
-                    if ( o.isMirrored() ) img = getMirroredImage(img);
-                    if ( o.isFlipped() ) img = getFlippedImage(img);
-                    if ( o.isOffsetable() )
-                        x -= offX + (Camera.getRealX() * scale);
-                        y -= offY + (Camera.getRealY() * scale);
-
-                    g2D.setComposite( AlphaComposite.getInstance( AlphaComposite.SRC_OVER, o.getOpacity() ) );
-                    g2D.drawImage(img, x, y, width, height, null);
                 }
-            }
 
-            for ( Text t : l.getTexts() ) {
-                if ( t.isVisible() ) {
-                    int x = (int) ( t.getX() * scale );
-                    int y = (int) ( t.getY() * scale );
+                for ( Text t : l.getTexts() ) {
+                    if ( t.isVisible() ) {
+                        int x = (int) ( t.getX() * scale );
+                        int y = (int) ( t.getY() * scale );
 
-                    if ( t.isOffsetable() )
-                        x -= offX + Camera.getX();
-                        y -= offY + Camera.getY();
+                        if ( t.isOffsetable() )
+                            x -= offX + Camera.getX();
+                            y -= offY + Camera.getY();
 
-                    g2D.setColor( t.getColor() );
-                    g2D.setFont( new Font( t.getFont(), t.getStyle(), (t.getSize() * scale) ) );
-                    g2D.setComposite( AlphaComposite.getInstance( AlphaComposite.SRC_OVER, t.getOpacity() ) );
-                    g2D.drawString(t.getText(), x, y);
+                        g2D.setColor( t.getColor() );
+                        g2D.setFont( new Font( t.getFont(), t.getStyle(), (t.getSize() * scale) ) );
+                        g2D.setComposite( AlphaComposite.getInstance( AlphaComposite.SRC_OVER, t.getOpacity() ) );
+                        g2D.drawString(t.getText(), x, y);
+                    }
                 }
             }
         }
