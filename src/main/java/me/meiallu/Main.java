@@ -1,13 +1,11 @@
 package me.meiallu;
 
-import java.awt.Color;
 import org.luck.system.nes.Instance;
 
 public class Main {
-
-	public Main() {
+	
+    public static void main(String[] args) { 
 		new Instance("Evolunhoca", 533, 266);
 		new Player();
-		Instance.getPanel().setBackground(Color.BLACK);
 	}
 }

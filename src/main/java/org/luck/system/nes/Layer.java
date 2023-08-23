@@ -1,14 +1,13 @@
 package org.luck.system.nes;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.luck.system.type.Object;
 import org.luck.util.Text;
 
 public class Layer {
-    private List<Object> objects = new ArrayList<Object>();
-    private List<Text> texts = new ArrayList<Text>();
+    private ArrayList<Object> objects = new ArrayList<Object>();
+    private ArrayList<Text> texts = new ArrayList<Text>();
 
     public Layer() {
         Game.getScene().getLayers().add(this);
@@ -32,6 +31,6 @@ public class Layer {
         return cena.getLayers().indexOf(this);
     }
      
-    public List<Object> getObjects() { return objects; }
-    public List<Text> getTexts() { return texts; }
+    public ArrayList<Object> getObjects() { return objects; }
+    public ArrayList<Text> getTexts() { return texts; }
 }

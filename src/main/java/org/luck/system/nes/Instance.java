@@ -22,7 +22,7 @@ public class Instance {
         frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setMinimumSize( new Dimension(w + 16, h + 39) );
-        frame.getContentPane().setBackground( Color.BLACK );
+        frame.getContentPane().setBackground(Color.BLACK);
         frame.getContentPane().setLayout( new BorderLayout() );
         frame.setLocationRelativeTo(null);
 

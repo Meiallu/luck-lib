@@ -1,7 +1,6 @@
 package org.luck.system.type;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.luck.system.nes.Game;
 import org.luck.system.nes.Layer;
@@ -12,7 +11,7 @@ public class Object {
     private float x;
     private float y;
     private Sprite image;
-    private List<Object> childs = new ArrayList<>();
+    private ArrayList<Object> childs = new ArrayList<>();
     private Object father;
     private int ID;
     
@@ -112,7 +111,7 @@ public class Object {
                 o.setY(i);
     }
 
-    public List<Object> getChilds() { return childs; }
+    public ArrayList<Object> getChilds() { return childs; }
     public Object getFather() { return father; }
 
     public Animation getAnimation() {return anim; }

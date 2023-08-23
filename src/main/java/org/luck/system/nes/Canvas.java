@@ -28,14 +28,12 @@ public class Canvas extends JPanel {
     private static boolean offsetable = true;
 
     public Canvas() {
-        super.setBackground( Color.WHITE );
+        super.setBackground(Color.BLACK);
         Instance.getWindow().add(this);
 
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
-            public void run() {
-                repaint();
-            }
+            public void run() { repaint(); }
         }, 0, 16);
     }
 
@@ -48,7 +46,7 @@ public class Canvas extends JPanel {
             for ( Object o : l.getObjects() ) {
                 if ( o.isVisible() ) {
                     if (tick % ( 60 / o.getSpeed() ) == 0) {
-                        if ( o.getAnimation().getFrames().size() == o.getFrame() + 1 )
+                        if (o.getAnimation().getFrames().size() == o.getFrame() + 1)
                             o.setFrame(0);
                         else
                             o.setFrame(o.getFrame() + 1);
@@ -86,33 +84,7 @@ public class Canvas extends JPanel {
                 }
             }
         }
-        if (tick == 60) tick = 0; else tick++;
-    }
-
-    public static Image getRotated(Image img, double angle) {
-        BufferedImage buff = (BufferedImage) img;
-        double sin = Math.abs( Math.sin(angle) );
-        double cos = Math.abs( Math.cos(angle) );
-    
-        int w = buff.getWidth();
-        int h = buff.getHeight();
-    
-        int nw = (int) Math.floor( (double) w * cos + (double) h * sin );
-        int nh = (int) Math.floor( (double) h * cos + (double) w * sin );
-    
-        BufferedImage out = new BufferedImage(nw, nh, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g = out.createGraphics();
-    
-        g.setRenderingHint(
-                RenderingHints.KEY_INTERPOLATION,
-                RenderingHints.VALUE_INTERPOLATION_BICUBIC);
-    
-        g.translate( (nw - w) / 2, (nh - h) / 2 );
-        g.rotate( angle, (double) (w / 2), (double) (h / 2) );
-        g.drawImage(buff, 0, 0, null);
-        g.dispose();
-    
-        return (Image) out;
+        if (tick == 60) tick = 1; else tick++;
     }
 
     public static Image getMirroredImage(Image img) {
