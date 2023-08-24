@@ -339,7 +339,8 @@ public class Object {
     }
 
     public void destroy() {
-        for ( Object o : childs ) o.getLayer().getObjects().remove(o);
+        for (Object o : childs) 
+            o.getLayer().getObjects().remove(o);
         getLayer().getObjects().remove(this);
         childs = new ArrayList<>();
     }
