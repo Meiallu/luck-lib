@@ -6,6 +6,7 @@ import org.luck.system.nes.Game;
 import org.luck.system.nes.Layer;
 import org.luck.system.nes.Scene;
 import org.luck.util.Util;
+import org.luck.util.Vector2D;
 
 public class Object {
     private float x;
@@ -14,20 +15,23 @@ public class Object {
     private ArrayList<Object> childs = new ArrayList<>();
     private Object father;
     private int ID;
-    
-    private boolean offsetable = true;
 
     private Animation anim;
     private byte frame = 0;
     private byte speed = 5;
-    private boolean mirrored = false;
-    private boolean flipped = false;
     private float scale = 1.0f;
     private short width = 32;
     private short height = 32;
     private float opacity = 1.0f;
-    private boolean visible = true;
     private float angle = 0.0f;
+
+    private boolean offsetable = true;
+    private boolean mirrored = false;
+    private boolean flipped = false;
+    private boolean visible = true;
+
+    private Vector2D origin = new Vector2D(0, 0);
+    private ArrayList<Vector2D> points = new ArrayList<>();
 
     public Object(Sprite sprite) {
         image = sprite;
@@ -74,15 +78,17 @@ public class Object {
     }
 
     private void setup(Object o, float x, float y) {
-        o.x = x; 
-        o.y = y;
+        o.x = x; o.y = y;
         o.frame = frame; 
         o.speed = speed;
         o.scale = scale;
-        o.width = width; 
-        o.height = height;
-        o.opacity = opacity; 
+        o.width = width; o.height = height;
+        o.opacity = opacity;
+        o.angle = angle;
         o.visible = visible;
+        o.offsetable = offsetable;
+        o.mirrored = mirrored; o.flipped = flipped;
+        o.origin = origin; o.points = points;
         o.father = this;
         childs.add(o);
     }
@@ -238,11 +244,12 @@ public class Object {
     }
 
     public Layer getLayer() {
-        for ( Layer l : Game.getScene().getLayers() )
+        for ( Layer l : Game.getScene().getLayers() ) {
             if ( l.getObjects().contains(this) ) {
                 return l;
             }
-        return null;            
+        }
+        return Game.getScene().getLayers().get(0);            
     }
 
     public Layer getLayer(Scene scene) {
@@ -250,7 +257,7 @@ public class Object {
             if ( l.getObjects().contains(this) ) {
                 return l;
             }
-        return null;            
+        return Game.getScene().getLayers().get(0);            
     }
 
     public void setZ(int index) {
@@ -329,6 +336,12 @@ public class Object {
             if (xx && yy) { return true; } else { return false; }
         }
         return false;
+    }
+
+    public void destroy() {
+        for ( Object o : childs ) o.getLayer().getObjects().remove(o);
+        getLayer().getObjects().remove(this);
+        childs = new ArrayList<>();
     }
 
     public int getID() { return ID; }

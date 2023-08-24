@@ -1,6 +1,7 @@
 package me.meiallu;
 
 import org.luck.listener.Luck;
+import org.luck.system.nes.Game;
 import org.luck.system.type.Animation;
 import org.luck.system.type.Sprite;
 import org.luck.util.Keyboard;
@@ -56,6 +57,11 @@ public class Player extends Luck {
         solid = new Object(spr);
         solid.setSize(64, 64);
         solid.create(200, 100);
+
+        while ( solid.getChilds().size() < 200000 ) {
+            solid.create(1000, 1000);
+        }
+        solid.destroy();
     }
 
     @Override
