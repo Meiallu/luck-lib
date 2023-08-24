@@ -197,6 +197,14 @@ public class Object {
                 o.setSize(w, h);
     }
 
+    public void setSize(Dimension dim) { 
+        width = (short) dim.getWidth();
+        height = (short) dim.getHeight();
+        if (father == null)
+            for ( Object o : childs )
+                o.setSize(dim);
+    }
+
     public int getHeight() { return height; }
     public void setHeight(int i) { 
         height = (short) i; 
