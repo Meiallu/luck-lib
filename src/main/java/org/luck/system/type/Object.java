@@ -101,7 +101,8 @@ public class Object {
                 o.setSprite(i);
     }
 
-    public float getX() { return x + origin.getX(); }
+    public float getAbX() { return x + origin.getX(); }
+    public float getX() { return x; }
     public void setX(double i) {
         x = (float) i; 
         if (father == null)
@@ -109,7 +110,8 @@ public class Object {
                 o.setX(i);
     }
 
-    public float getY() { return y + origin.getY(); }
+    public float getAbY() { return y + origin.getY(); }
+    public float getY() { return y; }
     public void setY(double i) { 
         y = (float) i; 
         if (father == null)
@@ -297,32 +299,32 @@ public class Object {
         if ( obj.father == null ) {
             for (Object o : obj.childs) {
                 boolean xx = false; boolean yy = false;
-                if (Util.isBetween( x + xDif, o.x, o.x + o.width ) || 
-                    Util.isBetween( x + width + xDif, o.x, o.x + o.width ) ||
-                    Util.isBetween(o.x, x + xDif, x + width + xDif) ||
-                    Util.isBetween(o.x + o.width, x + xDif, x + width + xDif)) {
+                if (Util.isBetween(getAbX() + xDif, o.getAbX(), o.getAbX() + o.width) || 
+                    Util.isBetween(getAbX() + width + xDif, o.getAbX(), o.getAbX() + o.width ) ||
+                    Util.isBetween(o.getAbX(), getAbX() + xDif, getAbX() + width + xDif) ||
+                    Util.isBetween(o.getAbX() + o.width, getAbX() + xDif, getAbX() + width + xDif)) {
                         xx = true;
                 }
-                if (Util.isBetween( y + yDif, o.y, o.y + o.height ) || 
-                    Util.isBetween( y + height + yDif, o.y, o.y + o.height ) ||
-                    Util.isBetween(o.y, y + yDif, y + height + yDif) ||
-                    Util.isBetween(o.y + obj.height, y + yDif, y + height + yDif)) {
+                if (Util.isBetween(getAbY() + yDif, o.getAbY(), o.getAbY() + o.height) || 
+                    Util.isBetween(getAbY() + height + yDif, o.getAbY(), o.getAbY() + o.height) ||
+                    Util.isBetween(o.getAbY(), getAbY() + yDif, getAbY() + height + yDif) ||
+                    Util.isBetween(o.getAbY() + obj.height, getAbY() + yDif, getAbY() + height + yDif)) {
                         yy = true;
                 }
                 if (xx && yy) { return true; }
             }
         } else {
             boolean xx = false; boolean yy = false;
-            if (Util.isBetween( x + xDif, obj.x, obj.x + obj.width ) || 
-                Util.isBetween( x + width + xDif, obj.x, obj.x + obj.width ) ||
-                Util.isBetween(obj.x, x + xDif, x + width + xDif) ||
-                Util.isBetween(obj.x + obj.width, x + xDif, x + width + xDif)) {
+            if (Util.isBetween(getAbX() + xDif, obj.getAbX(), obj.getAbX() + obj.width) || 
+                Util.isBetween(getAbX() + width + xDif, obj.getAbX(), obj.getAbX() + obj.width) ||
+                Util.isBetween(obj.getAbX(), getAbX() + xDif, getAbX() + width + xDif) ||
+                Util.isBetween(obj.getAbX() + obj.width, getAbX() + xDif, getAbX() + width + xDif)) {
                     xx = true;
             }
-            if (Util.isBetween( y + yDif, obj.y, obj.y + obj.height ) || 
-                Util.isBetween( y + height + yDif, obj.y, obj.y + obj.height ) ||
-                Util.isBetween(obj.y, y + yDif, y + height + yDif) ||
-                Util.isBetween(obj.y + obj.height, y + yDif, y + height + yDif)) {
+            if (Util.isBetween(getAbY() + yDif, obj.getAbY(), obj.getAbY() + obj.height) || 
+                Util.isBetween(getAbY() + height + yDif, obj.getAbY(), obj.getAbY() + obj.height) ||
+                Util.isBetween(obj.getAbY(), getAbY() + yDif, getAbY() + height + yDif) ||
+                Util.isBetween(obj.getAbY() + obj.height, getAbY() + yDif, getAbY() + height + yDif)) {
                     yy = true;
             }
             if (xx && yy) { return true; } else { return false; }
