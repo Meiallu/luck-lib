@@ -1,7 +1,5 @@
 package org.luck.system.type;
 
-import java.awt.Dimension;
-import java.awt.geom.Dimension2D;
 import java.util.ArrayList;
 
 import org.luck.system.nes.Game;
@@ -95,17 +93,6 @@ public class Object {
         childs.add(o);
     }
 
-    public Vector2D getLocation() { return new Vector2D(x, y); }
-    public void setLocation(Vector2D vec) { 
-        x = vec.getX() + origin.getX();
-        y = vec.getY() + origin.getY();
-    }
-
-    public void setLocation(float x, float y) { 
-        this.x = x + origin.getX();
-        this.y = x + origin.getY();
-    }
-
     public Sprite getSprite() { return image; }
     public void setSprite(Sprite i) {
         image = i; 
@@ -186,23 +173,6 @@ public class Object {
         if (father == null)
             for ( Object o : childs )
                 o.setHeight(i);
-    }
-
-    public Dimension getSize() { return new Dimension(width, height); } 
-    public void setSize(int w, int h) { 
-        width = (short) w;
-        height = (short) h;
-        if (father == null)
-            for ( Object o : childs )
-                o.setSize(w, h);
-    }
-
-    public void setSize(Dimension dim) { 
-        width = (short) dim.getWidth();
-        height = (short) dim.getHeight();
-        if (father == null)
-            for ( Object o : childs )
-                o.setSize(dim);
     }
 
     public int getHeight() { return height; }

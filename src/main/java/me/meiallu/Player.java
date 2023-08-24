@@ -54,7 +54,8 @@ public class Player extends Luck {
         Sprite spr = new Sprite(def);
 
         solid = new Object(spr);
-        solid.setSize(64, 64);
+        solid.setWidth(64);
+        solid.setHeight(64);
         solid.create(200, 100);
     }
 
