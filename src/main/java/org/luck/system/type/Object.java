@@ -353,6 +353,7 @@ public class Object {
     public void removePoint(Vector2D point) { points.remove(point); }
 
     public Vector2D getPoint(int index) { return points.get(index); }
+    public ArrayList<Vector2D> getPoints() { return points; }
 
     public float getPointX(int index) { return x + points.get(index).getX(); }
     public float getPointY(int index) { return y + points.get(index).getY(); }
