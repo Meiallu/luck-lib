@@ -1,17 +1,17 @@
 package org.luck.util;
 
 public class Vector2D {
-    private int width = 0;
-    private int height = 0;
+    private float x = 0;
+    private float y = 0;
 
-    public Vector2D(int width, int height) {
-        this.width = width;
-        this.height = height;
+    public Vector2D(float x, float y) {
+        this.x = x;
+        this.y = y;
     }
 
-    public void setWidth(int width) { this.width = width; }
-    public void setHeight(int height) { this.height = height; }
+    public void setX(float x) { this.x = x; }
+    public void setY(float y) { this.y = y; }
     
-    public int getWidth() { return width; }
-    public int getHeight() { return height; }
+    public float getX() { return x; }
+    public float getY() { return y; }
 }

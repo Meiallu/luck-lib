@@ -53,7 +53,7 @@ public class Canvas extends JPanel {
                         }
                         Image img = o.getAnimation().getFrame( o.getFrame() );
                         int x = (int) ( o.getX() * scale );
-                        int y = (int) ( o.getY() * scale );                        
+                        int y = (int) ( o.getY() * scale );                       
                         int width = (int) ( ( o.getWidth() * o.getScale() ) * scale );
                         int height = (int) ( ( o.getHeight() * o.getScale() ) * scale );
 

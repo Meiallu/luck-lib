@@ -93,6 +93,17 @@ public class Object {
         childs.add(o);
     }
 
+    public Vector2D getLocation() { return new Vector2D(x, y); }
+    public void setLocation(Vector2D vec) { 
+        x = vec.getX() + origin.getX();
+        y = vec.getY() + origin.getY();
+    }
+
+    public void setLocation(float x, float y) { 
+        this.x = x + origin.getX();
+        this.y = x + origin.getY();
+    }
+
     public Sprite getSprite() { return image; }
     public void setSprite(Sprite i) {
         image = i; 
@@ -101,7 +112,7 @@ public class Object {
                 o.setSprite(i);
     }
 
-    public float getX() { return x; }
+    public float getX() { return x + origin.getX(); }
     public void setX(double i) {
         x = (float) i; 
         if (father == null)
@@ -109,7 +120,7 @@ public class Object {
                 o.setX(i);
     }
 
-    public float getY() { return y; }
+    public float getY() { return y + origin.getY(); }
     public void setY(double i) { 
         y = (float) i; 
         if (father == null)
@@ -344,6 +355,10 @@ public class Object {
         getLayer().getObjects().remove(this);
         childs = new ArrayList<>();
     }
+
+    public void setOrigin(Vector2D vec) { origin = vec; }
+    public void setOrigin(int x, int y) { origin.setX(x); origin.setY(y); }
+    public Vector2D getOrigin() { return origin; }
 
     public int getID() { return ID; }
 }
