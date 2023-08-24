@@ -1,5 +1,7 @@
 package org.luck.system.type;
 
+import java.awt.Dimension;
+import java.awt.geom.Dimension2D;
 import java.util.ArrayList;
 
 import org.luck.system.nes.Game;
@@ -186,6 +188,7 @@ public class Object {
                 o.setHeight(i);
     }
 
+    public Dimension getSize() { return new Dimension(width, height); } 
     public void setSize(int w, int h) { 
         width = (short) w;
         height = (short) h;
