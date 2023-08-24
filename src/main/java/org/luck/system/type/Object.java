@@ -103,7 +103,7 @@ public class Object {
 
     public float getAbX() { return x + origin.getX(); }
     public float getX() { return x; }
-    public void setX(double i) {
+    public void setX(float i) {
         x = (float) i; 
         if (father == null)
             for ( Object o : childs )
@@ -342,6 +342,20 @@ public class Object {
     public void setOrigin(Vector2D vec) { origin = vec; }
     public void setOrigin(int x, int y) { origin.setX(x); origin.setY(y); }
     public Vector2D getOrigin() { return origin; }
+
+    public Vector2D addPoint(float x, float y) { 
+        Vector2D point = new Vector2D(x, y);
+        points.add(point);
+        return point;
+    }
+
+    public void removePoint(int index) { points.remove(index); }
+    public void removePoint(Vector2D point) { points.remove(point); }
+
+    public Vector2D getPoint(int index) { return points.get(index); }
+
+    public float getPointX(int index) { return x + points.get(index).getX(); }
+    public float getPointY(int index) { return y + points.get(index).getY(); }
 
     public int getID() { return ID; }
 }
