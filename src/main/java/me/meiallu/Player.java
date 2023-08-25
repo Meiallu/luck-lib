@@ -4,7 +4,6 @@ import org.luck.listener.Luck;
 import org.luck.system.type.Animation;
 import org.luck.system.type.Sprite;
 import org.luck.util.Keyboard;
-import org.luck.util.Util;
 import org.luck.system.type.Object;
 
 public class Player extends Luck {
