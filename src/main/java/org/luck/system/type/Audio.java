@@ -1,4 +1,4 @@
-package org.luck.util;
+package org.luck.system.type;
 
 import java.io.File;
 import java.io.IOException;

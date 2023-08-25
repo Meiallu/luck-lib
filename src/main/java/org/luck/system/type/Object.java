@@ -98,7 +98,7 @@ public class Object {
         image = i; 
         if (father == null)
             for ( Object o : childs )
-                o.setSprite(i);
+                o.image = i;
     }
 
     public float getAbX() { return x + origin.getX(); }
@@ -107,7 +107,7 @@ public class Object {
         x = (float) i; 
         if (father == null)
             for ( Object o : childs )
-                o.setX(i);
+                o.x = (float) i; 
     }
 
     public float getAbY() { return y + origin.getY(); }
@@ -116,7 +116,7 @@ public class Object {
         y = (float) i; 
         if (father == null)
             for ( Object o : childs )
-                o.setY(i);
+                o.y = (float) i;
     }
 
     public ArrayList<Object> getChilds() { return childs; }
@@ -132,11 +132,11 @@ public class Object {
         }
         if (father == null) {
             for (Object o : childs) {
-                if (o.getAnimation() != i) {
-                    o.setAnimation(i);
-                    o.setWidth( i.getFrame(0).getWidth(null) );
-                    o.setHeight( i.getFrame(0).getHeight(null) );
-                    o.setSpeed( i.getSpeed() );
+                if (o.anim != i) {
+                    o.anim = i;
+                    o.width = (short) i.getFrame(0).getWidth(null);
+                    o.height = (short) i.getFrame(0).getHeight(null);
+                    o.speed = i.getSpeed();
                 }
             }
         }
@@ -147,16 +147,15 @@ public class Object {
         frame = (byte) i; 
         if (father == null)
             for ( Object o : childs )
-                o.setFrame(i);
+                o.frame = (byte) i;
     }
 
     public int getSpeed() { return speed; }
     public void setSpeed(int fps) { 
-        if (fps != speed)
-            speed = (byte) fps;
+        speed = (byte) fps;
         if (father == null) {
             for ( Object o : childs ) {
-                o.setSpeed(fps);
+                o.speed = (byte) fps;
             }
         }
      }
@@ -166,7 +165,7 @@ public class Object {
         scale = i; 
         if (father == null)
             for ( Object o : childs )
-                o.setScale(i);
+                o.scale = i;
     }
 
     public int getWidth() { return width; }
@@ -174,7 +173,7 @@ public class Object {
         width = (short) i; 
         if (father == null)
             for ( Object o : childs )
-                o.setHeight(i);
+                o.width = (short) i;
     }
 
     public int getHeight() { return height; }
@@ -182,7 +181,7 @@ public class Object {
         height = (short) i; 
         if (father == null)
             for ( Object o : childs )
-                o.setHeight(i);
+                o.height = (short) i;
     }
 
     public float getOpacity() { return opacity; }
@@ -190,7 +189,7 @@ public class Object {
         opacity = i; 
         if (father == null)
             for ( Object o : childs )
-                o.setOpacity(i);
+                o.opacity = i;
     }
 
     public boolean isVisible() { return visible; }
@@ -198,7 +197,7 @@ public class Object {
         visible = i; 
         if (father == null)
             for ( Object o : childs )
-                o.setVisible(i);
+                o.visible = i;
     }
 
     public boolean isOffsetable() { return offsetable; }
@@ -206,7 +205,7 @@ public class Object {
         offsetable = i; 
         if (father == null)
             for ( Object o : childs )
-                o.setOffsetable(i);
+                o.offsetable = i;
     }
 
     public float getAngle() { return angle; }
@@ -214,27 +213,55 @@ public class Object {
         angle = i; 
         if (father == null)
             for ( Object o : childs )
-                o.setAngle(i);
+                o.angle = i;
     }
 
     public void setLayer(Layer l) {
-        getLayer().getObjects().remove(this);
-        l.getObjects().add(this);
+        if (father == null)
+            for ( Object o : childs ) {
+                o.getLayer().getObjects().remove(o);
+                l.getObjects().add(o);
+            }
+        else {
+            getLayer().getObjects().remove(this);
+            l.getObjects().add(this);
+        }
     }
 
     public void setLayer(Layer l, int index) {
-        getLayer().getObjects().remove(this);
-        l.getObjects().add(index, this);
+        if (father == null)
+            for ( Object o : childs ) {
+                o.getLayer().getObjects().remove(o);
+                l.getObjects().add(index, o);
+            }
+        else {
+            getLayer().getObjects().remove(this);
+            l.getObjects().add(index, this);
+        }
     }
 
     public void setLayer(Layer l, Scene scene) {
-        getLayer(scene).getObjects().remove(this);
-        l.getObjects().add(this);
+        if (father == null)
+            for ( Object o : childs ) {
+                o.getLayer(scene).getObjects().remove(o);
+                l.getObjects().add(o);
+            }
+        else {
+            getLayer(scene).getObjects().remove(this);
+            l.getObjects().add(this);
+        }
     }
 
     public void setLayer(Layer l, int index, Scene scene) {
-        getLayer(scene).getObjects().remove(this);
-        l.getObjects().add(index, this);
+        if (father == null)
+            for ( Object o : childs ) {
+                o.getLayer(scene).getObjects().remove(o);
+                l.getObjects().add(index, o);
+            }
+        else {
+            getLayer(scene).getObjects().remove(this);
+            l.getObjects().add(index, this);
+        }
     }
 
     public Layer getLayer() {
@@ -339,18 +366,48 @@ public class Object {
         childs = new ArrayList<>();
     }
 
-    public void setOrigin(Vector2D vec) { origin = vec; }
-    public void setOrigin(int x, int y) { origin.setX(x); origin.setY(y); }
     public Vector2D getOrigin() { return origin; }
+    public void setOrigin(Vector2D vec) { 
+        origin = vec; 
+        if (father == null)
+            for ( Object o : childs )
+                o.origin = vec;
+    }
+
+    public void setOrigin(int x, int y) { 
+        origin.setX(x); origin.setY(y); 
+        if (father == null)
+            for ( Object o : childs ) {
+                o.origin.setX(x); 
+                o.origin.setY(y);
+            }
+    }
 
     public Vector2D addPoint(float x, float y) { 
         Vector2D point = new Vector2D(x, y);
         points.add(point);
-        return point;
+        if (father == null) {
+            for ( Object o : childs ) {
+                point = new Vector2D(x, y);
+                o.points.add(point);
+            }
+        } else { return point; }
+        return null;
     }
 
-    public void removePoint(int index) { points.remove(index); }
-    public void removePoint(Vector2D point) { points.remove(point); }
+    public void removePoint(int index) { 
+        points.remove(index);
+        if (father == null)
+            for ( Object o : childs )
+                o.points.remove(index);
+    }
+
+    public void removePoint(Vector2D point) { 
+        points.remove(point); 
+        if (father == null)
+            for ( Object o : childs )
+                o.points.remove(point);
+    }
 
     public Vector2D getPoint(int index) { return points.get(index); }
     public ArrayList<Vector2D> getPoints() { return points; }

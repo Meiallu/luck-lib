@@ -3,7 +3,7 @@ package org.luck.system.nes;
 import java.util.ArrayList;
 
 import org.luck.system.type.Object;
-import org.luck.util.Text;
+import org.luck.system.type.Text;
 
 public class Layer {
     private ArrayList<Object> objects = new ArrayList<Object>();

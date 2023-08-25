@@ -1,4 +1,4 @@
-package org.luck.util;
+package org.luck.system.type;
 
 import java.awt.Color;
 import java.awt.Font;

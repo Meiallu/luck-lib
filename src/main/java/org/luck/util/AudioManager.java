@@ -3,6 +3,8 @@ package org.luck.util;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
+import org.luck.system.type.Audio;
+
 public class AudioManager {
 
     public static void play(Audio a) { 

@@ -31,14 +31,16 @@ public class Keyboard implements KeyListener {
                 setFullScreen();
             else
                 setNormal();
-        if ( !keys.contains( e.getKeyChar() ))
-            keys.add(keys.size(), e.getKeyChar());
+        char c = Character.toLowerCase( e.getKeyChar() );
+        if ( !keys.contains(c) )
+            keys.add(keys.size(), c);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (keys.contains( e.getKeyChar() ))
-            keys.remove(keys.indexOf( e.getKeyChar() ));
+        char c = Character.toLowerCase( e.getKeyChar() );
+        if ( keys.contains(c) )
+            keys.remove( keys.indexOf(c) );
     }
 
     public static boolean isPressed(char key) { return keys.contains(key); }

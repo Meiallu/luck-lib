@@ -1,4 +1,4 @@
-package org.luck.util;
+package org.luck.system.type;
 
 import org.luck.system.nes.Instance;
 

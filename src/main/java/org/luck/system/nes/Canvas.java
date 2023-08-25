@@ -12,9 +12,9 @@ import java.util.TimerTask;
 
 import javax.swing.JPanel;
 
+import org.luck.system.type.Camera;
 import org.luck.system.type.Object;
-import org.luck.util.Camera;
-import org.luck.util.Text;
+import org.luck.system.type.Text;
 
 public class Canvas extends JPanel {
     private static byte tick = 1;
