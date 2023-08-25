@@ -3,6 +3,8 @@ package org.luck.listener;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.luck.util.Device;
+
 public abstract class Luck {
     
     public Luck() {     
@@ -12,7 +14,7 @@ public abstract class Luck {
             public void run() {
                 update();
             }
-        }, 0, 16);
+        }, 0, (1000 / Device.refreshRate));
     }
 
     public abstract void start();

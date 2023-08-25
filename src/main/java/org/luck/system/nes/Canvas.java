@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import org.luck.system.type.Camera;
 import org.luck.system.type.Object;
 import org.luck.system.type.Text;
+import org.luck.util.Device;
 
 public class Canvas extends JPanel {
     private static byte tick = 1;
@@ -33,7 +34,7 @@ public class Canvas extends JPanel {
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() { repaint(); }
-        }, 0, 16);
+        }, 0, (1000 / Device.refreshRate));
     }
 
     public void paintComponent(Graphics g) {
@@ -45,7 +46,7 @@ public class Canvas extends JPanel {
             if ( l.isVisible() ) {
                 for ( Object o : l.getObjects() ) {
                     if ( o.isVisible() ) {
-                        if (tick % ( 60 / o.getSpeed() ) == 0) {
+                        if (tick % ( Device.refreshRate / o.getSpeed() ) == 0) {
                             if (o.getAnimation().getFrames().size() == o.getFrame() + 1)
                                 o.setFrame(0);
                             else
