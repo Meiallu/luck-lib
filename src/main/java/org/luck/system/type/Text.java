@@ -17,31 +17,36 @@ public class Text {
     private String font = "SansSerif";
     private short size = 12;
     private String text = "";
+    private int ID;
 
-    public Text(String string, int xx, int yy) {
-        x = xx;
-        y = yy;
+    public Text(String string, int x, int y) {
+        Game.getScene().lastID++;
+        ID = Game.getScene().lastID;
+        this.x = x; this.y = y;
         text = string;
         Game.getScene().getLayers().get(0).getTexts().add(this);
     }
 
-    public Text(String string, int xx, int yy, Scene scene) {
-        x = xx;
-        y = yy;
+    public Text(String string, int x, int y, Scene scene) {
+        Game.getScene().lastID++;
+        ID = Game.getScene().lastID;
+        this.x = x; this.y = y;
         text = string;
         scene.getLayers().get(0).getTexts().add(this);
     }
 
-    public Text(String string, int xx, int yy, Layer lay) {
-        x = xx;
-        y = yy;
+    public Text(String string, int x, int y, Layer lay) {
+        Game.getScene().lastID++;
+        ID = Game.getScene().lastID;
+        this.x = x; this.y = y;
         text = string;
         lay.getTexts().add(this);
     }
 
-    public Text(String string, int xx, int yy, Scene scene, Layer lay) {
-        x = xx;
-        y = yy;
+    public Text(String string, int x, int y, Scene scene, Layer lay) {
+        Game.getScene().lastID++;
+        ID = Game.getScene().lastID;
+        this.x = x; this.y = y;
         text = string;
         lay.getTexts().add(this);
     }
@@ -127,5 +132,7 @@ public class Text {
     public int getZ(Scene scene) { return getLayer(scene).getTexts().indexOf(this); }
 
     public boolean isOffsetable() { return offsetable; }
-    public void setOffsetable(boolean i) { offsetable = i; } 
+    public void setOffsetable(boolean i) { offsetable = i; }
+
+    public int getID() { return ID; }
 }
