@@ -14,7 +14,7 @@ canvas, an initial scene (which you can change) and several others essential sys
 
 ```java
 // This creates the Window, Canvas and Base scene.
-new Instance("Title",320,180);
+        new Instance("Title",320,180);
 
 // This creates the Animation and Sprite Objects.
         Animation run=new Animation();
@@ -31,7 +31,7 @@ Oh, you want to easily play an audio? well, there you go:
 
 ```java
 Audio myWav=new Audio("./audios/test.wav");
-        myWav.play();
+myWav.play();
 ```
 
 There's no limits.
