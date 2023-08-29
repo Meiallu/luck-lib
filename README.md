@@ -14,17 +14,17 @@ canvas, an initial scene (which you can change) and several others essential sys
 
 ```java
 // This creates the Window, Canvas and Base scene.
-        new Instance("Title",320,180);
+new Instance("Title", 320, 180);
 
 // This creates the Animation and Sprite Objects.
-        Animation run=new Animation();
-        run.setupFrames("./images/","run",".png");
-        Sprite playerSprite=new Sprite(run);
+Animation run=new Animation();
+run.setupFrames("./images/", "run", ".png");
+Sprite playerSprite=new Sprite(run);
 
 // This creates a Object type
 // And then creates an instance of it.
-        Object Player=new Object(playerSprite);
-        Player.create(10,10);
+Object Player=new Object(playerSprite);
+Player.create(10, 10);
 ```
 
 Oh, you want to easily play an audio? well, there you go:
