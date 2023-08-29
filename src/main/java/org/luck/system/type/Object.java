@@ -351,6 +351,7 @@ public class Object {
                 }
                 if (xx && yy) return true;
             }
+            return false;
         } else {
             boolean xx = false;
             boolean yy = false;
@@ -368,7 +369,6 @@ public class Object {
             }
             return xx && yy;
         }
-        return false;
     }
 
     public Vector2D getOrigin() { return origin; }
