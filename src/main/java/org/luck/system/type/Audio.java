@@ -1,5 +1,7 @@
 package org.luck.system.type;
 
+import org.luck.util.AudioManager;
+
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
@@ -32,15 +34,11 @@ public class Audio {
     public Clip getClip() { return clip; }
     public void setClip(Clip clip) { this.clip = clip; }
 
-    public void pause() { 
-        time = clip.getMicrosecondPosition();
-        clip.stop();
-    }
+    public void pause() { AudioManager.pause(this); }
+    public void resume() { AudioManager.resume(this); }
 
-    public void resume() {
-        clip.setMicrosecondPosition(time);
-        clip.start();
-    }
+    public long getLastPauseMicrosecond() { return time; }
+    public void setPauseMicrosecond(long i) { time = i; }
 
     public void setSecond(float sec) {
         clip.setMicrosecondPosition( (long) sec * 1000000 );
@@ -51,4 +49,7 @@ public class Audio {
     public boolean isOpen() { return clip.isOpen(); }
     public boolean isRunning() { return clip.isRunning(); }
     public boolean isActive() { return clip.isActive(); }
+
+    public void play() { AudioManager.play(this); }
+    public void stop() { AudioManager.stop(this); }
 }

@@ -20,4 +20,14 @@ public class AudioManager {
     public static void stop(Audio a) {
         a.getClip().stop();
     }
+
+    public static void resume(Audio a) {
+        a.getClip().setMicrosecondPosition( a.getLastPauseMicrosecond() );
+        a.getClip().start();
+    }
+
+    public static void pause(Audio a) {
+        a.setPauseMicrosecond( a.getClip().getMicrosecondPosition() );
+        a.getClip().stop();
+    }
 }
