@@ -349,9 +349,7 @@ public class Object {
                         Util.isBetween(o.getAbY() + obj.height, getAbY() + yDif, getAbY() + height + yDif)) {
                     yy = true;
                 }
-                if (xx && yy) {
-                    return true;
-                }
+                if (xx && yy) return true;
             }
         } else {
             boolean xx = false;
