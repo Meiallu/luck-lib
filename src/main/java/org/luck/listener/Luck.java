@@ -1,9 +1,9 @@
 package org.luck.listener;
 
+import org.luck.util.Device;
+
 import java.util.Timer;
 import java.util.TimerTask;
-
-import org.luck.util.Device;
 
 public abstract class Luck {
     

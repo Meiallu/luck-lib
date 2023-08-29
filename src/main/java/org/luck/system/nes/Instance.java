@@ -1,13 +1,9 @@
 package org.luck.system.nes;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import org.luck.util.Keyboard;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class Instance {
     private static JFrame frame;

@@ -1,21 +1,15 @@
 package org.luck.system.nes;
 
-import java.awt.AlphaComposite;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import javax.swing.JPanel;
-
 import org.luck.system.type.Camera;
 import org.luck.system.type.Object;
 import org.luck.system.type.Text;
 import org.luck.util.Device;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Canvas extends JPanel {
     private static byte tick = 1;
@@ -38,9 +32,10 @@ public class Canvas extends JPanel {
     }
 
     public void paintComponent(Graphics g) {
+        Adjust();
+
         Graphics2D g2D = (Graphics2D) g;
         super.paintComponent(g2D);
-        Adjust();
 
         for ( Layer l : Game.getScene().getLayers() ) {
             if ( l.isVisible() ) {

@@ -1,12 +1,11 @@
 package org.luck.system.type;
 
-import java.awt.Image;
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.imageio.ImageIO;
 
 public class Animation {
     private List<Image> frames = new ArrayList<Image>();

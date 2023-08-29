@@ -1,11 +1,10 @@
 package org.luck.system.type;
 
-import java.awt.Color;
-import java.awt.Font;
-
 import org.luck.system.nes.Game;
 import org.luck.system.nes.Layer;
 import org.luck.system.nes.Scene;
+
+import java.awt.*;
 
 public class Text {
     private float x;

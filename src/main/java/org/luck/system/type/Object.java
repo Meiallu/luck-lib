@@ -1,12 +1,12 @@
 package org.luck.system.type;
 
-import java.util.ArrayList;
-
 import org.luck.system.nes.Game;
 import org.luck.system.nes.Layer;
 import org.luck.system.nes.Scene;
 import org.luck.util.Util;
 import org.luck.util.Vector2D;
+
+import java.util.ArrayList;
 
 public class Object {
     private float x;

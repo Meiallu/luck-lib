@@ -1,16 +1,13 @@
 package org.luck.util;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.JFrame;
-
 import org.luck.system.nes.Instance;
 
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Keyboard implements KeyListener {
     private static List<Character> keys = new ArrayList<Character>();

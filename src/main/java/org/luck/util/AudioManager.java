@@ -1,9 +1,9 @@
 package org.luck.util;
 
+import org.luck.system.type.Audio;
+
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
-
-import org.luck.system.type.Audio;
 
 public class AudioManager {
 

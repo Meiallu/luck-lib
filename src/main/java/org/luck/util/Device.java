@@ -1,6 +1,6 @@
 package org.luck.util;
 
-import java.awt.GraphicsEnvironment;
+import java.awt.*;
 
 public class Device {
     public static final int refreshRate = GraphicsEnvironment

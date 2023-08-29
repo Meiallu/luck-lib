@@ -1,9 +1,9 @@
 package org.luck.system.nes;
 
-import java.util.ArrayList;
-
 import org.luck.system.type.Object;
 import org.luck.system.type.Text;
+
+import java.util.ArrayList;
 
 public class Layer {
     private ArrayList<Object> objects = new ArrayList<Object>();

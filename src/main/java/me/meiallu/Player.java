@@ -2,9 +2,10 @@ package me.meiallu;
 
 import org.luck.listener.Luck;
 import org.luck.system.type.Animation;
+import org.luck.system.type.Object;
 import org.luck.system.type.Sprite;
 import org.luck.util.Keyboard;
-import org.luck.system.type.Object;
+import org.luck.util.Util;
 
 public class Player extends Luck {
 	Object obj;
@@ -29,33 +30,31 @@ public class Player extends Luck {
         run = new Animation();
         roll = new Animation();
 
-		idle.setupFrames("images/idle/", "idle", ".png");
-		run.setupFrames("images/run/", "run", ".png");
-		roll.setupFrames("images/roll/", "roll", ".png");
+        idle.setupFrames("images/idle/", "idle", ".png");
+        run.setupFrames("images/run/", "run", ".png");
+        roll.setupFrames("images/roll/", "roll", ".png");
 
         idle.setSpeed(9);
         run.setSpeed(12);
         roll.setSpeed(11);
 
-		Sprite Player = new Sprite(idle);
+        Sprite Player = new Sprite(idle);
         Player.addAnimation(run);
         Player.addAnimation(roll);
 
-		Object Type = new Object(Player);
-		obj = Type.create(160, 90);
+        Object Type = new Object(Player);
+        obj = Type.create(160, 90);
 
         // -------------------------------------------
-        // Solid setup
+        // Custom URL image system
         // -------------------------------------------
 
-        Animation def = new Animation();
-        def.addFrame("images/solid.png");
-
-        Sprite spr = new Sprite(def);
-
-        solid = new Object(spr);
-        solid.setWidth(64);
-        solid.setHeight(64);
+        Animation urlanim = new Animation();
+        urlanim.addFrame(Util.getImageURL("https://media.discordapp.net/attachments/1011309335537778749/1145767041136074844/OIP_1.jpg"));
+        Sprite urlsprite = new Sprite(urlanim);
+        solid = new Object(urlsprite);
+        solid.setWidth(128);
+        solid.setHeight(128);
         solid.create(200, 100);
     }
 
