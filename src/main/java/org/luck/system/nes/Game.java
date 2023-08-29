@@ -11,9 +11,8 @@ public class Game {
 
     public static void setScene(Scene scene) {
         cena = scene;
-        if (!cenas.contains(scene)) {
+        if (!cenas.contains(scene))
             cenas.add(scene);
-        }
     }
 
     public static Scene createScene(String name) {

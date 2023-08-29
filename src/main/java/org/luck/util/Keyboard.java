@@ -16,17 +16,10 @@ public class Keyboard implements KeyListener {
             .getLocalGraphicsEnvironment()
             .getScreenDevices()[0];
 
-    public Keyboard() {
-        Instance.getWindow().addKeyListener(this);
-    }
-
-    public static boolean isPressed(char key) {
-        return keys.contains(key);
-    }
+    public Keyboard() { Instance.getWindow().addKeyListener(this); }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-    }
+    public void keyTyped(KeyEvent e) {}
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -61,4 +54,6 @@ public class Keyboard implements KeyListener {
         window.setUndecorated(false);
         window.setVisible(true);
     }
+
+    public static boolean isPressed(char key) { return keys.contains(key); }
 }

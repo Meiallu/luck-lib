@@ -82,9 +82,9 @@ public class Player extends Luck {
         else speed = 1;
 
         if (!obj.isPlaceMeeting(xv * speed, 0, solid))
-            obj.setX((float) obj.getX() + xv * speed);
+            obj.setX(obj.getX() + xv * speed);
         if (!obj.isPlaceMeeting(0, yv * speed, solid))
-            obj.setY((float) obj.getY() + yv * speed);
+            obj.setY(obj.getY() + yv * speed);
 
         if (obj.getAnimation() != roll) {
             if (xv == 0 && yv == 0) obj.setAnimation(idle);
