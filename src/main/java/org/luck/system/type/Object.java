@@ -18,10 +18,10 @@ public class Object {
 
     private Animation anim;
     private byte frame = 0;
-    private byte speed = 5;
+    private byte speed;
     private float scale = 1.0f;
-    private short width = 32;
-    private short height = 32;
+    private short width;
+    private short height;
     private float opacity = 1.0f;
     private float angle = 0.0f;
 
@@ -77,52 +77,64 @@ public class Object {
         return obj;
     }
 
+    public void destroy() {
+        for (Object o : childs)
+            o.getLayer().getObjects().remove(o);
+        getLayer().getObjects().remove(this);
+        childs = new ArrayList<>();
+    }
+
     private void setup(Object o, float x, float y) {
         o.x = x; o.y = y;
-        o.frame = frame; 
+        o.frame = frame;
         o.speed = speed;
         o.scale = scale;
-        o.width = width; o.height = height;
+        o.width = width;
+        o.height = height;
         o.opacity = opacity;
         o.angle = angle;
         o.visible = visible;
         o.offsetable = offsetable;
-        o.mirrored = mirrored; o.flipped = flipped;
-        o.origin = origin; o.points = points;
+        o.mirrored = mirrored;
+        o.flipped = flipped;
+        o.origin = origin;
+        o.points = points;
         o.father = this;
         childs.add(o);
     }
 
     public Sprite getSprite() { return image; }
     public void setSprite(Sprite i) {
-        image = i; 
+        image = i;
         if (father == null)
-            for ( Object o : childs )
+            for (Object o : childs)
                 o.image = i;
     }
 
     public float getAbX() { return x + origin.getX(); }
+    public float getAbY() { return y + origin.getY(); }
+
     public float getX() { return x; }
+    public float getY() { return y; }
+
     public void setX(float i) {
-        x = (float) i; 
+        x = i;
         if (father == null)
-            for ( Object o : childs )
-                o.x = (float) i; 
+            for (Object o : childs)
+                o.x = i;
     }
 
-    public float getAbY() { return y + origin.getY(); }
-    public float getY() { return y; }
-    public void setY(double i) { 
-        y = (float) i; 
+    public void setY(double i) {
+        y = (float) i;
         if (father == null)
-            for ( Object o : childs )
+            for (Object o : childs)
                 o.y = (float) i;
     }
 
     public ArrayList<Object> getChilds() { return childs; }
     public Object getFather() { return father; }
 
-    public Animation getAnimation() {return anim; }
+    public Animation getAnimation() { return anim; }
     public void setAnimation(Animation i) {
         if (anim != i) {
             anim = i;
@@ -143,94 +155,80 @@ public class Object {
     }
 
     public int getFrame() { return frame; }
-    public void setFrame(int i) { 
-        frame = (byte) i; 
+    public void setFrame(int i) {
+        frame = (byte) i;
         if (father == null)
-            for ( Object o : childs )
+            for (Object o : childs)
                 o.frame = (byte) i;
     }
 
     public int getSpeed() { return speed; }
-    public void setSpeed(int fps) { 
+    public void setSpeed(int fps) {
         speed = (byte) fps;
-        if (father == null) {
-            for ( Object o : childs ) {
+        if (father == null)
+            for (Object o : childs)
                 o.speed = (byte) fps;
-            }
-        }
-     }
+    }
 
     public float getScale() { return scale; }
-    public void setScale(float i) { 
-        scale = i; 
+    public void setScale(float i) {
+        scale = i;
         if (father == null)
-            for ( Object o : childs )
+            for (Object o : childs)
                 o.scale = i;
     }
 
     public int getWidth() { return width; }
-    public void setWidth(int i) { 
-        width = (short) i; 
+    public void setWidth(int i) {
+        width = (short) i;
         if (father == null)
-            for ( Object o : childs )
+            for (Object o : childs)
                 o.width = (short) i;
     }
 
     public int getHeight() { return height; }
-    public void setHeight(int i) { 
-        height = (short) i; 
+    public void setHeight(int i) {
+        height = (short) i;
         if (father == null)
-            for ( Object o : childs )
+            for (Object o : childs)
                 o.height = (short) i;
     }
 
     public float getOpacity() { return opacity; }
     public void setOpacity(float i) {
-        opacity = i; 
+        opacity = i;
         if (father == null)
-            for ( Object o : childs )
+            for (Object o : childs)
                 o.opacity = i;
     }
 
     public boolean isVisible() { return visible; }
     public void setVisible(boolean i) {
-        visible = i; 
+        visible = i;
         if (father == null)
-            for ( Object o : childs )
+            for (Object o : childs)
                 o.visible = i;
     }
 
     public boolean isOffsetable() { return offsetable; }
     public void setOffsetable(boolean i) {
-        offsetable = i; 
+        offsetable = i;
         if (father == null)
-            for ( Object o : childs )
+            for (Object o : childs)
                 o.offsetable = i;
     }
 
     public float getAngle() { return angle; }
     public void setAngle(float i) {
-        angle = i; 
+        angle = i;
         if (father == null)
-            for ( Object o : childs )
+            for (Object o : childs)
                 o.angle = i;
-    }
-
-    public void setLayer(Layer l) {
-        if (father == null)
-            for ( Object o : childs ) {
-                o.getLayer().getObjects().remove(o);
-                l.getObjects().add(o);
-            }
-        else {
-            getLayer().getObjects().remove(this);
-            l.getObjects().add(this);
-        }
     }
 
     public void setLayer(Layer l, int index) {
         if (father == null)
-            for ( Object o : childs ) {
+            for (Object o : childs) {
                 o.getLayer().getObjects().remove(o);
                 l.getObjects().add(index, o);
             }
@@ -242,7 +240,7 @@ public class Object {
 
     public void setLayer(Layer l, Scene scene) {
         if (father == null)
-            for ( Object o : childs ) {
+            for (Object o : childs) {
                 o.getLayer(scene).getObjects().remove(o);
                 l.getObjects().add(o);
             }
@@ -254,7 +252,7 @@ public class Object {
 
     public void setLayer(Layer l, int index, Scene scene) {
         if (father == null)
-            for ( Object o : childs ) {
+            for (Object o : childs) {
                 o.getLayer(scene).getObjects().remove(o);
                 l.getObjects().add(index, o);
             }
@@ -265,20 +263,51 @@ public class Object {
     }
 
     public Layer getLayer() {
-        for ( Layer l : Game.getScene().getLayers() ) {
-            if ( l.getObjects().contains(this) ) {
+        for (Layer l : Game.getScene().getLayers()) {
+            if (l.getObjects().contains(this)) {
                 return l;
             }
         }
-        return Game.getScene().getLayers().get(0);            
+        return Game.getScene().getLayers().get(0);
+    }
+
+    public void setLayer(Layer l) {
+        if (father == null)
+            for (Object o : childs) {
+                o.getLayer().getObjects().remove(o);
+                l.getObjects().add(o);
+            }
+        else {
+            getLayer().getObjects().remove(this);
+            l.getObjects().add(this);
+        }
     }
 
     public Layer getLayer(Scene scene) {
-        for ( Layer l : scene.getLayers() )
-            if ( l.getObjects().contains(this) ) {
+        for (Layer l : scene.getLayers())
+            if (l.getObjects().contains(this)) {
                 return l;
             }
-        return Game.getScene().getLayers().get(0);            
+        return Game.getScene().getLayers().get(0);
+    }
+
+    public int getZ() { return getLayer().getObjects().indexOf(this); }
+    public int getZ(Scene scene) { return getLayer(scene).getObjects().indexOf(this); }
+
+    public void setZ(int index, Scene scene) {
+        if (father == null) {
+            for (Object o : childs) {
+                Layer l = o.getLayer(scene);
+                int bf = l.getObjects().indexOf(o);
+                l.getObjects().add(index, o);
+                l.getObjects().remove(bf);
+            }
+        } else {
+            Layer l = getLayer(scene);
+            int bf = l.getObjects().indexOf(this);
+            l.getObjects().add(index, this);
+            l.getObjects().remove(bf);
+        }
     }
 
     public void setZ(int index) {
@@ -297,115 +326,96 @@ public class Object {
         }
     }
 
-    public void setZ(int index, Scene scene) {
-        if (father == null) {
-            for (Object o : childs) {
-                Layer l = o.getLayer(scene);
-                int bf = l.getObjects().indexOf(o);
-                l.getObjects().add(index, o);
-                l.getObjects().remove(bf);
-            }
-        } else {
-            Layer l = getLayer(scene);
-            int bf = l.getObjects().indexOf(this);
-            l.getObjects().add(index, this);
-            l.getObjects().remove(bf);
-        }
-    }
-
-    public int getZ() { return getLayer().getObjects().indexOf(this); }
-    public int getZ(Scene scene) { return getLayer(scene).getObjects().indexOf(this); }
-
     public boolean isMirrored() { return mirrored; }
-    public boolean isFlipped() { return flipped; }
-
     public void setMirrored(boolean i) { mirrored = i; }
+
+    public boolean isFlipped() { return flipped; }
     public void setFlipped(boolean i) { flipped = i; }
 
     public boolean isPlaceMeeting(double xDif, double yDif, Object obj) {
-        if ( obj.father == null ) {
+        if (obj.father == null) {
             for (Object o : obj.childs) {
-                boolean xx = false; boolean yy = false;
-                if (Util.isBetween(getAbX() + xDif, o.getAbX(), o.getAbX() + o.width) || 
-                    Util.isBetween(getAbX() + width + xDif, o.getAbX(), o.getAbX() + o.width ) ||
-                    Util.isBetween(o.getAbX(), getAbX() + xDif, getAbX() + width + xDif) ||
-                    Util.isBetween(o.getAbX() + o.width, getAbX() + xDif, getAbX() + width + xDif)) {
-                        xx = true;
+                boolean xx = false;
+                boolean yy = false;
+                if (Util.isBetween(getAbX() + xDif, o.getAbX(), o.getAbX() + o.width) ||
+                        Util.isBetween(getAbX() + width + xDif, o.getAbX(), o.getAbX() + o.width) ||
+                        Util.isBetween(o.getAbX(), getAbX() + xDif, getAbX() + width + xDif) ||
+                        Util.isBetween(o.getAbX() + o.width, getAbX() + xDif, getAbX() + width + xDif)) {
+                    xx = true;
                 }
-                if (Util.isBetween(getAbY() + yDif, o.getAbY(), o.getAbY() + o.height) || 
-                    Util.isBetween(getAbY() + height + yDif, o.getAbY(), o.getAbY() + o.height) ||
-                    Util.isBetween(o.getAbY(), getAbY() + yDif, getAbY() + height + yDif) ||
-                    Util.isBetween(o.getAbY() + obj.height, getAbY() + yDif, getAbY() + height + yDif)) {
-                        yy = true;
+                if (Util.isBetween(getAbY() + yDif, o.getAbY(), o.getAbY() + o.height) ||
+                        Util.isBetween(getAbY() + height + yDif, o.getAbY(), o.getAbY() + o.height) ||
+                        Util.isBetween(o.getAbY(), getAbY() + yDif, getAbY() + height + yDif) ||
+                        Util.isBetween(o.getAbY() + obj.height, getAbY() + yDif, getAbY() + height + yDif)) {
+                    yy = true;
                 }
-                if (xx && yy) { return true; }
+                if (xx && yy) {
+                    return true;
+                }
             }
         } else {
-            boolean xx = false; boolean yy = false;
-            if (Util.isBetween(getAbX() + xDif, obj.getAbX(), obj.getAbX() + obj.width) || 
-                Util.isBetween(getAbX() + width + xDif, obj.getAbX(), obj.getAbX() + obj.width) ||
-                Util.isBetween(obj.getAbX(), getAbX() + xDif, getAbX() + width + xDif) ||
-                Util.isBetween(obj.getAbX() + obj.width, getAbX() + xDif, getAbX() + width + xDif)) {
-                    xx = true;
+            boolean xx = false;
+            boolean yy = false;
+            if (Util.isBetween(getAbX() + xDif, obj.getAbX(), obj.getAbX() + obj.width) ||
+                    Util.isBetween(getAbX() + width + xDif, obj.getAbX(), obj.getAbX() + obj.width) ||
+                    Util.isBetween(obj.getAbX(), getAbX() + xDif, getAbX() + width + xDif) ||
+                    Util.isBetween(obj.getAbX() + obj.width, getAbX() + xDif, getAbX() + width + xDif)) {
+                xx = true;
             }
-            if (Util.isBetween(getAbY() + yDif, obj.getAbY(), obj.getAbY() + obj.height) || 
-                Util.isBetween(getAbY() + height + yDif, obj.getAbY(), obj.getAbY() + obj.height) ||
-                Util.isBetween(obj.getAbY(), getAbY() + yDif, getAbY() + height + yDif) ||
-                Util.isBetween(obj.getAbY() + obj.height, getAbY() + yDif, getAbY() + height + yDif)) {
-                    yy = true;
+            if (Util.isBetween(getAbY() + yDif, obj.getAbY(), obj.getAbY() + obj.height) ||
+                    Util.isBetween(getAbY() + height + yDif, obj.getAbY(), obj.getAbY() + obj.height) ||
+                    Util.isBetween(obj.getAbY(), getAbY() + yDif, getAbY() + height + yDif) ||
+                    Util.isBetween(obj.getAbY() + obj.height, getAbY() + yDif, getAbY() + height + yDif)) {
+                yy = true;
             }
-            if (xx && yy) { return true; } else { return false; }
+            return xx && yy;
         }
         return false;
     }
 
-    public void destroy() {
-        for (Object o : childs) 
-            o.getLayer().getObjects().remove(o);
-        getLayer().getObjects().remove(this);
-        childs = new ArrayList<>();
-    }
-
     public Vector2D getOrigin() { return origin; }
-    public void setOrigin(Vector2D vec) { 
-        origin = vec; 
+    public void setOrigin(Vector2D vec) {
+        origin = vec;
         if (father == null)
-            for ( Object o : childs )
+            for (Object o : childs)
                 o.origin = vec;
     }
 
-    public void setOrigin(int x, int y) { 
-        origin.setX(x); origin.setY(y); 
+    public void setOrigin(int x, int y) {
+        origin.setX(x);
+        origin.setY(y);
         if (father == null)
-            for ( Object o : childs ) {
-                o.origin.setX(x); 
+            for (Object o : childs) {
+                o.origin.setX(x);
                 o.origin.setY(y);
             }
     }
 
-    public Vector2D addPoint(float x, float y) { 
+    public Vector2D addPoint(float x, float y) {
         Vector2D point = new Vector2D(x, y);
         points.add(point);
         if (father == null) {
-            for ( Object o : childs ) {
+            for (Object o : childs) {
                 point = new Vector2D(x, y);
                 o.points.add(point);
             }
-        } else { return point; }
+        } else {
+            return point;
+        }
         return null;
     }
 
-    public void removePoint(int index) { 
+    public void removePoint(int index) {
         points.remove(index);
         if (father == null)
-            for ( Object o : childs )
+            for (Object o : childs)
                 o.points.remove(index);
     }
 
-    public void removePoint(Vector2D point) { 
-        points.remove(point); 
+    public void removePoint(Vector2D point) {
+        points.remove(point);
         if (father == null)
-            for ( Object o : childs )
+            for (Object o : childs)
                 o.points.remove(point);
     }
 

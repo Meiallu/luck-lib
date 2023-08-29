@@ -5,34 +5,20 @@ import java.util.List;
 
 public class Sprite {
     private Animation defAnim;
-    private List<Animation> animList = new ArrayList<Animation>();
+    private List<Animation> animList = new ArrayList<>();
 
     public Sprite(Animation anim) {
         defAnim = anim;
         animList.add(anim);
     }
 
-    public void addAnimation(Animation anim) {
-        animList.add(anim);
-    }
+    public void addAnimation(Animation anim) { animList.add(anim); }
 
-    public void removeAnimation(Animation anim) {
-        animList.remove(anim);
-    }
+    public void removeAnimation(Animation anim) { animList.remove(anim); }
+    public void removeAnimation(int index) { animList.remove(index); }
 
-    public void removeAnimation(int index) {
-        animList.remove(index);
-    }
+    public Animation getDefault() { return defAnim; }
 
-    public void setDefault(int index) {
-        defAnim = animList.get(index);
-    }
-
-    public void setDefault(Animation anim) {
-        defAnim = anim;
-    }
-
-    public Animation getDefault() {
-        return defAnim;
-    }
+    public void setDefault(int index) { defAnim = animList.get(index); }
+    public void setDefault(Animation anim) { defAnim = anim; }
 }

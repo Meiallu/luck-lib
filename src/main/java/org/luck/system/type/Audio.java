@@ -14,19 +14,19 @@ public class Audio {
 
     public Audio(String path) {
         try {
-            str = AudioSystem.getAudioInputStream( new File(path).toURI().toURL() );
+            str = AudioSystem.getAudioInputStream(new File(path).toURI().toURL());
             clip = AudioSystem.getClip();
-            clip.open(str); 
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (IOException e) { 
-            e.printStackTrace(); 
-        } catch (LineUnavailableException e) {
+            clip.open(str);
+        } catch (UnsupportedAudioFileException |
+                 IOException |
+                 LineUnavailableException e) {
             e.printStackTrace();
         }
     }
 
-    public AudioInputStream getStream() { return str; }
+    public AudioInputStream getStream() {
+        return str;
+    }
 
     public float getVolume() { return vol; }
     public void setVolume(float volume) { vol = volume; }
@@ -40,9 +40,7 @@ public class Audio {
     public long getLastPauseMicrosecond() { return time; }
     public void setPauseMicrosecond(long i) { time = i; }
 
-    public void setSecond(float sec) {
-        clip.setMicrosecondPosition( (long) sec * 1000000 );
-    }
+    public void setSecond(float sec) { clip.setMicrosecondPosition((long) sec * 1000000); }
 
     public void loop(int count) { clip.loop(count); }
 

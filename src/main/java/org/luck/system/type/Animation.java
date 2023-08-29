@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Animation {
-    private List<Image> frames = new ArrayList<Image>();
+    private List<Image> frames = new ArrayList<>();
     private byte speed = 5;
 
     public void setupFrames(String folder, String prefix, String suffix) {
         int a = 1;
         File f = new File(folder + prefix + a + suffix);
-        while ( f.exists() ) {
+        while (f.exists()) {
             Image img;
             try {
                 img = ImageIO.read(f);
@@ -28,9 +28,10 @@ public class Animation {
     }
 
     public void addFrame(Image img) { frames.add(img); }
+
     public void addFrame(String path) {
         File f = new File(path);
-        if ( f.exists() ) {
+        if (f.exists()) {
             Image img;
             try {
                 img = ImageIO.read(f);
@@ -42,7 +43,7 @@ public class Animation {
     }
 
     public void addFrame(File file) {
-        if ( file.exists() ) {
+        if (file.exists()) {
             Image img;
             try {
                 img = ImageIO.read(file);

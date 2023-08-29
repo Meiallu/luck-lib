@@ -3,9 +3,9 @@ package org.luck.system.nes;
 import java.util.ArrayList;
 
 public class Scene {
+    public int lastID = 0;
     private String name;
-    private ArrayList<Layer> layers = new ArrayList<Layer>();
-    public int lastID = 0; 
+    private ArrayList<Layer> layers = new ArrayList<>();
 
     public Scene(String name) {
         this.name = name;

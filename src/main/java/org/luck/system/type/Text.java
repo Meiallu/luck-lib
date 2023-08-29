@@ -16,13 +16,14 @@ public class Text {
     private byte style = Font.PLAIN;
     private String font = "SansSerif";
     private short size = 12;
-    private String text = "";
+    private String text;
     private int ID;
 
     public Text(String string, int x, int y) {
         Game.getScene().lastID++;
         ID = Game.getScene().lastID;
-        this.x = x; this.y = y;
+        this.x = x;
+        this.y = y;
         text = string;
         Game.getScene().getLayers().get(0).getTexts().add(this);
     }
@@ -30,7 +31,8 @@ public class Text {
     public Text(String string, int x, int y, Scene scene) {
         Game.getScene().lastID++;
         ID = Game.getScene().lastID;
-        this.x = x; this.y = y;
+        this.x = x;
+        this.y = y;
         text = string;
         scene.getLayers().get(0).getTexts().add(this);
     }
@@ -38,7 +40,8 @@ public class Text {
     public Text(String string, int x, int y, Layer lay) {
         Game.getScene().lastID++;
         ID = Game.getScene().lastID;
-        this.x = x; this.y = y;
+        this.x = x;
+        this.y = y;
         text = string;
         lay.getTexts().add(this);
     }
@@ -46,7 +49,8 @@ public class Text {
     public Text(String string, int x, int y, Scene scene, Layer lay) {
         Game.getScene().lastID++;
         ID = Game.getScene().lastID;
-        this.x = x; this.y = y;
+        this.x = x;
+        this.y = y;
         text = string;
         lay.getTexts().add(this);
     }
@@ -63,25 +67,20 @@ public class Text {
     public boolean isVisible() { return visible; }
     public void setVisible(boolean i) { visible = i; }
 
-    public String getText() { return text; };
+    public String getText() { return text; }
     public void setText(String str) { text = str; }
 
-    public int getSize() { return size; };
+    public int getSize() { return size; }
     public void setSize(int i) { size = (short) i; }
 
-    public String getFont() { return font; };
+    public String getFont() { return font; }
     public void setFont(String str) { font = str; }
 
-    public Color getColor() { return color; };
+    public Color getColor() { return color; }
     public void setColor(Color col) { color = col; }
 
-    public int getStyle() { return style; };
+    public int getStyle() { return style; }
     public void setStyle(int styl) { style = (byte) styl; }
-
-    public void setLayer(Layer l) {
-        getLayer().getTexts().remove(this);
-        l.getTexts().add(this);
-    }
 
     public void setLayer(Layer l, int index) {
         getLayer().getTexts().remove(this);
@@ -98,28 +97,27 @@ public class Text {
         l.getTexts().add(index, this);
     }
 
+    public void setLayer(Layer l) {
+        getLayer().getTexts().remove(this);
+        l.getTexts().add(this);
+    }
+
     public Layer getLayer() {
-        for ( Layer l : Game.getScene().getLayers() )
-            if ( l.getTexts().contains(this) ) {
+        for (Layer l : Game.getScene().getLayers())
+            if (l.getTexts().contains(this))
                 return l;
-            }
-        return null;            
+        return null;
     }
 
     public Layer getLayer(Scene scene) {
-        for ( Layer l : scene.getLayers() )
-            if ( l.getTexts().contains(this) ) {
+        for (Layer l : scene.getLayers())
+            if (l.getTexts().contains(this))
                 return l;
-            }
-        return null;            
+        return null;
     }
 
-    public void setZ(int index) {
-        Layer l = getLayer();
-        int bf = l.getTexts().indexOf(this);
-        l.getTexts().add(index, this);
-        l.getTexts().remove(bf);
-    }
+    public int getZ() { return getLayer().getTexts().indexOf(this); }
+    public int getZ(Scene scene) { return getLayer(scene).getTexts().indexOf(this); }
 
     public void setZ(int index, Scene scene) {
         Layer l = getLayer(scene);
@@ -128,8 +126,12 @@ public class Text {
         l.getTexts().remove(bf);
     }
 
-    public int getZ() { return getLayer().getTexts().indexOf(this); }
-    public int getZ(Scene scene) { return getLayer(scene).getTexts().indexOf(this); }
+    public void setZ(int index) {
+        Layer l = getLayer();
+        int bf = l.getTexts().indexOf(this);
+        l.getTexts().add(index, this);
+        l.getTexts().remove(bf);
+    }
 
     public boolean isOffsetable() { return offsetable; }
     public void setOffsetable(boolean i) { offsetable = i; }

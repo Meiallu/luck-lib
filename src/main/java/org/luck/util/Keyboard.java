@@ -10,16 +10,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Keyboard implements KeyListener {
-    private static List<Character> keys = new ArrayList<Character>();
+    private static List<Character> keys = new ArrayList<>();
     private JFrame window = Instance.getWindow();
     private GraphicsDevice dev = GraphicsEnvironment
             .getLocalGraphicsEnvironment()
             .getScreenDevices()[0];
 
-    public Keyboard() { Instance.getWindow().addKeyListener(this); }
+    public Keyboard() {
+        Instance.getWindow().addKeyListener(this);
+    }
+
+    public static boolean isPressed(char key) {
+        return keys.contains(key);
+    }
 
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+    }
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -28,19 +35,17 @@ public class Keyboard implements KeyListener {
                 setFullScreen();
             else
                 setNormal();
-        char c = Character.toLowerCase( e.getKeyChar() );
-        if ( !keys.contains(c) )
+        char c = Character.toLowerCase(e.getKeyChar());
+        if (!keys.contains(c))
             keys.add(keys.size(), c);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        char c = Character.toLowerCase( e.getKeyChar() );
-        if ( keys.contains(c) )
-            keys.remove( keys.indexOf(c) );
+        char c = Character.toLowerCase(e.getKeyChar());
+        if (keys.contains(c))
+            keys.remove(keys.indexOf(c));
     }
-
-    public static boolean isPressed(char key) { return keys.contains(key); }
 
     private void setFullScreen() {
         window.dispose();

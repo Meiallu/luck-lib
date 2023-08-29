@@ -6,9 +6,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public abstract class Luck {
-    
-    public Luck() {     
-        start();   
+
+    public Luck() {
+        start();
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {

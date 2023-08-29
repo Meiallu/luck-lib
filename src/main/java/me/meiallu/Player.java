@@ -8,8 +8,8 @@ import org.luck.util.Keyboard;
 import org.luck.util.Util;
 
 public class Player extends Luck {
-	Object obj;
-	Object solid;
+    Object obj;
+    Object solid;
 
     float speed = 1;
     float xv = 0;
@@ -60,25 +60,31 @@ public class Player extends Luck {
 
     @Override
     public void update() {
-		if ( Keyboard.isPressed('d') ) {
+        if (Keyboard.isPressed('d')) {
             xv = 1;
-			obj.setMirrored(false);
-        } else if ( Keyboard.isPressed('a') ) {
+            obj.setMirrored(false);
+        } else if (Keyboard.isPressed('a')) {
             xv = -1;
-			obj.setMirrored(true);
-        } else { xv = 0; }
+            obj.setMirrored(true);
+        } else {
+            xv = 0;
+        }
 
-		if ( Keyboard.isPressed('w') ) { yv = -1; } 
-        else if ( Keyboard.isPressed('s') ) { yv = 1; } 
-        else { yv = 0; }
+        if (Keyboard.isPressed('w')) {
+            yv = -1;
+        } else if (Keyboard.isPressed('s')) {
+            yv = 1;
+        } else {
+            yv = 0;
+        }
 
         if (yv != 0 && xv != 0) speed = 0.75f;
         else speed = 1;
-        
-        if ( !obj.isPlaceMeeting(xv * speed, 0, solid) )
-            obj.setX( (float) obj.getX() + xv * speed);
-        if ( !obj.isPlaceMeeting(0, yv * speed, solid) )
-            obj.setY( (float) obj.getY() + yv * speed);
+
+        if (!obj.isPlaceMeeting(xv * speed, 0, solid))
+            obj.setX((float) obj.getX() + xv * speed);
+        if (!obj.isPlaceMeeting(0, yv * speed, solid))
+            obj.setY((float) obj.getY() + yv * speed);
 
         if (obj.getAnimation() != roll) {
             if (xv == 0 && yv == 0) obj.setAnimation(idle);
