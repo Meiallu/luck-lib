@@ -22,7 +22,7 @@ Player.create(10, 10);
 Oh, you want to easily play an audio? well, there you go:
 ```java
 Audio myWav = new Audio("./audios/test.wav");
-AudioManager.play(myWav);
+myWav.play();
 ```
 
 There's no limits.
