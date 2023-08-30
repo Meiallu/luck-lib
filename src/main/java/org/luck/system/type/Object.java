@@ -348,8 +348,9 @@ public class Object {
                         Util.isBetween(o.getAbY() + obj.height, getAbY() + yDif, getAbY() + height + yDif)) {
                     yy = true;
                 }
-                if (xx && yy) { return true; }
+                if (xx && yy) return true;
             }
+            return false;
         } else {
             boolean xx = false; boolean yy = false;
             if (Util.isBetween(getAbX() + xDif, obj.getAbX(), obj.getAbX() + obj.width) ||
@@ -366,7 +367,6 @@ public class Object {
             }
             return xx && yy;
         }
-        return false;
     }
 
     public Vector2D getOrigin() { return origin; }
