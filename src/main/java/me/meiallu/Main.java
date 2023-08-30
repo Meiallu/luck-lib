@@ -1,6 +1,6 @@
 package me.meiallu;
 
-import org.luck.system.nes.Instance;
+import org.luck.system.Instance;
 
 public class Main {
 

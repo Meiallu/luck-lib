@@ -1,6 +1,6 @@
 package org.luck.util;
 
-import org.luck.system.type.Object;
+import org.luck.type.Object;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

@@ -1,8 +1,8 @@
-package org.luck.system.type;
+package org.luck.type;
 
-import org.luck.system.nes.Game;
-import org.luck.system.nes.Layer;
-import org.luck.system.nes.Scene;
+import org.luck.system.Game;
+import org.luck.system.Layer;
+import org.luck.system.Scene;
 import org.luck.util.Util;
 import org.luck.util.Vector2D;
 

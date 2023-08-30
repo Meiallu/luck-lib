@@ -1,7 +1,7 @@
-package org.luck.system.nes;
+package org.luck.system;
 
-import org.luck.system.type.Object;
-import org.luck.system.type.Text;
+import org.luck.type.Object;
+import org.luck.type.Text;
 
 import java.util.ArrayList;
 

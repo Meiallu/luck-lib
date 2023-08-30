@@ -1,10 +1,9 @@
 package me.meiallu;
 
 import org.luck.listener.Luck;
-import org.luck.system.nes.Camera;
-import org.luck.system.type.Animation;
-import org.luck.system.type.Object;
-import org.luck.system.type.Sprite;
+import org.luck.type.Animation;
+import org.luck.type.Object;
+import org.luck.type.Sprite;
 import org.luck.util.Keyboard;
 import org.luck.util.Util;
 

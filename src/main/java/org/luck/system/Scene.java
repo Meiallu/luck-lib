@@ -1,4 +1,4 @@
-package org.luck.system.nes;
+package org.luck.system;
 
 import java.util.ArrayList;
 

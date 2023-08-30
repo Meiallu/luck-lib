@@ -1,4 +1,4 @@
-package org.luck.system.nes;
+package org.luck.system;
 
 public class Camera {
     private static float xreal = 0;

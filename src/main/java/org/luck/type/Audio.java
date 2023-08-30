@@ -1,4 +1,4 @@
-package org.luck.system.type;
+package org.luck.type;
 
 import org.luck.util.AudioManager;
 

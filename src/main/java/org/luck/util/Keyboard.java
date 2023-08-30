@@ -1,6 +1,6 @@
 package org.luck.util;
 
-import org.luck.system.nes.Instance;
+import org.luck.system.Instance;
 
 import javax.swing.*;
 import java.awt.*;

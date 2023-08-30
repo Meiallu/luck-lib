@@ -1,13 +1,11 @@
-package org.luck.system.nes;
+package org.luck.system;
 
-import org.luck.system.type.Object;
-import org.luck.system.type.Text;
+import org.luck.type.Object;
+import org.luck.type.Text;
 import org.luck.util.Device;
-import org.w3c.dom.css.RGBColor;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.Timer;
 import java.util.TimerTask;
 

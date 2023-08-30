@@ -1,4 +1,4 @@
-package org.luck.system.type;
+package org.luck.type;
 
 import java.util.ArrayList;
 import java.util.List;
