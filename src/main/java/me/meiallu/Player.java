@@ -1,6 +1,7 @@
 package me.meiallu;
 
 import org.luck.listener.Luck;
+import org.luck.system.nes.Camera;
 import org.luck.system.type.Animation;
 import org.luck.system.type.Object;
 import org.luck.system.type.Sprite;
@@ -43,7 +44,8 @@ public class Player extends Luck {
         Player.addAnimation(roll);
 
         Object Type = new Object(Player);
-        obj = Type.create(160, 90);
+        obj = Type.create(100, 90);
+        obj.setOrigin(22, 0);
 
         // -------------------------------------------
         // Custom URL image system

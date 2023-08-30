@@ -11,6 +11,9 @@ import java.util.List;
 
 public class Keyboard implements KeyListener {
     private static List<Character> keys = new ArrayList<>();
+    private static List<Character> pressed = new ArrayList<>();
+    private static List<Character> released = new ArrayList<>();
+
     private JFrame window = Instance.getWindow();
     private GraphicsDevice dev = GraphicsEnvironment
             .getLocalGraphicsEnvironment()
@@ -24,10 +27,18 @@ public class Keyboard implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == 122)
-            if (dev.getFullScreenWindow() == null)
-                setFullScreen();
-            else
-                setNormal();
+            if (dev.getFullScreenWindow() == null) {
+                window.dispose();
+                window.setResizable(false);
+                window.setUndecorated(true);
+                dev.setFullScreenWindow(window);
+            } else {
+                window.dispose();
+                window.setResizable(true);
+                dev.setFullScreenWindow(null);
+                window.setUndecorated(false);
+                window.setVisible(true);
+            }
         char c = Character.toLowerCase(e.getKeyChar());
         if (!keys.contains(c))
             keys.add(keys.size(), c);
@@ -40,20 +51,7 @@ public class Keyboard implements KeyListener {
             keys.remove(keys.indexOf(c));
     }
 
-    private void setFullScreen() {
-        window.dispose();
-        window.setResizable(false);
-        window.setUndecorated(true);
-        dev.setFullScreenWindow(window);
-    }
-
-    private void setNormal() {
-        window.dispose();
-        window.setResizable(true);
-        dev.setFullScreenWindow(null);
-        window.setUndecorated(false);
-        window.setVisible(true);
-    }
-
     public static boolean isPressed(char key) { return keys.contains(key); }
+    public static boolean onPress(char key) { return pressed.contains(key); }
+    public static boolean onRelease(char key) { return released.contains(key); }
 }

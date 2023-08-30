@@ -335,8 +335,7 @@ public class Object {
     public boolean isPlaceMeeting(double xDif, double yDif, Object obj) {
         if (obj.father == null) {
             for (Object o : obj.childs) {
-                boolean xx = false;
-                boolean yy = false;
+                boolean xx = false; boolean yy = false;
                 if (Util.isBetween(getAbX() + xDif, o.getAbX(), o.getAbX() + o.width) ||
                         Util.isBetween(getAbX() + width + xDif, o.getAbX(), o.getAbX() + o.width) ||
                         Util.isBetween(o.getAbX(), getAbX() + xDif, getAbX() + width + xDif) ||
@@ -349,13 +348,10 @@ public class Object {
                         Util.isBetween(o.getAbY() + obj.height, getAbY() + yDif, getAbY() + height + yDif)) {
                     yy = true;
                 }
-                if (xx && yy) {
-                    return true;
-                }
+                if (xx && yy) { return true; }
             }
         } else {
-            boolean xx = false;
-            boolean yy = false;
+            boolean xx = false; boolean yy = false;
             if (Util.isBetween(getAbX() + xDif, obj.getAbX(), obj.getAbX() + obj.width) ||
                     Util.isBetween(getAbX() + width + xDif, obj.getAbX(), obj.getAbX() + obj.width) ||
                     Util.isBetween(obj.getAbX(), getAbX() + xDif, getAbX() + width + xDif) ||
