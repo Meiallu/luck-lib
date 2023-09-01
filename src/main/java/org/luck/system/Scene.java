@@ -2,6 +2,7 @@ package org.luck.system;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("unused")
 public class Scene {
     public int lastID = 0;
     private String name;

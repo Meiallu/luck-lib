@@ -7,6 +7,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 
+@SuppressWarnings("unused")
 public class Util {
 
     public static boolean isBetween(double i, double min, double max) { return i >= min && i <= max; }

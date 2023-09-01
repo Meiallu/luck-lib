@@ -5,6 +5,7 @@ import org.luck.type.Audio;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
+@SuppressWarnings("unused")
 public class AudioManager {
 
     public static void play(Audio a) {

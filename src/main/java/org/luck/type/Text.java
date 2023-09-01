@@ -6,6 +6,7 @@ import org.luck.system.Scene;
 
 import java.awt.*;
 
+@SuppressWarnings("unused")
 public class Text {
     private float x;
     private float y;

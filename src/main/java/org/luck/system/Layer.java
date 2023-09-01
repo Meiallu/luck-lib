@@ -5,6 +5,7 @@ import org.luck.type.Text;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("unused")
 public class Layer {
     private ArrayList<Object> objects = new ArrayList<>();
     private ArrayList<Text> texts = new ArrayList<>();

@@ -5,6 +5,7 @@ import org.luck.util.Keyboard;
 import javax.swing.*;
 import java.awt.*;
 
+@SuppressWarnings("unused")
 public class Instance {
     private static JFrame frame;
     private static int width = 500;
@@ -22,9 +23,9 @@ public class Instance {
         frame.getContentPane().setLayout(new BorderLayout());
         frame.setLocationRelativeTo(null);
 
-        panel = new Canvas();
-        new Keyboard();
         new Game();
+        new Keyboard();
+        panel = new Canvas();
 
         frame.setVisible(true);
     }

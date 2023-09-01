@@ -1,10 +1,14 @@
 package org.luck.listener;
 
+import org.luck.system.Instance;
 import org.luck.util.Device;
+import org.luck.util.Keyboard;
 
+import java.security.Key;
 import java.util.Timer;
 import java.util.TimerTask;
 
+@SuppressWarnings("unused")
 public abstract class Luck {
 
     public Luck() {

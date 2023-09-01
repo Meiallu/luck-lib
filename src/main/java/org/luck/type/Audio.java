@@ -6,6 +6,7 @@ import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 
+@SuppressWarnings("unused")
 public class Audio {
     private float vol = 0.0f;
     private long time;

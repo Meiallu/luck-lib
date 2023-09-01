@@ -51,11 +51,9 @@ public class Player extends Luck {
         // -------------------------------------------
 
         Animation urlanim = new Animation();
-        urlanim.addFrame(Util.getImageURL("https://media.discordapp.net/attachments/1011309335537778749/1145767041136074844/OIP_1.jpg"));
+        urlanim.addFrame(Util.getImageURL("https://imgs.search.brave.com/M8D2kvnfl2ctGbbIvzj9g-WLvP3E8atO01KmZT94mjk/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLmt5/bS1jZG4uY29tL3Bo/b3Rvcy9pbWFnZXMv/bGlzdC8wMDIvNjM2/LzU4MS9hMWUuanBn"));
         Sprite urlsprite = new Sprite(urlanim);
         solid = new Object(urlsprite);
-        solid.setWidth(128);
-        solid.setHeight(128);
         solid.create(200, 100);
     }
 

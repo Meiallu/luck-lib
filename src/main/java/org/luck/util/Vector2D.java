@@ -1,5 +1,6 @@
 package org.luck.util;
 
+@SuppressWarnings("unused")
 public class Vector2D {
     private float x;
     private float y;

@@ -9,6 +9,7 @@ import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
+@SuppressWarnings("unused")
 public class Canvas extends JPanel {
     private static byte tick = 1;
     private static boolean resizable = true;
@@ -50,7 +51,7 @@ public class Canvas extends JPanel {
                             else
                                 o.setFrame(o.getFrame() + 1);
                         }
-                        Image img = o.getAnimation().getFrame(o.getFrame());
+                        Image img = o.getAnimation().getFrame( o.getFrame() );
                         float x = o.getAbX();
                         float y = o.getAbY();
                         float width = o.getWidth() * o.getScale();

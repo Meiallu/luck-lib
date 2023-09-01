@@ -8,6 +8,7 @@ import org.luck.util.Vector2D;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("unused")
 public class Object {
     private float x;
     private float y;

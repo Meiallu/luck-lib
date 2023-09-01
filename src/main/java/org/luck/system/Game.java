@@ -2,6 +2,7 @@ package org.luck.system;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("unused")
 public class Game {
     private static Scene cena = new Scene("room");
     private static ArrayList<Scene> cenas = new ArrayList<>();

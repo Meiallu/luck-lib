@@ -3,6 +3,7 @@ package org.luck.type;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class Sprite {
     private Animation defAnim;
     private List<Animation> animList = new ArrayList<>();

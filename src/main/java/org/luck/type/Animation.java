@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class Animation {
     private List<Image> frames = new ArrayList<>();
     private byte speed = 5;

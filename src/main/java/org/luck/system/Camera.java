@@ -1,5 +1,6 @@
 package org.luck.system;
 
+@SuppressWarnings("unused")
 public class Camera {
     private static float xreal = 0;
     private static float yreal = 0;
