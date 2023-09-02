@@ -1,10 +1,11 @@
 package me.meiallu;
 
 import org.luck.listener.Luck;
+import org.luck.system.Instance;
 import org.luck.type.Animation;
 import org.luck.type.Object;
 import org.luck.type.Sprite;
-import org.luck.util.Keyboard;
+import org.luck.util.Input;
 import org.luck.util.Util;
 
 public class Player extends Luck {
@@ -59,19 +60,19 @@ public class Player extends Luck {
 
     @Override
     public void update() {
-        if (Keyboard.isPressed('d')) {
+        if (Input.isPressed('d')) {
             xv = 1;
             obj.setMirrored(false);
-        } else if (Keyboard.isPressed('a')) {
+        } else if (Input.isPressed('a')) {
             xv = -1;
             obj.setMirrored(true);
         } else {
             xv = 0;
         }
 
-        if (Keyboard.isPressed('w')) {
+        if (Input.isPressed('w')) {
             yv = -1;
-        } else if (Keyboard.isPressed('s')) {
+        } else if (Input.isPressed('s')) {
             yv = 1;
         } else {
             yv = 0;

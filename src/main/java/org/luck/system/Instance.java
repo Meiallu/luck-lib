@@ -1,6 +1,6 @@
 package org.luck.system;
 
-import org.luck.util.Keyboard;
+import org.luck.util.Input;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,31 +8,27 @@ import java.awt.*;
 @SuppressWarnings("unused")
 public class Instance {
     private static JFrame frame;
-    private static int width = 500;
-    private static int height = 500;
-    private static JPanel panel;
+    private static Canvas canvas;
 
     public Instance(String title, int w, int h) {
-        width = w;
-        height = h;
+        Camera.getView().setSize(w, h);
 
         frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setMinimumSize(new Dimension(w + 16, h + 39));
         frame.getContentPane().setBackground(Color.BLACK);
         frame.getContentPane().setLayout(new BorderLayout());
+        frame.setVisible(true);
+
+        int offx = frame.getWidth() - frame.getRootPane().getWidth();
+        int offy = frame.getHeight() - frame.getRootPane().getHeight();
+        frame.setMinimumSize( new Dimension(w + offx, h + offy) );
         frame.setLocationRelativeTo(null);
 
         new Game();
-        new Keyboard();
-        panel = new Canvas();
-
-        frame.setVisible(true);
+        new Input();
+        canvas = new Canvas();
     }
 
     public static JFrame getWindow() { return frame; }
-    public static JPanel getPanel() { return panel; }
-
-    public static int getWidth() { return width; }
-    public static int getHeight() { return height; }
+    public static Canvas getCanvas() { return canvas; }
 }

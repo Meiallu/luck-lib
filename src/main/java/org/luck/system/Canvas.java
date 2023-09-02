@@ -3,6 +3,7 @@ package org.luck.system;
 import org.luck.type.Object;
 import org.luck.type.Text;
 import org.luck.util.Device;
+import org.luck.util.Vector2D;
 
 import javax.swing.*;
 import java.awt.*;
@@ -92,18 +93,23 @@ public class Canvas extends JPanel {
         else tick++;
     }
 
+    public short getScale() { return scale; }
+    public JPanel getPanel() { return this; }
+
+    public Vector2D getOffset() { return new Vector2D(offX, offY); }
+
     private void Adjust() {
         if (Instance.getWindow().getHeight() != lastHeight || Instance.getWindow().getWidth() != lastWidth) {
             if (resizable) {
                 scale = 1;
-                while (Instance.getWidth() * scale < Instance.getWindow().getWidth() - 16 ||
-                       Instance.getHeight() * scale < Instance.getWindow().getHeight() - 39) {
+                while ( Camera.getViewX() * scale < Instance.getWindow().getRootPane().getWidth()  ||
+                        Camera.getViewY() * scale < Instance.getWindow().getRootPane().getHeight() ) {
                     scale++;
                 }
             }
             if (offsetable) {
-                offX = (Instance.getWidth() * scale) / 2 - this.getWidth() / 2;
-                offY = (Instance.getHeight() * scale) / 2 - this.getHeight() / 2;
+                offX = (Camera.getViewX() * scale) / 2 - this.getWidth() / 2;
+                offY = (Camera.getViewY() * scale) / 2 - this.getHeight() / 2;
             }
         }
     }
