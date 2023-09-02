@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 @SuppressWarnings("unused")
 public class Object {
-    private float x;
-    private float y;
+    private double x;
+    private double y;
     private Sprite image;
     private ArrayList<Object> childs = new ArrayList<>();
     private Object father;
@@ -42,7 +42,7 @@ public class Object {
         height = (short) anim.getFrame(0).getHeight(null);
     }
 
-    public Object create(float x, float y) {
+    public Object create(double x, double y) {
         Game.getScene().lastID++;
         Object obj = new Object(image);
         obj.ID = Game.getScene().lastID;
@@ -51,7 +51,7 @@ public class Object {
         return obj;
     }
 
-    public Object create(float x, float y, Scene cena) {
+    public Object create(double x, double y, Scene cena) {
         cena.lastID++;
         Object obj = new Object(image);
         obj.ID = cena.lastID;
@@ -60,7 +60,7 @@ public class Object {
         return obj;
     }
 
-    public Object create(float x, float y, Layer lay) {
+    public Object create(double x, double y, Layer lay) {
         Game.getScene().lastID++;
         Object obj = new Object(image);
         obj.ID = Game.getScene().lastID;
@@ -69,7 +69,7 @@ public class Object {
         return obj;
     }
 
-    public Object create(float x, float y, Scene cena, Layer lay) {
+    public Object create(double x, double y, Scene cena, Layer lay) {
         cena.lastID++;
         Object obj = new Object(image);
         obj.ID = cena.lastID;
@@ -85,7 +85,7 @@ public class Object {
         childs = new ArrayList<>();
     }
 
-    private void setup(Object o, float x, float y) {
+    private void setup(Object o, double x, double y) {
         o.x = x; o.y = y;
         o.frame = frame;
         o.speed = speed;
@@ -112,13 +112,13 @@ public class Object {
                 o.image = i;
     }
 
-    public float getAbX() { return x + origin.getX(); }
-    public float getAbY() { return y + origin.getY(); }
+    public double getAbX() { return x + origin.getX(); }
+    public double getAbY() { return y + origin.getY(); }
 
-    public float getX() { return x; }
-    public float getY() { return y; }
+    public double getX() { return x; }
+    public double getY() { return y; }
 
-    public void setX(float i) {
+    public void setX(double i) {
         x = i;
         if (father == null)
             for (Object o : childs)
@@ -126,10 +126,10 @@ public class Object {
     }
 
     public void setY(double i) {
-        y = (float) i;
+        y = i;
         if (father == null)
             for (Object o : childs)
-                o.y = (float) i;
+                o.y = i;
     }
 
     public ArrayList<Object> getChilds() { return childs; }
@@ -388,7 +388,7 @@ public class Object {
             }
     }
 
-    public Vector2D addPoint(float x, float y) {
+    public Vector2D addPoint(double x, double y) {
         Vector2D point = new Vector2D(x, y);
         points.add(point);
         if (father == null) {
@@ -419,8 +419,8 @@ public class Object {
     public Vector2D getPoint(int index) { return points.get(index); }
     public ArrayList<Vector2D> getPoints() { return points; }
 
-    public float getPointX(int index) { return x + points.get(index).getX(); }
-    public float getPointY(int index) { return y + points.get(index).getY(); }
+    public double getPointX(int index) { return x + points.get(index).getX(); }
+    public double getPointY(int index) { return y + points.get(index).getY(); }
 
     public int getID() { return ID; }
 }

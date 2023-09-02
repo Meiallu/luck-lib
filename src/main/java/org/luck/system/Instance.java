@@ -1,6 +1,7 @@
 package org.luck.system;
 
-import org.luck.util.Input;
+import org.luck.util.Keyboard;
+import org.luck.util.Mouse;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,7 +26,8 @@ public class Instance {
         frame.setLocationRelativeTo(null);
 
         new Game();
-        new Input();
+        new Keyboard();
+        new Mouse();
         canvas = new Canvas();
     }
 

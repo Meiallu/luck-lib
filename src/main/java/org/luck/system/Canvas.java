@@ -16,8 +16,8 @@ public class Canvas extends JPanel {
     private static boolean resizable = true;
     private static boolean offsetable = true;
     private short scale = 1;
-    private float offX = 0;
-    private float offY = 0;
+    private double offX = 0;
+    private double offY = 0;
 
     private int lastWidth = 0;
     private int lastHeight = 0;
@@ -53,8 +53,8 @@ public class Canvas extends JPanel {
                                 o.setFrame(o.getFrame() + 1);
                         }
                         Image img = o.getAnimation().getFrame( o.getFrame() );
-                        float x = o.getAbX();
-                        float y = o.getAbY();
+                        double x = o.getAbX();
+                        double y = o.getAbY();
                         float width = o.getWidth() * o.getScale();
                         float height = o.getHeight() * o.getScale();
 
@@ -73,8 +73,8 @@ public class Canvas extends JPanel {
 
                 for (Text t : l.getTexts()) {
                     if (t.isVisible()) {
-                        float x = t.getX();
-                        float y = t.getY();
+                        double x = t.getX();
+                        double y = t.getY();
 
                         if (t.isOffsetable()) {
                             x -= (offX / scale) + Camera.getX();

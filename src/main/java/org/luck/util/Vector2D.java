@@ -2,17 +2,17 @@ package org.luck.util;
 
 @SuppressWarnings("unused")
 public class Vector2D {
-    private float x;
-    private float y;
+    private double x;
+    private double y;
 
-    public Vector2D(float x, float y) {
+    public Vector2D(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
-    public float getX() { return x; }
+    public double getX() { return x; }
     public void setX(float x) { this.x = x; }
 
-    public float getY() { return y; }
+    public double getY() { return y; }
     public void setY(float y) { this.y = y; }
 }

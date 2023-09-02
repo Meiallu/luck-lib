@@ -6,13 +6,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("unused")
-public class Input implements KeyListener, MouseListener {
+public class Keyboard implements KeyListener  {
     private static List<Character> keys = new ArrayList<>();
     private static char last = 0;
     private static char pressed = 0;
@@ -22,10 +20,7 @@ public class Input implements KeyListener, MouseListener {
             .getLocalGraphicsEnvironment()
             .getScreenDevices()[0];
 
-    public Input() {
-        Instance.getWindow().addKeyListener(this);
-        Instance.getWindow().addMouseListener(this);
-    }
+    public Keyboard() { Instance.getWindow().addKeyListener(this); }
 
     @Override
     public void keyTyped(KeyEvent e) {}
@@ -74,30 +69,4 @@ public class Input implements KeyListener, MouseListener {
         pressed = 0;
         return i;
     }
-
-    @Override
-    public void mousePressed(MouseEvent e) {}
-
-    @Override
-    public void mouseReleased(MouseEvent e) {}
-
-    public static double getMouseX() {
-        double pointer = MouseInfo.getPointerInfo().getLocation().getX();
-        double offset = Instance.getCanvas().getOffset().getX();
-        double win = Instance.getWindow().getX() + Instance.getWindow().getRootPane().getX();
-        double scale = Instance.getCanvas().getScale();
-        return (pointer - (win - offset)) / scale;
-    }
-
-    public static double getMouseY() {
-        double pointer = MouseInfo.getPointerInfo().getLocation().getY();
-        double offset = Instance.getCanvas().getOffset().getY();
-        double win = Instance.getWindow().getY() + Instance.getWindow().getRootPane().getY();
-        double scale = Instance.getCanvas().getScale();
-        return (pointer - (win - offset)) / scale;
-    }
-
-    @Override public void mouseClicked(MouseEvent e) {}
-    @Override public void mouseEntered(MouseEvent e) {}
-    @Override public void mouseExited(MouseEvent e) {}
 }

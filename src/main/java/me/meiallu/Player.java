@@ -1,11 +1,10 @@
 package me.meiallu;
 
 import org.luck.listener.Luck;
-import org.luck.system.Instance;
 import org.luck.type.Animation;
 import org.luck.type.Object;
 import org.luck.type.Sprite;
-import org.luck.util.Input;
+import org.luck.util.Keyboard;
 import org.luck.util.Util;
 
 public class Player extends Luck {
@@ -60,19 +59,19 @@ public class Player extends Luck {
 
     @Override
     public void update() {
-        if (Input.isPressed('d')) {
+        if (Keyboard.isPressed('d')) {
             xv = 1;
             obj.setMirrored(false);
-        } else if (Input.isPressed('a')) {
+        } else if (Keyboard.isPressed('a')) {
             xv = -1;
             obj.setMirrored(true);
         } else {
             xv = 0;
         }
 
-        if (Input.isPressed('w')) {
+        if (Keyboard.isPressed('w')) {
             yv = -1;
-        } else if (Input.isPressed('s')) {
+        } else if (Keyboard.isPressed('s')) {
             yv = 1;
         } else {
             yv = 0;
@@ -81,9 +80,9 @@ public class Player extends Luck {
         if (yv != 0 && xv != 0) speed = 0.75f;
         else speed = 1;
 
-        if (!obj.isPlaceMeeting(xv * speed, 0, solid))
+        if ( !obj.isPlaceMeeting(xv * speed, 0, solid) )
             obj.setX(obj.getX() + xv * speed);
-        if (!obj.isPlaceMeeting(0, yv * speed, solid))
+        if ( !obj.isPlaceMeeting(0, yv * speed, solid) )
             obj.setY(obj.getY() + yv * speed);
 
         if (obj.getAnimation() != roll) {

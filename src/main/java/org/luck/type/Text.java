@@ -8,8 +8,8 @@ import java.awt.*;
 
 @SuppressWarnings("unused")
 public class Text {
-    private float x;
-    private float y;
+    private double x;
+    private double y;
     private float opacity = 1.0f;
     private boolean visible = true;
     private boolean offsetable = true;
@@ -56,11 +56,11 @@ public class Text {
         lay.getTexts().add(this);
     }
 
-    public float getX() { return x; }
-    public void setX(int xx) { x = xx; }
+    public double getX() { return x; }
+    public void setX(double xx) { x = xx; }
 
-    public float getY() { return y; }
-    public void setY(int yy) { y = yy; }
+    public double getY() { return y; }
+    public void setY(double yy) { y = yy; }
 
     public float getOpacity() { return opacity; }
     public void setOpacity(float i) { opacity = i; }
