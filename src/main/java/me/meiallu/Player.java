@@ -5,6 +5,7 @@ import org.luck.type.Animation;
 import org.luck.type.Object;
 import org.luck.type.Sprite;
 import org.luck.util.Keyboard;
+import org.luck.util.Mouse;
 import org.luck.util.Util;
 
 public class Player extends Luck {
@@ -59,6 +60,7 @@ public class Player extends Luck {
 
     @Override
     public void update() {
+        if ( Mouse.onRelease(Mouse.MIDDLE_BUTTON) ) System.out.println("wow");
         if (Keyboard.isPressed('d')) {
             xv = 1;
             obj.setMirrored(false);

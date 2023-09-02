@@ -59,14 +59,14 @@ public class Keyboard implements KeyListener  {
 
     public static boolean onPressAnyKey() {
         boolean i = (pressed != 0);
-        pressed = 0;
+        if (i) pressed = 0;
         return i;
     }
 
     public static boolean onPress(char key) {
         boolean i = (pressed == key);
         if (pressed != 0) last = pressed;
-        pressed = 0;
+        if (i) pressed = 0;
         return i;
     }
 }
