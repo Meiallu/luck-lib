@@ -60,7 +60,6 @@ public class Player extends Luck {
 
     @Override
     public void update() {
-        if ( Mouse.onRelease(Mouse.MIDDLE_BUTTON) ) System.out.println("wow");
         if (Keyboard.isPressed('d')) {
             xv = 1;
             obj.setMirrored(false);
