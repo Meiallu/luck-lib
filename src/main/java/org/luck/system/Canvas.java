@@ -29,7 +29,8 @@ public class Canvas extends JPanel {
     private static boolean offsetable = true;
 
     public Canvas() {
-        super.setBackground(Color.RED);
+        super.setBackground(Color.BLACK);
+        super.setBounds(0, 0, 1, 1);
         Instance.getWindow().add(this);
 
         new Timer().scheduleAtFixedRate(new TimerTask() {
@@ -133,13 +134,12 @@ public class Canvas extends JPanel {
                                 Camera.getViewY() * (scale + letterbox_precision) < Instance.getWindow().getRootPane().getHeight() ) {
                             scale += letterbox_precision;
                         }
-                        super.setSize( (int) (Camera.getViewX() * scale), (int) (Camera.getViewY() * scale) );
-
                         wWin = Instance.getWindow().getRootPane().getWidth() / 2;
                         hWin = Instance.getWindow().getRootPane().getHeight() / 2;
                         wCanvas = (int) (Camera.getViewX() * scale) / 2;
                         hCanvas = (int) (Camera.getViewY() * scale) / 2;
 
+                        super.setSize( (int) (Camera.getViewX() * scale), (int) (Camera.getViewY() * scale) );
                         super.setLocation(wWin - wCanvas, hWin - hCanvas);
                 }
             }

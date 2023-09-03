@@ -15,9 +15,11 @@ public class Instance {
         Camera.getView().setSize(w, h);
 
         frame = new JFrame(title);
+        frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setBackground(Color.BLACK);
         frame.setBackground(Color.BLACK);
+        frame.getContentPane().setBackground(Color.BLACK);
+        frame.getContentPane().setLayout(null);
         frame.setVisible(true);
 
         int offx = frame.getWidth() - frame.getRootPane().getWidth();
