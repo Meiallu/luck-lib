@@ -17,7 +17,7 @@ public class Instance {
         frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setBackground(Color.BLACK);
-        frame.getContentPane().setLayout(new BorderLayout());
+        frame.setBackground(Color.BLACK);
         frame.setVisible(true);
 
         int offx = frame.getWidth() - frame.getRootPane().getWidth();
@@ -25,10 +25,10 @@ public class Instance {
         frame.setMinimumSize( new Dimension(w + offx, h + offy) );
         frame.setLocationRelativeTo(null);
 
+        canvas = new Canvas();
         new Game();
         new Keyboard();
         new Mouse();
-        canvas = new Canvas();
     }
 
     public static JFrame getWindow() { return frame; }
