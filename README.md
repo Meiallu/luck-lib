@@ -7,7 +7,7 @@ Feel free to optimize, remove, add functions and library systems.
 
 # Setup
 
-Download the package, extract them into the "/src" of your project. Then, you'll need to create 
+Download the packages on the releases page, extract them into the "/src" of your project. Then, you'll need to create 
 a game instance with ```new Instance("title", width, height);```, this will create the window, the
 canvas, an initial scene (which you can change) and several others essential systems. And that's it!
 
