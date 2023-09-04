@@ -36,6 +36,7 @@ public class Canvas extends JPanel {
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
+                Adjust();
                 repaint();
             }
         }, 0, (1000 / Device.refreshRate));
@@ -51,7 +52,6 @@ public class Canvas extends JPanel {
     public static void setOffsetable(boolean stt) { offsetable = stt; }
 
     public void paintComponent(Graphics g) {
-        Adjust();
         Graphics2D g2D = (Graphics2D) g;
         super.paintComponent(g2D);
 
@@ -60,12 +60,12 @@ public class Canvas extends JPanel {
                 for (Object o : l.getObjects()) {
                     if (o.isVisible()) {
                         if (tick % (Device.refreshRate / o.getSpeed()) == 0) {
-                            if (o.getAnimation().getFrames().size() == o.getFrame() + 1)
+                            if (o.getSprite().getFrames().size() == o.getFrame() + 1)
                                 o.setFrame(0);
                             else
                                 o.setFrame(o.getFrame() + 1);
                         }
-                        Image img = o.getAnimation().getFrame( o.getFrame() );
+                        Image img = o.getSprite().getFrame( o.getFrame() );
                         double x = o.getAbX();
                         double y = o.getAbY();
                         float width = o.getWidth() * o.getScale();

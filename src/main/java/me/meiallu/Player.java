@@ -1,9 +1,7 @@
 package me.meiallu;
 
 import org.luck.listener.Luck;
-import org.luck.system.Camera;
 import org.luck.system.Canvas;
-import org.luck.type.Animation;
 import org.luck.type.Object;
 import org.luck.type.Sprite;
 import org.luck.util.Keyboard;
@@ -17,18 +15,18 @@ public class Player extends Luck {
     float xv = 0;
     float yv = 0;
 
-    Animation idle;
-    Animation run;
-    Animation roll;
+    Sprite idle;
+    Sprite run;
+    Sprite roll;
 
     @Override
     public void start() {
         Canvas.setType(Canvas.LETTERBOX);
-        Canvas.setLetterboxPrecision(1);
+        Canvas.setLetterboxPrecision(0.5);
 
-        idle = new Animation();
-        run = new Animation();
-        roll = new Animation();
+        idle = new Sprite();
+        run = new Sprite();
+        roll = new Sprite();
 
         idle.setupFrames("images/idle/", "idle", ".png");
         run.setupFrames("images/run/", "run", ".png");
@@ -38,24 +36,18 @@ public class Player extends Luck {
         run.setSpeed(12);
         roll.setSpeed(11);
 
-        Sprite Player = new Sprite(idle);
-        Player.addAnimation(run);
-        Player.addAnimation(roll);
-
-        Object Type = new Object(Player);
-        obj = Type.create(100, 90);
+        Object type = new Object(idle);
+        obj = type.create(100, 90);
         obj.setOrigin(22, 0);
 
-        Animation urlanim = new Animation();
-        urlanim.addFrame(Util.getImageURL("https://imgs.search.brave.com/M8D2kvnfl2ctGbbIvzj9g-WLvP3E8atO01KmZT94mjk/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLmt5/bS1jZG4uY29tL3Bo/b3Rvcy9pbWFnZXMv/bGlzdC8wMDIvNjM2/LzU4MS9hMWUuanBn"));
-        Sprite urlsprite = new Sprite(urlanim);
+        Sprite urlsprite = new Sprite();
+        urlsprite.addFrame(Util.getImageURL("https://imgs.search.brave.com/M8D2kvnfl2ctGbbIvzj9g-WLvP3E8atO01KmZT94mjk/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLmt5/bS1jZG4uY29tL3Bo/b3Rvcy9pbWFnZXMv/bGlzdC8wMDIvNjM2/LzU4MS9hMWUuanBn"));
         solid = new Object(urlsprite);
         solid.create(200, 100);
     }
 
     @Override
     public void update() {
-        Camera.setX( Camera.getX() + 0.1 );
         if (Keyboard.isPressed('d')) {
             xv = 1;
             obj.setMirrored(false);
@@ -82,9 +74,11 @@ public class Player extends Luck {
         if ( !obj.isPlaceMeeting(0, yv * speed, solid) )
             obj.setY(obj.getY() + yv * speed);
 
-        if (obj.getAnimation() != roll) {
-            if (xv == 0 && yv == 0) obj.setAnimation(idle);
-            else obj.setAnimation(run);
+        if (obj.getSprite() != roll) {
+            if (xv == 0 && yv == 0)
+                obj.setSprite(idle);
+            else
+                obj.setSprite(run);
         }
     }
 }

@@ -17,7 +17,6 @@ public class Object {
     private Object father;
     private int ID;
 
-    private Animation anim;
     private byte frame = 0;
     private byte speed;
     private float scale = 1.0f;
@@ -36,10 +35,9 @@ public class Object {
 
     public Object(Sprite sprite) {
         image = sprite;
-        anim = sprite.getDefault();
-        speed = anim.getSpeed();
-        width = (short) anim.getFrame(0).getWidth(null);
-        height = (short) anim.getFrame(0).getHeight(null);
+        speed = sprite.getSpeed();
+        width = (short) sprite.getFrame(0).getWidth(null);
+        height = (short) sprite.getFrame(0).getHeight(null);
     }
 
     public Object create(double x, double y) {
@@ -134,26 +132,6 @@ public class Object {
 
     public ArrayList<Object> getChilds() { return childs; }
     public Object getFather() { return father; }
-
-    public Animation getAnimation() { return anim; }
-    public void setAnimation(Animation i) {
-        if (anim != i) {
-            anim = i;
-            width = (short) i.getFrame(0).getWidth(null);
-            height = (short) i.getFrame(0).getHeight(null);
-            speed = i.getSpeed();
-        }
-        if (father == null) {
-            for (Object o : childs) {
-                if (o.anim != i) {
-                    o.anim = i;
-                    o.width = (short) i.getFrame(0).getWidth(null);
-                    o.height = (short) i.getFrame(0).getHeight(null);
-                    o.speed = i.getSpeed();
-                }
-            }
-        }
-    }
 
     public int getFrame() { return frame; }
     public void setFrame(int i) {
