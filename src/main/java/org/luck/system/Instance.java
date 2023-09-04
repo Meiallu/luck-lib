@@ -29,6 +29,7 @@ public class Instance {
 
         canvas = new Canvas();
         new Game();
+        new Camera();
         new Keyboard();
         new Mouse();
     }

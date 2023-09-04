@@ -1,6 +1,7 @@
 package me.meiallu;
 
 import org.luck.listener.Luck;
+import org.luck.system.Camera;
 import org.luck.system.Canvas;
 import org.luck.type.Object;
 import org.luck.type.Sprite;
@@ -22,7 +23,7 @@ public class Player extends Luck {
     @Override
     public void start() {
         Canvas.setType(Canvas.LETTERBOX);
-        Canvas.setLetterboxPrecision(0.5);
+        Canvas.setLetterboxPrecision(1);
 
         idle = new Sprite();
         run = new Sprite();
@@ -38,7 +39,7 @@ public class Player extends Luck {
 
         Object type = new Object(idle);
         obj = type.create(100, 90);
-        obj.setOrigin(22, 0);
+        obj.setOrigin(150, 0);
 
         Sprite urlsprite = new Sprite();
         urlsprite.addFrame(Util.getImageURL("https://imgs.search.brave.com/M8D2kvnfl2ctGbbIvzj9g-WLvP3E8atO01KmZT94mjk/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLmt5/bS1jZG4uY29tL3Bo/b3Rvcy9pbWFnZXMv/bGlzdC8wMDIvNjM2/LzU4MS9hMWUuanBn"));
