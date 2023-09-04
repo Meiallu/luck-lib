@@ -7,31 +7,31 @@ Feel free to optimize, remove, add functions and library systems.
 
 # Setup
 
-Download the packages, then extract them into the "/src" of your project. After that, you will
-need to create a game instance with ```new Instance("title", width, height);```, this will create the window, the
+Download the packages on the releases page, extract them into the "/src" of your project. Then, you'll need to create 
+a game instance with ```new Instance("title", width, height);```, this will create the window, the
 canvas, an initial scene (which you can change) and several others essential systems. And that's it!
 
+# Example
+
 ```java
-// This creates the Window, Canvas and Base scene.
+// This creates the Window, Canvas and Scene.
 new Instance("Title", 320, 180);
 
-// This creates the Animation and Sprite Objects.
-Animation run = new Animation();
-run.setupFrames("./images/", "run", ".png");
-Sprite playerSprite = new Sprite(run);
+// This creates the Sprite.
+Sprite spr_player = new Sprite();
+spr_player.setupFrames("images/", "idle", ".png");
 
 // This creates a Object type
 // And then creates an instance of it.
-Object Player = new Object(playerSprite);
-Player.create(10, 10);
+Object obj_player = new Object(spr_player);
+obj_player.create(10, 10);
 ```
 
 Oh, you want to easily play an audio? well, there you go:
 
 ```java
-Audio myWav = new Audio("./audios/test.wav");
-myWav.play();
+Audio theme = new Audio("audios/theme.wav");
+theme.play();
 ```
 
-There's no limits.
-Please fell free to change the framework's code and commit it. I'm open to feedbacks.
+Please fell free to clone, change and commit it. I'm open to feedbacks.
