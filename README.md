@@ -28,8 +28,8 @@ obj_player.create(10, 10);
 Oh, you want to easily play an audio? well, there you go:
 
 ```java
-Audio myWav = new Audio("./audios/test.wav");
-myWav.play();
+Audio theme = new Audio("audios/theme.wav");
+theme.play();
 ```
 
 There's no limits.
