@@ -15,7 +15,7 @@ canvas, an initial scene (which you can change) and several others essential sys
 // This creates the Window, Canvas and Scene.
 new Instance("Title", 320, 180);
 
-// This creates the Sprite object.
+// This creates the Sprite.
 Sprite spr_player = new Sprite();
 spr_player.setupFrames("images/", "idle", ".png");
 
