@@ -32,4 +32,4 @@ Audio theme = new Audio("audios/theme.wav");
 theme.play();
 ```
 
-Please fell free to change the framework's code and commit it. I'm open to feedbacks.
+Please fell free to clone, change and commit it. I'm open to feedbacks.
