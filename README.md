@@ -32,5 +32,4 @@ Audio theme = new Audio("audios/theme.wav");
 theme.play();
 ```
 
-There's no limits.
 Please fell free to change the framework's code and commit it. I'm open to feedbacks.
