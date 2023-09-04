@@ -12,7 +12,7 @@ need to create a game instance with ```new Instance("title", width, height);```,
 canvas, an initial scene (which you can change) and several others essential systems. And that's it!
 
 ```java
-// This creates the Window, Canvas and Base scene.
+// This creates the Window, Canvas and Scene.
 new Instance("Title", 320, 180);
 
 // This creates the Sprite object.
