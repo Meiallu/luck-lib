@@ -1,3 +1,5 @@
+NOT READY FOR USAGE. USE IT AT YOUR OWN RISK.
+
 # Luck
 
 Library focused on making game development easy and fast on Java.
