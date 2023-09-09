@@ -66,15 +66,13 @@ public class Canvas extends JPanel {
                                 o.setFrame(o.getFrame() + 1);
                         }
                         Image img = o.getSprite().getFrame( o.getFrame() );
-                        double x = o.getX();
-                        double y = o.getY();
-                        float width = o.getWidth() * o.getScale();
-                        float height = o.getHeight() * o.getScale();
+                        double x = o.getAbX();
+                        double y = o.getAbY();
+                        float width = o.getAbWidth();
+                        float height = o.getAbHeight();
 
-                        if ( o.isOffsetable() ) {
-                            x -= (offX / scale) + Camera.getX() - (Camera.getViewX() / 2);
-                            y -= (offY / scale) + Camera.getY() - (Camera.getViewY() / 2);
-                        }
+                        x -= (offX / scale) + Camera.getX() - (Camera.getViewX() / 2);
+                        y -= (offY / scale) + Camera.getY() - (Camera.getViewY() / 2);
 
                         g2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, o.getOpacity()));
                         g2D.drawImage(img, (int) (x * scale), (int) (y * scale), (int) (width * scale), (int) (height * scale), null);

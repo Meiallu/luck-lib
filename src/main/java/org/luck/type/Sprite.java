@@ -16,7 +16,7 @@ public class Sprite {
         int a = 1;
         File f = new File(folder + prefix + a + suffix);
         while (f.exists()) {
-            Image img;
+            Image img = null;
             try {
                 img = ImageIO.read(f);
                 frames.add(img);
@@ -49,6 +49,33 @@ public class Sprite {
             try {
                 img = ImageIO.read(file);
                 frames.add(img);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void addFrame(Image img, int index) { frames.add(index, img); }
+
+    public void addFrame(String path, int index) {
+        File f = new File(path);
+        if (f.exists()) {
+            Image img;
+            try {
+                img = ImageIO.read(f);
+                frames.add(index, img);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void addFrame(File file, int index) {
+        if (file.exists()) {
+            Image img;
+            try {
+                img = ImageIO.read(file);
+                frames.add(index, img);
             } catch (IOException e) {
                 e.printStackTrace();
             }

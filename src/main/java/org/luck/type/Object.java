@@ -19,13 +19,15 @@ public class Object {
 
     private byte frame = 0;
     private byte speed;
-    private float scale = 1.0f;
-    private short width;
-    private short height;
+
+    private float x_scale = 1.0f;
+    private float y_scale = 1.0f;
+
+    private float width;
+    private float height;
     private float opacity = 1.0f;
     private float angle = 0.0f;
 
-    private boolean offsetable = true;
     private boolean visible = true;
 
     private Vector2D origin = new Vector2D(0, 0);
@@ -34,8 +36,8 @@ public class Object {
     public Object(Sprite sprite) {
         image = sprite;
         speed = sprite.getSpeed();
-        width = (short) sprite.getFrame(0).getWidth(null);
-        height = (short) sprite.getFrame(0).getHeight(null);
+        width = sprite.getFrame(0).getWidth(null);
+        height = sprite.getFrame(0).getHeight(null);
     }
 
     public Object create(double x, double y) {
@@ -82,16 +84,17 @@ public class Object {
     }
 
     private void setup(Object o, double x, double y) {
-        o.x = x; o.y = y;
+        o.setX(x);
+        o.setY(y);
         o.frame = frame;
         o.speed = speed;
-        o.scale = scale;
+        o.x_scale = x_scale;
+        o.y_scale = y_scale;
         o.width = width;
         o.height = height;
         o.opacity = opacity;
         o.angle = angle;
         o.visible = visible;
-        o.offsetable = offsetable;
         o.origin = origin;
         o.points = points;
         o.father = this;
@@ -106,21 +109,43 @@ public class Object {
                 o.image = i;
     }
 
-    public double getX() { return x; }
-    public double getY() { return y; }
+    public double getAbX() { return x; }
+    public double getAbY() { return y; }
+
+    public double getX() {
+        float dif = width / image.getFrame(0).getWidth(null);
+        double org = origin.getX() * x_scale;
+        return x + (org * dif);
+    }
+
+    public double getY() {
+        float dif = height / image.getFrame(0).getHeight(null);
+        double org = origin.getY() * y_scale;
+        return y + (org * dif);
+    }
 
     public void setX(double i) {
-        x = i;
+        float dif = width / image.getFrame(0).getWidth(null);
+        double org = origin.getX() * x_scale;
+        x = i - (org * dif);
         if (father == null)
-            for (Object o : childs)
-                o.x = i;
+            for (Object o : childs) {
+                dif = o.width / o.image.getFrame(0).getWidth(null);
+                org = o.origin.getX() * o.x_scale;
+                o.x = i - (org * dif);
+            }
     }
 
     public void setY(double i) {
-        y = i;
+        float dif = height / image.getFrame(0).getHeight(null);
+        double org = origin.getY() * y_scale;
+        y = i - (org * dif);
         if (father == null)
-            for (Object o : childs)
-                o.y = i;
+            for (Object o : childs) {
+                dif = o.height / o.image.getFrame(0).getHeight(null);
+                org = o.origin.getY() * o.y_scale;
+                o.y = i - (org * dif);
+            }
     }
 
     public ArrayList<Object> getChilds() { return childs; }
@@ -142,28 +167,60 @@ public class Object {
                 o.speed = (byte) fps;
     }
 
-    public float getScale() { return scale; }
-    public void setScale(float i) {
-        scale = i;
+    public float getScaleX() { return x_scale; }
+    public void setScaleX(float i) {
+        double div = origin.getX() / image.getFrame(0).getWidth(null);
+        float dif = (float) (((i * width) - (width * x_scale)) * div);
+        x_scale = i; x -= dif;
         if (father == null)
-            for (Object o : childs)
-                o.scale = i;
+            for (Object o : childs) {
+                div = o.origin.getX() / o.image.getFrame(0).getWidth(null);
+                dif = (float) (((i * o.width) - (o.width * o.x_scale)) * div);
+                o.x_scale = i; o.x -= dif;
+            }
     }
 
-    public int getWidth() { return width; }
-    public void setWidth(int i) {
-        width = (short) i;
+    public float getScaleY() { return y_scale; }
+    public void setScaleY(float i) {
+        double div = origin.getY() / image.getFrame(0).getHeight(null);
+        float dif = (float) (((i * height) - (height * y_scale)) * div);
+        y_scale = i; y -= dif;
         if (father == null)
-            for (Object o : childs)
-                o.width = (short) i;
+            for (Object o : childs) {
+                div = o.origin.getY() / o.image.getFrame(0).getHeight(null);
+                dif = (float) (((i * o.height) - (o.height * o.y_scale)) * div);
+                o.y_scale = i; o.y -= dif;
+            }
     }
 
-    public int getHeight() { return height; }
-    public void setHeight(int i) {
-        height = (short) i;
+    public float getAbWidth() { return width * x_scale; }
+    public float getAbHeight() { return height * y_scale; }
+
+    public float getWidth() { return width; }
+    public float getHeight() { return height; }
+
+    public void setWidth(float i) {
+        double div = origin.getX() / image.getFrame(0).getWidth(null);
+        float dif = (float) ((i - width) * div);
+        width = i; x -= dif;
         if (father == null)
-            for (Object o : childs)
-                o.height = (short) i;
+            for (Object o : childs) {
+                div = o.origin.getX() / o.image.getFrame(0).getWidth(null);
+                dif = (float) ((i - o.width) * div);
+                o.width = i; o.x -= dif;
+            }
+    }
+
+    public void setHeight(float i) {
+        double div = origin.getY() / image.getFrame(0).getHeight(null);
+        float dif = (float) ((i - height) * div);
+        height = i; y -= dif;
+        if (father == null)
+            for (Object o : childs) {
+                div = o.origin.getY() / o.image.getFrame(0).getHeight(null);
+                dif = (float) ((i - o.height) * div);
+                o.height = i; o.y -= dif;
+            }
     }
 
     public float getOpacity() { return opacity; }
@@ -180,14 +237,6 @@ public class Object {
         if (father == null)
             for (Object o : childs)
                 o.visible = i;
-    }
-
-    public boolean isOffsetable() { return offsetable; }
-    public void setOffsetable(boolean i) {
-        offsetable = i;
-        if (father == null)
-            for (Object o : childs)
-                o.offsetable = i;
     }
 
     public float getAngle() { return angle; }
@@ -298,46 +347,20 @@ public class Object {
         }
     }
 
-    public boolean isMirrored() { return width < 0; }
-    public void setMirrored(boolean i) {
-        if (i) {
-            if (width > 0) {
-                width = (short) -width;
-            }
-        } else {
-            if (width < 0) {
-                width = (short) Math.abs(width);
-            }
-        }
-    }
-
-    public boolean isFlipped() { return height < 0; }
-    public void setFlipped(boolean i) {
-        if (i) {
-            if (height > 0) {
-                height = (short) -height;
-            }
-        } else {
-            if (height < 0) {
-                height = (short) Math.abs(height);
-            }
-        }
-    }
-
     public boolean isPlaceMeeting(double xDif, double yDif, Object obj) {
         if (obj.father == null) {
             for (Object o : obj.childs) {
                 boolean xx = false; boolean yy = false;
-                if (Util.isBetween(getX() + xDif, o.getX(), o.getX() + o.width) ||
-                        Util.isBetween(getX() + width + xDif, o.getX(), o.getX() + o.width) ||
-                        Util.isBetween(o.getX(), getX() + xDif, getX() + width + xDif) ||
-                        Util.isBetween(o.getX() + o.width, getX() + xDif, getX() + width + xDif)) {
+                if (Util.isBetween(getAbX() + xDif, o.getAbX(), o.getAbX() + o.getAbWidth()) ||
+                        Util.isBetween(getAbX() + getAbWidth() + xDif, o.getAbX(), o.getAbX() + o.getAbWidth()) ||
+                        Util.isBetween(o.getAbX(), getAbX() + xDif, getAbX() + getAbWidth() + xDif) ||
+                        Util.isBetween(o.getAbX() + o.getAbWidth(), getAbX() + xDif, getAbX() + getAbWidth() + xDif)) {
                     xx = true;
                 }
-                if (Util.isBetween(getY() + yDif, o.getY(), o.getY() + o.height) ||
-                        Util.isBetween(getY() + height + yDif, o.getY(), o.getY() + o.height) ||
-                        Util.isBetween(o.getY(), getY() + yDif, getY() + height + yDif) ||
-                        Util.isBetween(o.getY() + obj.height, getY() + yDif, getY() + height + yDif)) {
+                if (Util.isBetween(getAbY() + yDif, o.getAbY(), o.getAbY() + o.getAbHeight()) ||
+                        Util.isBetween(getAbY() + getAbHeight() + yDif, o.getAbY(), o.getAbY() + o.getAbHeight()) ||
+                        Util.isBetween(o.getAbY(), getAbY() + yDif, getAbY() + getAbHeight() + yDif) ||
+                        Util.isBetween(o.getAbY() + obj.getAbHeight(), getAbY() + yDif, getAbY() + getAbHeight() + yDif)) {
                     yy = true;
                 }
                 if (xx && yy) return true;
@@ -345,16 +368,16 @@ public class Object {
             return false;
         } else {
             boolean xx = false; boolean yy = false;
-            if (Util.isBetween(getX() + xDif, obj.getX(), obj.getX() + obj.width) ||
-                    Util.isBetween(getX() + width + xDif, obj.getX(), obj.getX() + obj.width) ||
-                    Util.isBetween(obj.getX(), getX() + xDif, getX() + width + xDif) ||
-                    Util.isBetween(obj.getX() + obj.width, getX() + xDif, getX() + width + xDif)) {
+            if (Util.isBetween(getAbX() + xDif, obj.getAbX(), obj.getAbX() + obj.getAbWidth()) ||
+                    Util.isBetween(getAbX() + getAbWidth() + xDif, obj.getAbX(), obj.getAbX() + obj.getAbWidth()) ||
+                    Util.isBetween(obj.getAbX(), getAbX() + xDif, getAbX() + getAbWidth() + xDif) ||
+                    Util.isBetween(obj.getAbX() + obj.getAbWidth(), getAbX() + xDif, getAbX() + getAbWidth() + xDif)) {
                 xx = true;
             }
-            if (Util.isBetween(getY() + yDif, obj.getY(), obj.getY() + obj.height) ||
-                    Util.isBetween(getY() + height + yDif, obj.getY(), obj.getY() + obj.height) ||
-                    Util.isBetween(obj.getY(), getY() + yDif, getY() + height + yDif) ||
-                    Util.isBetween(obj.getY() + obj.height, getY() + yDif, getY() + height + yDif)) {
+            if (Util.isBetween(getAbY() + yDif, obj.getAbY(), obj.getAbY() + obj.getAbHeight()) ||
+                    Util.isBetween(getAbY() + getAbHeight() + yDif, obj.getAbY(), obj.getAbY() + obj.getAbHeight()) ||
+                    Util.isBetween(obj.getAbY(), getAbY() + yDif, getAbY() + getAbHeight() + yDif) ||
+                    Util.isBetween(obj.getAbY() + obj.getAbHeight(), getAbY() + yDif, getAbY() + getAbHeight() + yDif)) {
                 yy = true;
             }
             return xx && yy;
@@ -362,13 +385,6 @@ public class Object {
     }
 
     public Vector2D getOrigin() { return origin; }
-    public void setOrigin(Vector2D vec) {
-        origin = vec;
-        if (father == null)
-            for (Object o : childs)
-                o.origin = vec;
-    }
-
     public void setOrigin(int x, int y) {
         origin.setX(x);
         origin.setY(y);

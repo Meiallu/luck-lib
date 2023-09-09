@@ -39,7 +39,7 @@ public class Player extends Luck {
 
         Object type = new Object(idle);
         obj = type.create(100, 90);
-        obj.setOrigin(150, 0);
+        obj.setOrigin(11, 23);
 
         Sprite urlsprite = new Sprite();
         urlsprite.addFrame(Util.getImageURL("https://imgs.search.brave.com/M8D2kvnfl2ctGbbIvzj9g-WLvP3E8atO01KmZT94mjk/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLmt5/bS1jZG4uY29tL3Bo/b3Rvcy9pbWFnZXMv/bGlzdC8wMDIvNjM2/LzU4MS9hMWUuanBn"));
@@ -51,10 +51,10 @@ public class Player extends Luck {
     public void update() {
         if (Keyboard.isPressed('d')) {
             xv = 1;
-            obj.setMirrored(false);
+            obj.setScaleX(1);
         } else if (Keyboard.isPressed('a')) {
             xv = -1;
-            obj.setMirrored(true);
+            obj.setScaleX(-1);
         } else {
             xv = 0;
         }
