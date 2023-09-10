@@ -424,10 +424,18 @@ public class Object {
     }
 
     public Vector2D getPoint(int index) { return points.get(index); }
-    public ArrayList<Vector2D> getPoints() { return points; }
 
-    public double getPointX(int index) { return x + points.get(index).getX(); }
-    public double getPointY(int index) { return y + points.get(index).getY(); }
+    public double getPointX(int index) {
+        float dif = width / image.getFrame(0).getWidth(null);
+        double org = points.get(index).getX() * x_scale;
+        return x + (org * dif);
+    }
+
+    public double getPointY(int index) {
+        float dif = height / image.getFrame(0).getHeight(null);
+        double org = points.get(index).getY() * y_scale;
+        return y + (org * dif);
+    }
 
     public int getID() { return ID; }
 }
