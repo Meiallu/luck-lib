@@ -1,3 +1,5 @@
+NOT READY FOR USAGE. USE IT AT YOUR OWN RISK.
+
 # Luck
 
 Library focused on making game development easy and fast on Java.
@@ -25,13 +27,6 @@ spr_player.setupFrames("images/", "idle", ".png");
 // And then creates an instance of it.
 Object obj_player = new Object(spr_player);
 obj_player.create(10, 10);
-```
-
-Oh, you want to easily play an audio? well, there you go:
-
-```java
-Audio theme = new Audio("audios/theme.wav");
-theme.play();
 ```
 
 Please fell free to clone, change and commit it. I'm open to feedbacks.
