@@ -26,7 +26,7 @@ public class Object {
     private float width;
     private float height;
     private float opacity = 1.0f;
-    private float angle = 0.0f;
+    private float angle = 45.0f;
 
     private boolean visible = true;
 
@@ -242,9 +242,12 @@ public class Object {
     public float getAngle() { return angle; }
     public void setAngle(float i) {
         angle = i;
+        if (i > 360) angle = 1;
         if (father == null)
-            for (Object o : childs)
+            for (Object o : childs) {
                 o.angle = i;
+                if (i > 360) o.angle = 1;
+            }
     }
 
     public void setLayer(Layer l, int index) {

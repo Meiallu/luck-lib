@@ -1,8 +1,10 @@
 package org.luck.system;
 
+import org.luck.listener.Luck;
 import org.luck.type.Object;
 import org.luck.type.Text;
 import org.luck.util.Device;
+import org.luck.util.Util;
 import org.luck.util.Vector2D;
 
 import javax.swing.*;
@@ -66,10 +68,13 @@ public class Canvas extends JPanel {
                                 o.setFrame(o.getFrame() + 1);
                         }
                         Image img = o.getSprite().getFrame( o.getFrame() );
+                        img = Util.getRotatedImage(img, o.getAngle(), o.getAbWidth(), o.getAbHeight());
+                        o.setAngle( o.getAngle() + 0.01f );
+
                         double x = o.getAbX();
                         double y = o.getAbY();
-                        float width = o.getAbWidth();
-                        float height = o.getAbHeight();
+                        float width = img.getWidth(null);
+                        float height = img.getHeight(null);
 
                         x -= (offX / scale) + Camera.getX() - (Camera.getViewX() / 2);
                         y -= (offY / scale) + Camera.getY() - (Camera.getViewY() / 2);

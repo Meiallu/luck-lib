@@ -4,6 +4,7 @@ import org.luck.type.Object;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 
@@ -46,5 +47,33 @@ public class Util {
             throw new RuntimeException(e);
         }
         return img;
+    }
+
+    public static Image getRotatedImage(Image image, double angle, float width, float height) {
+        BufferedImage buff = toBufferedImage(image, width, height);
+
+        double sin = Math.abs( Math.sin(angle) );
+        double cos = Math.abs (Math.cos(angle) );
+        int w = buff.getWidth(), h = buff.getHeight();
+        int nw = (int) Math.floor(w * cos + h * sin);
+        int nh = (int) Math.floor(h * cos + w * sin);
+
+        BufferedImage result = new BufferedImage(nw, nh, Transparency.TRANSLUCENT);
+        Graphics2D g = result.createGraphics();
+
+        g.translate((nw - w) / 2, (nh - h) / 2);
+        g.rotate(angle, w / 2, h / 2);
+        g.drawRenderedImage(buff, null);
+        g.dispose();
+
+        return result;
+    }
+
+    public static BufferedImage toBufferedImage(Image image, float width, float height) {
+        BufferedImage buff = new BufferedImage((int) width, (int) height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = buff.createGraphics();
+        g.drawImage(image, 0, 0, (int) width, (int) height, null);
+        g.dispose();
+        return buff;
     }
 }
