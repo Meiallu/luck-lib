@@ -108,7 +108,7 @@ public class Util {
         }
     }
 
-    public static double distance2D(Location a, Location b) {
+    public static double getDistance(Location a, Location b) {
         return Math.sqrt(
                 Math.pow(a.getX() - b.getX(), 2) +
                 Math.pow(a.getY() - b.getY(), 2)
