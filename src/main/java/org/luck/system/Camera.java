@@ -1,5 +1,7 @@
 package org.luck.system;
 
+import org.luck.util.Location;
+
 import java.awt.*;
 
 @SuppressWarnings("unused")
@@ -22,4 +24,13 @@ public class Camera {
 
     public static void setX(double xx) { x = xx; }
     public static void setY(double yy) { y = yy;  }
+
+    public static Location getLocation() {
+        return new Location(x, y);
+    }
+
+    public static void setLocation(double xx, double yy) {
+        x = xx;
+        y = yy;
+    }
 }

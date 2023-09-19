@@ -3,6 +3,7 @@ package org.luck.type;
 import org.luck.system.Game;
 import org.luck.system.Layer;
 import org.luck.system.Scene;
+import org.luck.util.Location;
 import org.luck.util.Util;
 import org.luck.util.Vector2D;
 
@@ -26,7 +27,7 @@ public class Object {
     private float width;
     private float height;
     private float opacity = 1.0f;
-    private float angle = 45.0f;
+    private float angle = 0.0f;
 
     private boolean visible = true;
 
@@ -102,11 +103,16 @@ public class Object {
     }
 
     public Sprite getSprite() { return image; }
-    public void setSprite(Sprite i) {
+    public Object setSprite(Sprite i) {
         image = i;
         if (father == null)
             for (Object o : childs)
                 o.image = i;
+        return this;
+    }
+
+    public Location getLocation() {
+        return new Location( getX(), getY() );
     }
 
     public double getAbX() { return x; }
@@ -124,51 +130,61 @@ public class Object {
         return y + (org * dif);
     }
 
-    public void setX(double i) {
+    public Object setX(double x) {
         float dif = width / image.getFrame(0).getWidth(null);
         double org = origin.getX() * x_scale;
-        x = i - (org * dif);
+        this.x = x - (org * dif);
         if (father == null)
             for (Object o : childs) {
                 dif = o.width / o.image.getFrame(0).getWidth(null);
                 org = o.origin.getX() * o.x_scale;
-                o.x = i - (org * dif);
+                o.x = x - (org * dif);
             }
+        return this;
     }
 
-    public void setY(double i) {
+    public Object setY(double y) {
         float dif = height / image.getFrame(0).getHeight(null);
         double org = origin.getY() * y_scale;
-        y = i - (org * dif);
+        this.y = y - (org * dif);
         if (father == null)
             for (Object o : childs) {
                 dif = o.height / o.image.getFrame(0).getHeight(null);
                 org = o.origin.getY() * o.y_scale;
-                o.y = i - (org * dif);
+                o.y = y - (org * dif);
             }
+        return this;
+    }
+
+    public Object setLocation(double x, double y) {
+        setX(x);
+        setY(y);
+        return this;
     }
 
     public ArrayList<Object> getChilds() { return childs; }
     public Object getFather() { return father; }
 
     public int getFrame() { return frame; }
-    public void setFrame(int i) {
+    public Object setFrame(int i) {
         frame = (byte) i;
         if (father == null)
             for (Object o : childs)
                 o.frame = (byte) i;
+        return this;
     }
 
     public int getSpeed() { return speed; }
-    public void setSpeed(int fps) {
+    public Object setSpeed(int fps) {
         speed = (byte) fps;
         if (father == null)
             for (Object o : childs)
                 o.speed = (byte) fps;
+        return this;
     }
 
     public float getScaleX() { return x_scale; }
-    public void setScaleX(float i) {
+    public Object setScaleX(float i) {
         double div = origin.getX() / image.getFrame(0).getWidth(null);
         float dif = (float) (((i * width) - (width * x_scale)) * div);
         x_scale = i; x -= dif;
@@ -178,10 +194,11 @@ public class Object {
                 dif = (float) (((i * o.width) - (o.width * o.x_scale)) * div);
                 o.x_scale = i; o.x -= dif;
             }
+        return this;
     }
 
     public float getScaleY() { return y_scale; }
-    public void setScaleY(float i) {
+    public Object setScaleY(float i) {
         double div = origin.getY() / image.getFrame(0).getHeight(null);
         float dif = (float) (((i * height) - (height * y_scale)) * div);
         y_scale = i; y -= dif;
@@ -191,6 +208,7 @@ public class Object {
                 dif = (float) (((i * o.height) - (o.height * o.y_scale)) * div);
                 o.y_scale = i; o.y -= dif;
             }
+        return this;
     }
 
     public float getAbWidth() { return width * x_scale; }
@@ -199,7 +217,7 @@ public class Object {
     public float getWidth() { return width; }
     public float getHeight() { return height; }
 
-    public void setWidth(float i) {
+    public Object setWidth(float i) {
         double div = origin.getX() / image.getFrame(0).getWidth(null);
         float dif = (float) ((i - width) * div);
         width = i; x -= dif;
@@ -209,9 +227,10 @@ public class Object {
                 dif = (float) ((i - o.width) * div);
                 o.width = i; o.x -= dif;
             }
+        return this;
     }
 
-    public void setHeight(float i) {
+    public Object setHeight(float i) {
         double div = origin.getY() / image.getFrame(0).getHeight(null);
         float dif = (float) ((i - height) * div);
         height = i; y -= dif;
@@ -221,26 +240,29 @@ public class Object {
                 dif = (float) ((i - o.height) * div);
                 o.height = i; o.y -= dif;
             }
+        return this;
     }
 
     public float getOpacity() { return opacity; }
-    public void setOpacity(float i) {
+    public Object setOpacity(float i) {
         opacity = i;
         if (father == null)
             for (Object o : childs)
                 o.opacity = i;
+        return this;
     }
 
     public boolean isVisible() { return visible; }
-    public void setVisible(boolean i) {
+    public Object setVisible(boolean i) {
         visible = i;
         if (father == null)
             for (Object o : childs)
                 o.visible = i;
+        return this;
     }
 
     public float getAngle() { return angle; }
-    public void setAngle(float i) {
+    public Object setAngle(float i) {
         angle = i;
         if (i > 360) angle = 1;
         if (father == null)
@@ -248,9 +270,10 @@ public class Object {
                 o.angle = i;
                 if (i > 360) o.angle = 1;
             }
+        return this;
     }
 
-    public void setLayer(Layer l, int index) {
+    public Object setLayer(Layer l, int index) {
         if (father == null)
             for (Object o : childs) {
                 o.getLayer().getObjects().remove(o);
@@ -260,9 +283,10 @@ public class Object {
             getLayer().getObjects().remove(this);
             l.getObjects().add(index, this);
         }
+        return this;
     }
 
-    public void setLayer(Layer l, Scene scene) {
+    public Object setLayer(Layer l, Scene scene) {
         if (father == null)
             for (Object o : childs) {
                 o.getLayer(scene).getObjects().remove(o);
@@ -272,9 +296,10 @@ public class Object {
             getLayer(scene).getObjects().remove(this);
             l.getObjects().add(this);
         }
+        return this;
     }
 
-    public void setLayer(Layer l, int index, Scene scene) {
+    public Object setLayer(Layer l, int index, Scene scene) {
         if (father == null)
             for (Object o : childs) {
                 o.getLayer(scene).getObjects().remove(o);
@@ -284,6 +309,7 @@ public class Object {
             getLayer(scene).getObjects().remove(this);
             l.getObjects().add(index, this);
         }
+        return this;
     }
 
     public Layer getLayer() {
@@ -295,7 +321,7 @@ public class Object {
         return Game.getScene().getLayers().get(0);
     }
 
-    public void setLayer(Layer l) {
+    public Object setLayer(Layer l) {
         if (father == null)
             for (Object o : childs) {
                 o.getLayer().getObjects().remove(o);
@@ -305,6 +331,7 @@ public class Object {
             getLayer().getObjects().remove(this);
             l.getObjects().add(this);
         }
+        return this;
     }
 
     public Layer getLayer(Scene scene) {
@@ -318,7 +345,7 @@ public class Object {
     public int getZ() { return getLayer().getObjects().indexOf(this); }
     public int getZ(Scene scene) { return getLayer(scene).getObjects().indexOf(this); }
 
-    public void setZ(int index, Scene scene) {
+    public Object setZ(int index, Scene scene) {
         if (father == null) {
             for (Object o : childs) {
                 Layer l = o.getLayer(scene);
@@ -332,9 +359,10 @@ public class Object {
             l.getObjects().add(index, this);
             l.getObjects().remove(bf);
         }
+        return this;
     }
 
-    public void setZ(int index) {
+    public Object setZ(int index) {
         if (father == null) {
             for (Object o : childs) {
                 Layer l = o.getLayer();
@@ -348,6 +376,7 @@ public class Object {
             l.getObjects().add(index, this);
             l.getObjects().remove(bf);
         }
+        return this;
     }
 
     public boolean isPlaceMeeting(double xDif, double yDif, Object obj) {
@@ -388,7 +417,7 @@ public class Object {
     }
 
     public Vector2D getOrigin() { return origin; }
-    public void setOrigin(int x, int y) {
+    public Object setOrigin(int x, int y) {
         origin.setX(x);
         origin.setY(y);
         if (father == null)
@@ -396,6 +425,7 @@ public class Object {
                 o.origin.setX(x);
                 o.origin.setY(y);
             }
+        return this;
     }
 
     public Vector2D addPoint(double x, double y) {
@@ -412,18 +442,20 @@ public class Object {
         return null;
     }
 
-    public void removePoint(int index) {
+    public Object removePoint(int index) {
         points.remove(index);
         if (father == null)
             for (Object o : childs)
                 o.points.remove(index);
+        return this;
     }
 
-    public void removePoint(Vector2D point) {
+    public Object removePoint(Vector2D point) {
         points.remove(point);
         if (father == null)
             for (Object o : childs)
                 o.points.remove(point);
+        return this;
     }
 
     public Vector2D getPoint(int index) { return points.get(index); }

@@ -30,25 +30,28 @@ public class Audio {
     }
 
     public float getVolume() { return vol; }
-    public void setVolume(float volume) { vol = volume; }
+    public Audio setVolume(float volume) { vol = volume; return this; }
 
     public Clip getClip() { return clip; }
-    public void setClip(Clip clip) { this.clip = clip; }
+    public Audio setClip(Clip clip) { this.clip = clip; return this; }
 
-    public void pause() { AudioManager.pause(this); }
-    public void resume() { AudioManager.resume(this); }
+    public Audio pause() { AudioManager.pause(this); return this; }
+    public Audio resume() { AudioManager.resume(this); return this; }
 
     public long getLastPauseMicrosecond() { return time; }
-    public void setPauseMicrosecond(long i) { time = i; }
+    public Audio setPauseMicrosecond(long i) { time = i; return this; }
 
-    public void setSecond(float sec) { clip.setMicrosecondPosition((long) sec * 1000000); }
+    public Audio setSecond(float sec) {
+        clip.setMicrosecondPosition((long) sec * 1000000);
+        return this;
+    }
 
-    public void loop(int count) { clip.loop(count); }
+    public Audio loop(int count) { clip.loop(count); return this; }
 
     public boolean isOpen() { return clip.isOpen(); }
     public boolean isRunning() { return clip.isRunning(); }
     public boolean isActive() { return clip.isActive(); }
 
-    public void play() { AudioManager.play(this); }
-    public void stop() { AudioManager.stop(this); }
+    public Audio play() { AudioManager.play(this); return this; }
+    public Audio stop() { AudioManager.stop(this); return this; }
 }

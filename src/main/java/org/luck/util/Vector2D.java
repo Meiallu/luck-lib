@@ -11,8 +11,15 @@ public class Vector2D {
     }
 
     public double getX() { return x; }
-    public void setX(float x) { this.x = x; }
-
     public double getY() { return y; }
-    public void setY(float y) { this.y = y; }
+
+    public Vector2D setX(float x) {
+        this.x = x;
+        return this;
+    }
+
+    public Vector2D setY(float y) {
+        this.y = y;
+        return this;
+    }
 }

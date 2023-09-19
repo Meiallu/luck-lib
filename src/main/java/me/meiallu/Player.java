@@ -1,7 +1,6 @@
 package me.meiallu;
 
 import org.luck.listener.Luck;
-import org.luck.system.Camera;
 import org.luck.system.Canvas;
 import org.luck.type.Object;
 import org.luck.type.Sprite;

@@ -16,5 +16,5 @@ public class Scene {
     public ArrayList<Layer> getLayers() { return layers; }
 
     public String getName() { return name; }
-    public void setName(String str) { name = str; }
+    public Scene setName(String str) { name = str; return this; }
 }

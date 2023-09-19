@@ -17,14 +17,15 @@ public class Layer {
     public int getIndex() { return Game.getScene().getLayers().indexOf(this); }
     public int getIndex(Scene cena) { return cena.getLayers().indexOf(this); }
 
-    public void setIndex(int index) {
+    public Layer setIndex(int index) {
         int idx = Game.getScene().getLayers().indexOf(this);
         Game.getScene().getLayers().add(index, this);
         Game.getScene().getLayers().remove(idx);
+        return this;
     }
 
     public boolean isVisible() { return visible; }
-    public void setVisible(boolean bool) { visible = bool; }
+    public Layer setVisible(boolean bool) { visible = bool; return this; }
 
     public ArrayList<Object> getObjects() { return objects; }
     public ArrayList<Text> getTexts() { return texts; }

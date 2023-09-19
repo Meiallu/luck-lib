@@ -3,6 +3,7 @@ package org.luck.type;
 import org.luck.system.Game;
 import org.luck.system.Layer;
 import org.luck.system.Scene;
+import org.luck.util.Location;
 
 import java.awt.*;
 
@@ -56,51 +57,97 @@ public class Text {
         lay.getTexts().add(this);
     }
 
+    public Location getLocation() { return new Location(x, y); }
     public double getX() { return x; }
-    public void setX(double xx) { x = xx; }
-
     public double getY() { return y; }
-    public void setY(double yy) { y = yy; }
+
+    public Text setLocation(double x, double y) {
+        this.x = x;
+        this.y = y;
+        return this;
+    }
+
+    public Text setX(double x) {
+        this.x = x;
+        return this;
+    }
+
+    public Text setY(double y) {
+        this.y = y;
+        return this;
+    }
 
     public float getOpacity() { return opacity; }
-    public void setOpacity(float i) { opacity = i; }
+
+    public Text setOpacity(float i) {
+        opacity = i;
+        return this;
+    }
 
     public boolean isVisible() { return visible; }
-    public void setVisible(boolean i) { visible = i; }
+
+    public Text setVisible(boolean i) {
+        visible = i;
+        return this;
+    }
 
     public String getText() { return text; }
-    public void setText(String str) { text = str; }
+
+    public Text setText(String str) {
+        text = str;
+        return this;
+    }
 
     public int getSize() { return size; }
-    public void setSize(int i) { size = (short) i; }
+
+    public Text setSize(int i) {
+        size = (short) i;
+        return this;
+    }
 
     public String getFont() { return font; }
-    public void setFont(String str) { font = str; }
+
+    public Text setFont(String str) {
+        font = str;
+        return this;
+    }
 
     public Color getColor() { return color; }
-    public void setColor(Color col) { color = col; }
+
+    public Text setColor(Color col) {
+        color = col;
+        return this;
+    }
 
     public int getStyle() { return style; }
-    public void setStyle(int styl) { style = (byte) styl; }
 
-    public void setLayer(Layer l, int index) {
+    public Text setStyle(int styl) {
+        style = (byte) styl;
+        return this;
+    }
+
+    public Text setLayer(Layer l, int index) {
         getLayer().getTexts().remove(this);
         l.getTexts().add(index, this);
+        return this;
     }
 
-    public void setLayer(Layer l, Scene scene) {
+    public Text setLayer(Layer l, Scene scene) {
         getLayer(scene).getTexts().remove(this);
         l.getTexts().add(this);
+        return this;
     }
 
-    public void setLayer(Layer l, int index, Scene scene) {
+    public Text setLayer(Layer l, int index, Scene scene) {
         getLayer(scene).getTexts().remove(this);
         l.getTexts().add(index, this);
+        return this;
     }
 
-    public void setLayer(Layer l) {
+    public Text setLayer(Layer l) {
         getLayer().getTexts().remove(this);
         l.getTexts().add(this);
+        return this;
     }
 
     public Layer getLayer() {
@@ -120,22 +167,28 @@ public class Text {
     public int getZ() { return getLayer().getTexts().indexOf(this); }
     public int getZ(Scene scene) { return getLayer(scene).getTexts().indexOf(this); }
 
-    public void setZ(int index, Scene scene) {
+    public Text setZ(int index, Scene scene) {
         Layer l = getLayer(scene);
         int bf = l.getTexts().indexOf(this);
         l.getTexts().add(index, this);
         l.getTexts().remove(bf);
+        return this;
     }
 
-    public void setZ(int index) {
+    public Text setZ(int index) {
         Layer l = getLayer();
         int bf = l.getTexts().indexOf(this);
         l.getTexts().add(index, this);
         l.getTexts().remove(bf);
+        return this;
     }
 
     public boolean isOffsetable() { return offsetable; }
-    public void setOffsetable(boolean i) { offsetable = i; }
+
+    public Text setOffsetable(boolean i) {
+        offsetable = i;
+        return this;
+    }
 
     public int getID() { return ID; }
 }

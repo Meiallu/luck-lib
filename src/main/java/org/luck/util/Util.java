@@ -5,7 +5,10 @@ import org.luck.type.Object;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
 @SuppressWarnings("unused")
@@ -50,6 +53,10 @@ public class Util {
     }
 
     public static Image getRotatedImage(Image image, double angle, float width, float height) {
+        System.out.println("------------------");
+        System.out.println("You are using \"getRotatedImage( )\"");
+        System.out.println("which is not ready for usage.");
+        System.out.println("------------------");
         BufferedImage buff = toBufferedImage(image, width, height);
 
         double sin = Math.abs( Math.sin(angle) );
@@ -75,5 +82,36 @@ public class Util {
         g.drawImage(image, 0, 0, (int) width, (int) height, null);
         g.dispose();
         return buff;
+    }
+
+    public static String getContentFromURL(String URL) {
+        try {
+            java.net.URL url = new URL(URL);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.getResponseCode();
+
+            BufferedReader in = new BufferedReader(new InputStreamReader( con.getInputStream() ));
+            String inputLine;
+            StringBuffer content = new StringBuffer();
+
+            while (( inputLine = in.readLine() ) != null) {
+                content.append(inputLine);
+            }
+
+            in.close();
+            con.disconnect();
+
+            return content.toString();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static double distance2D(Location a, Location b) {
+        return Math.sqrt(
+                Math.pow(a.getX() - b.getX(), 2) +
+                Math.pow(a.getY() - b.getY(), 2)
+        );
     }
 }

@@ -12,7 +12,7 @@ public class Sprite {
     private List<Image> frames = new ArrayList<>();
     private byte speed = 5;
 
-    public void setupFrames(String folder, String prefix, String suffix) {
+    public Sprite setupFrames(String folder, String prefix, String suffix) {
         int a = 1;
         File f = new File(folder + prefix + a + suffix);
         while (f.exists()) {
@@ -26,11 +26,15 @@ public class Sprite {
             a++;
             f = new File(folder + prefix + a + suffix);
         }
+        return this;
     }
 
-    public void addFrame(Image img) { frames.add(img); }
+    public Sprite addFrame(Image img) {
+        frames.add(img);
+        return this;
+    }
 
-    public void addFrame(String path) {
+    public Sprite addFrame(String path) {
         File f = new File(path);
         if (f.exists()) {
             Image img;
@@ -41,9 +45,10 @@ public class Sprite {
                 e.printStackTrace();
             }
         }
+        return this;
     }
 
-    public void addFrame(File file) {
+    public Sprite addFrame(File file) {
         if (file.exists()) {
             Image img;
             try {
@@ -53,11 +58,15 @@ public class Sprite {
                 e.printStackTrace();
             }
         }
+        return this;
     }
 
-    public void addFrame(Image img, int index) { frames.add(index, img); }
+    public Sprite addFrame(Image img, int index) {
+        frames.add(index, img);
+        return this;
+    }
 
-    public void addFrame(String path, int index) {
+    public Sprite addFrame(String path, int index) {
         File f = new File(path);
         if (f.exists()) {
             Image img;
@@ -68,9 +77,10 @@ public class Sprite {
                 e.printStackTrace();
             }
         }
+        return this;
     }
 
-    public void addFrame(File file, int index) {
+    public Sprite addFrame(File file, int index) {
         if (file.exists()) {
             Image img;
             try {
@@ -80,14 +90,26 @@ public class Sprite {
                 e.printStackTrace();
             }
         }
+        return this;
     }
 
-    public void removeFrame(int index) { frames.remove(index); }
-    public void removeFrame(Image img) { frames.remove(img); }
+    public Sprite removeFrame(int index) {
+        frames.remove(index);
+        return this;
+    }
+
+    public Sprite removeFrame(Image img) {
+        frames.remove(img);
+        return this;
+    }
 
     public Image getFrame(int index) { return frames.get(index); }
     public List<Image> getFrames() { return frames; }
 
     public byte getSpeed() { return speed; }
-    public void setSpeed(int fps) { speed = (byte) fps; }
+
+    public Sprite setSpeed(int fps) {
+        speed = (byte) fps;
+        return this;
+    }
 }
