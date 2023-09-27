@@ -12,7 +12,9 @@ public class Instance {
     private static Canvas canvas;
 
     public Instance(String title, int w, int h) {
-        Camera.getView().setSize(w, h);
+        Camera.getViewport().setSize(w, h);
+        Camera.setX(w / 2d);
+        Camera.setY(h / 2d);
 
         frame = new JFrame(title);
         frame.setLayout(null);
@@ -28,10 +30,7 @@ public class Instance {
         frame.setLocationRelativeTo(null);
 
         canvas = new Canvas();
-        new Game();
-        new Camera();
-        new Keyboard();
-        new Mouse();
+        new Keyboard(); new Mouse();
     }
 
     public static JFrame getWindow() { return frame; }

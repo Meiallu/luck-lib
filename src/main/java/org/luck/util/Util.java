@@ -4,6 +4,7 @@ import org.luck.type.Object;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -52,36 +53,25 @@ public class Util {
         return img;
     }
 
-    public static Image getRotatedImage(Image image, double angle, float width, float height) {
-        System.out.println("------------------");
-        System.out.println("You are using \"getRotatedImage( )\"");
-        System.out.println("which is not ready for usage.");
-        System.out.println("------------------");
-        BufferedImage buff = toBufferedImage(image, width, height);
+    public static Image rotateImage(Image image, double angleDegrees, int pivotX, int pivotY) {
+        int imageWidth = image.getWidth(null);
+        int imageHeight = image.getHeight(null);
+        double angleRadians = Math.toRadians(angleDegrees);
 
-        double sin = Math.abs( Math.sin(angle) );
-        double cos = Math.abs (Math.cos(angle) );
-        int w = buff.getWidth(), h = buff.getHeight();
-        int nw = (int) Math.floor(w * cos + h * sin);
-        int nh = (int) Math.floor(h * cos + w * sin);
+        AffineTransform transform = new AffineTransform();
 
-        BufferedImage result = new BufferedImage(nw, nh, Transparency.TRANSLUCENT);
-        Graphics2D g = result.createGraphics();
+        transform.translate(-pivotX, -pivotY);
+        transform.rotate(angleRadians);
+        transform.translate(pivotX, pivotY);
 
-        g.translate((nw - w) / 2, (nh - h) / 2);
-        g.rotate(angle, w / 2, h / 2);
-        g.drawRenderedImage(buff, null);
-        g.dispose();
+        BufferedImage rotatedImage = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = rotatedImage.createGraphics();
 
-        return result;
-    }
+        g2d.setTransform(transform);
+        g2d.drawImage(image, 0, 0, null);
+        g2d.dispose();
 
-    public static BufferedImage toBufferedImage(Image image, float width, float height) {
-        BufferedImage buff = new BufferedImage((int) width, (int) height, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g = buff.createGraphics();
-        g.drawImage(image, 0, 0, (int) width, (int) height, null);
-        g.dispose();
-        return buff;
+        return rotatedImage;
     }
 
     public static String getContentFromURL(String URL) {
@@ -110,8 +100,8 @@ public class Util {
 
     public static double getDistance(Location a, Location b) {
         return Math.sqrt(
-                Math.pow(a.getX() - b.getX(), 2) +
-                Math.pow(a.getY() - b.getY(), 2)
+                Math.pow(b.getY() - a.getX(), 2) +
+                Math.pow(b.getX() - a.getY(), 2)
         );
     }
 }

@@ -10,12 +10,7 @@ public class Camera {
     private static double x = 0;
     private static double y = 0;
 
-    public Camera() {
-        x = viewport.getWidth() / 2;
-        y = viewport.getHeight() / 2;
-    }
-
-    public static Dimension getView() { return viewport; }
+    public static Dimension getViewport() { return viewport; }
     public static double getViewX() { return viewport.getWidth(); }
     public static double getViewY() { return viewport.getHeight(); }
 
@@ -30,7 +25,6 @@ public class Camera {
     }
 
     public static void setLocation(double xx, double yy) {
-        x = xx;
-        y = yy;
+        x = xx; y = yy;
     }
 }

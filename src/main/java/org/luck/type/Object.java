@@ -42,30 +42,15 @@ public class Object {
     }
 
     public Object create(double x, double y) {
-        Game.getScene().lastID++;
-        Object obj = new Object(image);
-        obj.ID = Game.getScene().lastID;
-        setup(obj, x, y);
-        Game.getScene().getLayers().get(0).getObjects().add(obj);
-        return obj;
+        return create(x, y, Game.getScene(), Game.getScene().getLayers().get(0));
     }
 
     public Object create(double x, double y, Scene cena) {
-        cena.lastID++;
-        Object obj = new Object(image);
-        obj.ID = cena.lastID;
-        setup(obj, x, y);
-        cena.getLayers().get(0).getObjects().add(obj);
-        return obj;
+        return create(x, y, cena, cena.getLayers().get(0));
     }
 
     public Object create(double x, double y, Layer lay) {
-        Game.getScene().lastID++;
-        Object obj = new Object(image);
-        obj.ID = Game.getScene().lastID;
-        setup(obj, x, y);
-        lay.getObjects().add(obj);
-        return obj;
+        return create(x, y, Game.getScene(), lay);
     }
 
     public Object create(double x, double y, Scene cena, Layer lay) {
