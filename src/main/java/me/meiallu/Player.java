@@ -22,7 +22,6 @@ public class Player extends Luck {
     @Override
     public void start() {
         Canvas.setType(Canvas.LETTERBOX);
-        Canvas.setLetterboxPrecision(1);
 
         idle = new Sprite();
         run = new Sprite();
