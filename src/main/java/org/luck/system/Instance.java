@@ -8,6 +8,7 @@ import java.awt.*;
 
 @SuppressWarnings("unused")
 public class Instance {
+
     private static JFrame frame;
     private static Canvas canvas;
 
@@ -26,13 +27,15 @@ public class Instance {
 
         int offx = frame.getWidth() - frame.getRootPane().getWidth();
         int offy = frame.getHeight() - frame.getRootPane().getHeight();
-        frame.setMinimumSize( new Dimension(w + offx, h + offy) );
+        frame.setMinimumSize(new Dimension(w + offx, h + offy));
         frame.setLocationRelativeTo(null);
 
         canvas = new Canvas();
-        new Keyboard(); new Mouse();
+        new Keyboard();
+        new Mouse();
     }
 
-    public static JFrame getWindow() { return frame; }
-    public static Canvas getCanvas() { return canvas; }
+    public static JFrame getWindow() {return frame;}
+
+    public static Canvas getCanvas() {return canvas;}
 }

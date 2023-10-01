@@ -7,15 +7,16 @@ import java.util.ArrayList;
 
 @SuppressWarnings("unused")
 public class Layer {
+
     private ArrayList<Object> objects = new ArrayList<>();
     private ArrayList<Text> texts = new ArrayList<>();
     private boolean visible = true;
 
-    public Layer() { Game.getScene().getLayers().add(this); }
-    public Layer(Scene scene) { scene.getLayers().add(this); }
+    public Layer() {Game.getScene().getLayers().add(this);}
 
-    public int getIndex() { return Game.getScene().getLayers().indexOf(this); }
-    public int getIndex(Scene cena) { return cena.getLayers().indexOf(this); }
+    public Layer(Scene scene) {scene.getLayers().add(this);}
+
+    public int getIndex() {return Game.getScene().getLayers().indexOf(this);}
 
     public Layer setIndex(int index) {
         int idx = Game.getScene().getLayers().indexOf(this);
@@ -24,9 +25,16 @@ public class Layer {
         return this;
     }
 
-    public boolean isVisible() { return visible; }
-    public Layer setVisible(boolean bool) { visible = bool; return this; }
+    public int getIndex(Scene cena) {return cena.getLayers().indexOf(this);}
 
-    public ArrayList<Object> getObjects() { return objects; }
-    public ArrayList<Text> getTexts() { return texts; }
+    public boolean isVisible() {return visible;}
+
+    public Layer setVisible(boolean bool) {
+        visible = bool;
+        return this;
+    }
+
+    public ArrayList<Object> getObjects() {return objects;}
+
+    public ArrayList<Text> getTexts() {return texts;}
 }

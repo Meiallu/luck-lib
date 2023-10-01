@@ -12,13 +12,12 @@ import java.util.TimerTask;
 
 @SuppressWarnings("unused")
 public class Canvas extends JPanel {
-    private static byte type = 3;
-    private static double letterbox_precision = 1;
 
     public static final byte SCALE_OUT = 1;
     public static final byte SCALE_IN = 2;
     public static final byte LETTERBOX = 3;
-
+    private static byte type = 3;
+    private static double letterbox_precision = 1;
     private static byte tick = 1;
     private float scale = 1;
     private double offX = 0;
@@ -38,11 +37,13 @@ public class Canvas extends JPanel {
         }, 0, (1000 / Device.refreshRate));
     }
 
-    public static void setType(byte t) { type = t; }
-    public static byte getType() { return type; }
+    public static byte getType() {return type;}
 
-    public static void setLetterboxPrecision(double pres) { letterbox_precision = pres; }
-    public static double getLetterboxPrecision() { return letterbox_precision; }
+    public static void setType(byte t) {type = t;}
+
+    public static double getLetterboxPrecision() {return letterbox_precision;}
+
+    public static void setLetterboxPrecision(double pres) {letterbox_precision = pres;}
 
     public void paintComponent(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
@@ -63,7 +64,7 @@ public class Canvas extends JPanel {
                         float width = o.getAbWidth();
                         float height = o.getAbHeight();
 
-                        Image img = o.getSprite().getFrame( o.getFrame() );
+                        Image img = o.getSprite().getFrame(o.getFrame());
 
                         x -= (offX / scale) + Camera.getX() - (Camera.getViewX() / 2);
                         y -= (offY / scale) + Camera.getY() - (Camera.getViewY() / 2);
@@ -91,26 +92,29 @@ public class Canvas extends JPanel {
                 }
             }
         }
-        if (tick == Device.refreshRate) tick = 1;
-        else tick++;
+        if (tick == Device.refreshRate)
+            tick = 1;
+        else
+            tick++;
     }
 
-    public float getScale() { return scale; }
-    public JPanel getPanel() { return this; }
+    public float getScale() {return scale;}
 
-    public Vector2D getOffset() { return new Vector2D(offX, offY); }
+    public JPanel getPanel() {return this;}
+
+    public Vector2D getOffset() {return new Vector2D(offX, offY);}
 
     private void Adjust() {
         scale = 1;
 
         switch (type) {
             case SCALE_OUT:
-                while (Camera.getViewX() * scale < Instance.getWindow().getRootPane().getWidth()  || Camera.getViewY() * scale < Instance.getWindow().getRootPane().getHeight())
+                while (Camera.getViewX() * scale < Instance.getWindow().getRootPane().getWidth() || Camera.getViewY() * scale < Instance.getWindow().getRootPane().getHeight())
                     scale++;
                 super.setSize(Instance.getWindow().getRootPane().getWidth(), Instance.getWindow().getRootPane().getHeight());
                 break;
             case SCALE_IN:
-                while (Camera.getViewX() * (scale + 1) < Instance.getWindow().getRootPane().getWidth()  || Camera.getViewY() * (scale + 1) < Instance.getWindow().getRootPane().getHeight())
+                while (Camera.getViewX() * (scale + 1) < Instance.getWindow().getRootPane().getWidth() || Camera.getViewY() * (scale + 1) < Instance.getWindow().getRootPane().getHeight())
                     scale++;
                 super.setSize(Instance.getWindow().getRootPane().getWidth(), Instance.getWindow().getRootPane().getHeight());
                 break;

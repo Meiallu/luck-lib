@@ -9,6 +9,7 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 public class Sprite {
+
     private List<Image> frames = new ArrayList<>();
     private byte speed = 5;
 
@@ -103,10 +104,11 @@ public class Sprite {
         return this;
     }
 
-    public Image getFrame(int index) { return frames.get(index); }
-    public List<Image> getFrames() { return frames; }
+    public Image getFrame(int index) {return frames.get(index);}
 
-    public byte getSpeed() { return speed; }
+    public List<Image> getFrames() {return frames;}
+
+    public byte getSpeed() {return speed;}
 
     public Sprite setSpeed(int fps) {
         speed = (byte) fps;

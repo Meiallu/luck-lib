@@ -8,6 +8,7 @@ import org.luck.util.Keyboard;
 import org.luck.util.Util;
 
 public class Player extends Luck {
+
     Object obj;
     Object solid;
 
@@ -65,12 +66,14 @@ public class Player extends Luck {
             yv = 0;
         }
 
-        if (yv != 0 && xv != 0) speed = 0.75f;
-        else speed = 1;
+        if (yv != 0 && xv != 0)
+            speed = 0.75f;
+        else
+            speed = 1;
 
-        if ( !obj.isPlaceMeeting(xv * speed, 0, solid) )
+        if (!obj.isPlaceMeeting(xv * speed, 0, solid))
             obj.setX(obj.getX() + xv * speed);
-        if ( !obj.isPlaceMeeting(0, yv * speed, solid) )
+        if (!obj.isPlaceMeeting(0, yv * speed, solid))
             obj.setY(obj.getY() + yv * speed);
 
         if (obj.getSprite() != roll) {
