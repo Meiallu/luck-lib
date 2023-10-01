@@ -37,13 +37,13 @@ public class Canvas extends JPanel {
         }, 0, (1000 / Device.refreshRate));
     }
 
-    public static byte getType() {return type;}
+    public static byte getType() { return type; }
 
-    public static void setType(byte t) {type = t;}
+    public static void setType(byte t) { type = t; }
 
-    public static double getLetterboxPrecision() {return letterbox_precision;}
+    public static double getLetterboxPrecision() { return letterbox_precision; }
 
-    public static void setLetterboxPrecision(double pres) {letterbox_precision = pres;}
+    public static void setLetterboxPrecision(double pres) { letterbox_precision = pres; }
 
     public void paintComponent(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
@@ -98,11 +98,11 @@ public class Canvas extends JPanel {
             tick++;
     }
 
-    public float getScale() {return scale;}
+    public float getScale() { return scale; }
 
-    public JPanel getPanel() {return this;}
+    public JPanel getPanel() { return this; }
 
-    public Vector2D getOffset() {return new Vector2D(offX, offY);}
+    public Vector2D getOffset() { return new Vector2D(offX, offY); }
 
     private void Adjust() {
         scale = 1;

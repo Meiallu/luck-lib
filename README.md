@@ -17,16 +17,16 @@ canvas, an initial scene (which you can change) and several others essential sys
 
 ```java
 // This creates the Window, Canvas and Scene.
-new Instance("Title", 320, 180);
+new Instance("Title",320,180);
 
-// This creates the Sprite.
-Sprite spr_player = new Sprite();
-spr_player.setupFrames("images/", "idle", ".png");
+        // This creates the Sprite.
+        Sprite spr_player=new Sprite();
+        spr_player.setupFrames("images/","idle",".png");
 
-// This creates a Object type
-// And then creates an instance of it.
-Object obj_player = new Object(spr_player);
-obj_player.create(10, 10);
+        // This creates a Object type
+        // And then creates an instance of it.
+        Object obj_player=new Object(spr_player);
+        obj_player.create(10,10);
 ```
 
 Please fell free to clone, change and commit it. I'm open to feedbacks.

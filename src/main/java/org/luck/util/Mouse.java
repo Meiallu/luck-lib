@@ -17,9 +17,9 @@ public class Mouse implements MouseListener {
     private static int pressed = 0;
     private static int released = 0;
 
-    public Mouse() {Instance.getWindow().addMouseListener(this);}
+    public Mouse() { Instance.getWindow().addMouseListener(this); }
 
-    public static boolean onPressAnyKey(int button) {return (pressed != 0);}
+    public static boolean onPressAnyKey(int button) { return (pressed != 0); }
 
     public static boolean onPress(int button) {
         boolean i = (pressed == button);
@@ -35,7 +35,7 @@ public class Mouse implements MouseListener {
         return i;
     }
 
-    public static boolean isHolding(int button) {return buttons.contains(button);}
+    public static boolean isHolding(int button) { return buttons.contains(button); }
 
     public static double getX() {
         double pointer = MouseInfo.getPointerInfo().getLocation().getX();
@@ -68,11 +68,11 @@ public class Mouse implements MouseListener {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {}
+    public void mouseClicked(MouseEvent e) { }
 
     @Override
-    public void mouseEntered(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) { }
 
     @Override
-    public void mouseExited(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) { }
 }

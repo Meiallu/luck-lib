@@ -35,7 +35,7 @@ public class Instance {
         new Mouse();
     }
 
-    public static JFrame getWindow() {return frame;}
+    public static JFrame getWindow() { return frame; }
 
-    public static Canvas getCanvas() {return canvas;}
+    public static Canvas getCanvas() { return canvas; }
 }
