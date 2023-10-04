@@ -56,6 +56,7 @@ public class Canvas extends JPanel {
                         }
                         double x = o.getAbX();
                         double y = o.getAbY();
+
                         float width = o.getAbWidth();
                         float height = o.getAbHeight();
 
