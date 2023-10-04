@@ -4,8 +4,6 @@ import org.luck.type.Object;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -57,27 +55,6 @@ public class Util {
             throw new RuntimeException(e);
         }
         return img;
-    }
-
-    public static Image rotateImage(Image image, double angleDegrees, int pivotX, int pivotY) {
-        int imageWidth = image.getWidth(null);
-        int imageHeight = image.getHeight(null);
-        double angleRadians = Math.toRadians(angleDegrees);
-
-        AffineTransform transform = new AffineTransform();
-
-        transform.translate(-pivotX, -pivotY);
-        transform.rotate(angleRadians);
-        transform.translate(pivotX, pivotY);
-
-        BufferedImage rotatedImage = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2d = rotatedImage.createGraphics();
-
-        g2d.setTransform(transform);
-        g2d.drawImage(image, 0, 0, null);
-        g2d.dispose();
-
-        return rotatedImage;
     }
 
     public static String getContentFromURL(String URL) {

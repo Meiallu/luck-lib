@@ -28,10 +28,8 @@ public class Canvas extends JPanel {
         super.setBounds(0, 0, 1, 1);
         Instance.getWindow().add(this);
 
-        Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> {
-            Adjust();
-            repaint();
-        }, Device.refreshTime, Device.refreshTime, TimeUnit.MILLISECONDS);
+        Executors.newScheduledThreadPool(1).scheduleAtFixedRate(this::repaint, Device.refreshTime, Device.refreshTime, TimeUnit.MILLISECONDS);
+        Executors.newScheduledThreadPool(1).scheduleAtFixedRate(this::adjust, Device.refreshTime, Device.refreshTime, TimeUnit.MILLISECONDS);
     }
 
     public static byte getType() { return type; }
@@ -99,7 +97,7 @@ public class Canvas extends JPanel {
 
     public Vector2D getOffset() { return new Vector2D(offX, offY); }
 
-    private void Adjust() {
+    private void adjust() {
         scale = 1;
 
         switch (type) {
