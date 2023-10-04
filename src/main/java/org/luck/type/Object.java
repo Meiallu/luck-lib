@@ -29,7 +29,6 @@ public class Object {
     private float width;
     private float height;
     private float opacity = 1.0f;
-    private float angle = 0.0f;
 
     private boolean visible = true;
 
@@ -81,7 +80,6 @@ public class Object {
         o.width = width;
         o.height = height;
         o.opacity = opacity;
-        o.angle = angle;
         o.visible = visible;
         o.origin = origin;
         o.points = points;
@@ -264,21 +262,6 @@ public class Object {
         if (father == null)
             for (Object o : childs)
                 o.visible = i;
-        return this;
-    }
-
-    public float getAngle() { return angle; }
-
-    public Object setAngle(float i) {
-        angle = i;
-        if (i > 360)
-            angle = 1;
-        if (father == null)
-            for (Object o : childs) {
-                o.angle = i;
-                if (i > 360)
-                    o.angle = 1;
-            }
         return this;
     }
 
