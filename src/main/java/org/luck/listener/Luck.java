@@ -4,18 +4,19 @@ import org.luck.util.Device;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings("unused")
 public abstract class Luck {
 
     public Luck() {
+        Executors.newScheduledThreadPool(1).scheduleAtFixedRate(
+                this::update,
+                Device.refreshTime, Device.refreshTime,
+                TimeUnit.MILLISECONDS
+        );
         start();
-        new Timer().scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                update();
-            }
-        }, 0, (1000 / Device.refreshRate));
     }
 
     public abstract void start();

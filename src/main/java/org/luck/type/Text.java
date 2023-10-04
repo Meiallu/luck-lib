@@ -10,17 +10,16 @@ import java.awt.*;
 @SuppressWarnings("unused")
 public class Text {
 
+    private final int ID;
     private double x;
     private double y;
     private float opacity = 1.0f;
     private boolean visible = true;
-    private boolean offsetable = true;
     private Color color = Color.BLACK;
     private byte style = Font.PLAIN;
     private String font = "SansSerif";
     private short size = 12;
     private String text;
-    private int ID;
 
     public Text(String string, int x, int y) {
         Game.getScene().lastID++;
@@ -184,13 +183,6 @@ public class Text {
         int bf = l.getTexts().indexOf(this);
         l.getTexts().add(index, this);
         l.getTexts().remove(bf);
-        return this;
-    }
-
-    public boolean isOffsetable() { return offsetable; }
-
-    public Text setOffsetable(boolean i) {
-        offsetable = i;
         return this;
     }
 

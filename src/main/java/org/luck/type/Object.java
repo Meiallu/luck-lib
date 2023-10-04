@@ -8,6 +8,7 @@ import org.luck.util.Util;
 import org.luck.util.Vector2D;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 @SuppressWarnings("unused")
 public class Object {
@@ -15,7 +16,7 @@ public class Object {
     private double x;
     private double y;
     private Sprite image;
-    private ArrayList<Object> childs = new ArrayList<>();
+    private Collection<Object> childs = new ArrayList<>();
     private Object father;
     private int ID;
 
@@ -150,7 +151,7 @@ public class Object {
         return this;
     }
 
-    public ArrayList<Object> getChilds() { return childs; }
+    public Collection<Object> getChilds() { return childs; }
 
     public Object getFather() { return father; }
 

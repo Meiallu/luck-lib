@@ -7,8 +7,8 @@ import org.luck.util.Vector2D;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings("unused")
 public class Canvas extends JPanel {
@@ -28,13 +28,10 @@ public class Canvas extends JPanel {
         super.setBounds(0, 0, 1, 1);
         Instance.getWindow().add(this);
 
-        new Timer().scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                Adjust();
-                repaint();
-            }
-        }, 0, (1000 / Device.refreshRate));
+        Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> {
+            Adjust();
+            repaint();
+        }, Device.refreshTime, Device.refreshTime, TimeUnit.MILLISECONDS);
     }
 
     public static byte getType() { return type; }
@@ -76,18 +73,16 @@ public class Canvas extends JPanel {
 
                 for (Text t : l.getTexts()) {
                     if (t.isVisible()) {
-                        double x = t.getX();
-                        double y = t.getY();
+                        double xOff = (offX / scale) + Camera.getX();
+                        double yOff = (offX / scale) + Camera.getX();
 
-                        if (t.isOffsetable()) {
-                            x -= (offX / scale) + Camera.getX();
-                            y -= (offY / scale) + Camera.getY();
-                        }
+                        double x = (t.getX() - xOff) * scale;
+                        double y = (t.getY() - yOff) * scale;
 
                         g2D.setColor(t.getColor());
                         g2D.setFont(new Font(t.getFont(), t.getStyle(), (int) (t.getSize() * scale)));
                         g2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, t.getOpacity()));
-                        g2D.drawString(t.getText(), (int) (x * scale), (int) (y * scale));
+                        g2D.drawString(t.getText(), (int) x, (int) y);
                     }
                 }
             }
