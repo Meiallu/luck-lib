@@ -37,13 +37,13 @@ public class Util {
 
     public static float lerp(float from, float to, float at) { return (float) (from * (1.0 - at) + (to * at)); }
 
-    public static int choose(int[] args) { return args[random(0, args.length - 1)]; }
+    public static int choose(int... args) { return args[random(0, args.length - 1)]; }
 
-    public static double choose(double[] args) { return args[random(0, args.length - 1)]; }
+    public static double choose(double... args) { return args[random(0, args.length - 1)]; }
 
-    public static String choose(String[] args) { return args[random(0, args.length - 1)]; }
+    public static String choose(String... args) { return args[random(0, args.length - 1)]; }
 
-    public static Object choose(Object[] args) { return args[random(0, args.length - 1)]; }
+    public static Object choose(Object... args) { return args[random(0, args.length - 1)]; }
 
     public static Image getImageURL(String url) {
         URL str;
