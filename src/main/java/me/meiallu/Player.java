@@ -2,6 +2,7 @@ package me.meiallu;
 
 import org.luck.listener.Luck;
 import org.luck.system.Canvas;
+import org.luck.system.Scale;
 import org.luck.type.Object;
 import org.luck.type.Sprite;
 import org.luck.util.Keyboard;
@@ -22,7 +23,7 @@ public class Player extends Luck {
 
     @Override
     public void start() {
-        Canvas.setType(Canvas.LETTERBOX);
+        Canvas.setType(Scale.LETTERBOX);
 
         idle = new Sprite();
         run = new Sprite();

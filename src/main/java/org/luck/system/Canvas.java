@@ -13,15 +13,15 @@ import java.util.concurrent.TimeUnit;
 @SuppressWarnings("unused")
 public class Canvas extends JPanel {
 
-    public static final byte SCALE_OUT = 1;
-    public static final byte SCALE_IN = 2;
-    public static final byte LETTERBOX = 3;
-    private static byte type = 3;
-    private static double letterbox_precision = 1;
+    private static double precision = 1;
+    private static Scale type = Scale.SCALE_OUT;
     private static byte tick = 1;
     private float scale = 1;
     private double offX = 0;
     private double offY = 0;
+
+    private int lastW;
+    private int lastH;
 
     public Canvas() {
         super.setBackground(Color.BLACK);
@@ -32,13 +32,13 @@ public class Canvas extends JPanel {
         Executors.newScheduledThreadPool(1).scheduleAtFixedRate(this::adjust, Device.refreshTime, Device.refreshTime, TimeUnit.MILLISECONDS);
     }
 
-    public static byte getType() { return type; }
+    public static Scale getType() { return type; }
 
-    public static void setType(byte t) { type = t; }
+    public static void setType(Scale t) { type = t; }
 
-    public static double getLetterboxPrecision() { return letterbox_precision; }
+    public static double getLetterboxPrecision() { return precision; }
 
-    public static void setLetterboxPrecision(double pres) { letterbox_precision = pres; }
+    public static void setLetterboxPrecision(double pres) { precision = pres; }
 
     public void paintComponent(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
@@ -99,32 +99,43 @@ public class Canvas extends JPanel {
     public Vector2D getOffset() { return new Vector2D(offX, offY); }
 
     private void adjust() {
+        int rootX = Instance.getWindow().getRootPane().getWidth();
+        int rootY = Instance.getWindow().getRootPane().getHeight();
+
+        if (lastW == rootX && lastH == rootY)
+            return;
+
+        double viewX = Camera.getViewX();
+        double viewY = Camera.getViewY();
+        lastW = rootX;
+        lastH = rootY;
         scale = 1;
 
         switch (type) {
             case SCALE_OUT:
-                while (Camera.getViewX() * scale < Instance.getWindow().getRootPane().getWidth() || Camera.getViewY() * scale < Instance.getWindow().getRootPane().getHeight())
+                while (viewX * scale < rootX || viewY * scale < rootY)
                     scale++;
-                super.setSize(Instance.getWindow().getRootPane().getWidth(), Instance.getWindow().getRootPane().getHeight());
+                super.setSize(rootX, rootY);
                 break;
             case SCALE_IN:
-                while (Camera.getViewX() * (scale + 1) < Instance.getWindow().getRootPane().getWidth() || Camera.getViewY() * (scale + 1) < Instance.getWindow().getRootPane().getHeight())
+                while (viewX * (scale + 1) < rootX || viewY * (scale + 1) < rootY)
                     scale++;
-                super.setSize(Instance.getWindow().getRootPane().getWidth(), Instance.getWindow().getRootPane().getHeight());
+                super.setSize(rootX, rootY);
                 break;
             case LETTERBOX:
-                while (Camera.getViewX() * (scale + letterbox_precision) < Instance.getWindow().getRootPane().getWidth() && Camera.getViewY() * (scale + letterbox_precision) < Instance.getWindow().getRootPane().getHeight())
-                    scale += letterbox_precision;
+                while (viewX * (scale + precision) < rootX && viewY * (scale + precision) < rootY)
+                    scale += precision;
 
-                int ww = Instance.getWindow().getRootPane().getWidth() / 2;
-                int hw = Instance.getWindow().getRootPane().getHeight() / 2;
-                int cw = (int) (Camera.getViewX() * scale) / 2;
-                int ch = (int) (Camera.getViewY() * scale) / 2;
+                int ww = rootX / 2;
+                int hw = rootY / 2;
+                int cw = (int) (viewX * scale) / 2;
+                int ch = (int) (viewY * scale) / 2;
 
-                super.setSize((int) (Camera.getViewX() * scale), (int) (Camera.getViewY() * scale));
+                super.setSize((int) (viewX * scale), (int) (viewY * scale));
                 super.setLocation(ww - cw, hw - ch);
         }
-        offX = (Camera.getViewX() * scale) / 2 - this.getWidth() / 2d;
-        offY = (Camera.getViewY() * scale) / 2 - this.getHeight() / 2d;
+        offX = (viewX * scale) / 2 - this.getWidth() / 2d;
+        offY = (viewY * scale) / 2 - this.getHeight() / 2d;
     }
 }
+
