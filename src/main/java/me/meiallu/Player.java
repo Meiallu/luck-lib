@@ -10,16 +10,10 @@ import org.luck.util.Util;
 
 public class Player extends Luck {
 
-    Object obj;
-    Object solid;
+    Object obj, solid;
+    Sprite idle, run, roll;
 
-    float speed = 1;
-    float xv = 0;
-    float yv = 0;
-
-    Sprite idle;
-    Sprite run;
-    Sprite roll;
+    float speed = 1, xv = 0, yv = 0;
 
     @Override
     public void start() {

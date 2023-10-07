@@ -57,7 +57,7 @@ public class Util {
         return img;
     }
 
-    public static String getContentFromURL(String URL) {
+    public static String getContentURL(String URL) {
         try {
             java.net.URL url = new URL(URL);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
