@@ -66,7 +66,7 @@ public class Util {
 
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
             String inputLine;
-            StringBuffer content = new StringBuffer();
+            StringBuilder content = new StringBuilder();
 
             while ((inputLine = in.readLine()) != null) {
                 content.append(inputLine);
@@ -81,7 +81,9 @@ public class Util {
         }
     }
 
-    public static double getDistance(Location a, Location b) {
-        return Math.sqrt(Math.pow(b.getY() - a.getX(), 2) + Math.pow(b.getX() - a.getY(), 2));
+    public static double getDistance(Vector2D a, Vector2D b) {
+        double xx = a.getX() - b.getX();
+        double yy = a.getY() - b.getY();
+        return Math.abs(xx + yy);
     }
 }

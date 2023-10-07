@@ -3,7 +3,6 @@ package org.luck.type;
 import org.luck.system.Game;
 import org.luck.system.Layer;
 import org.luck.system.Scene;
-import org.luck.util.Location;
 import org.luck.util.Util;
 import org.luck.util.Vector2D;
 
@@ -97,8 +96,14 @@ public class Object {
         return this;
     }
 
-    public Location getLocation() {
-        return new Location(getX(), getY());
+    public Vector2D getLocation() {
+        return new Vector2D(getX(), getY());
+    }
+
+    public Object setLocation(Object obj) {
+        setX(obj.getX());
+        setY(obj.getY());
+        return this;
     }
 
     public double getAbX() { return x; }

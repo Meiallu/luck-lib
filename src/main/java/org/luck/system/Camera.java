@@ -1,6 +1,6 @@
 package org.luck.system;
 
-import org.luck.util.Location;
+import org.luck.util.Vector2D;
 
 import java.awt.*;
 
@@ -25,8 +25,8 @@ public class Camera {
 
     public static void setY(double yy) { y = yy; }
 
-    public static Location getLocation() {
-        return new Location(x, y);
+    public static Vector2D getLocation() {
+        return new Vector2D(x, y);
     }
 
     public static void setLocation(double xx, double yy) {

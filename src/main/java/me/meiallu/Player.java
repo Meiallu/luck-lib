@@ -38,13 +38,12 @@ public class Player extends Luck {
         roll.setSpeed(11);
 
         Object type = new Object(idle);
+        type.setOrigin(11, 23);
         obj = type.create(100, 90);
-        obj.setOrigin(11, 23);
 
         Sprite urlsprite = new Sprite();
         urlsprite.addFrame(Util.getImageURL("https://imgs.search.brave.com/M8D2kvnfl2ctGbbIvzj9g-WLvP3E8atO01KmZT94mjk/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLmt5/bS1jZG4uY29tL3Bo/b3Rvcy9pbWFnZXMv/bGlzdC8wMDIvNjM2/LzU4MS9hMWUuanBn"));
-        solid = new Object(urlsprite);
-        solid.create(200, 100);
+        solid = new Object(urlsprite).create(200, 100);
     }
 
     @Override

@@ -3,7 +3,7 @@ package org.luck.type;
 import org.luck.system.Game;
 import org.luck.system.Layer;
 import org.luck.system.Scene;
-import org.luck.util.Location;
+import org.luck.util.Vector2D;
 
 import java.awt.*;
 
@@ -57,7 +57,7 @@ public class Text {
         lay.getTexts().add(this);
     }
 
-    public Location getLocation() { return new Location(x, y); }
+    public Vector2D getLocation() { return new Vector2D(x, y); }
 
     public double getX() { return x; }
 
