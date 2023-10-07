@@ -13,8 +13,8 @@ import java.util.concurrent.TimeUnit;
 @SuppressWarnings("unused")
 public class Canvas extends JPanel {
 
-    private static double precision = 1;
     private static Scale type = Scale.SCALE_OUT;
+    private static double precision = 1;
     private static byte tick = 1;
     private float scale = 1;
     private double offX = 0;
