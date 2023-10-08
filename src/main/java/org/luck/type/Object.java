@@ -7,7 +7,7 @@ import org.luck.util.Util;
 import org.luck.util.Vector2D;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 @SuppressWarnings("unused")
 public class Object {
@@ -15,7 +15,7 @@ public class Object {
     private double x;
     private double y;
     private Sprite image;
-    private Collection<Object> childs = new ArrayList<>();
+    private List<Object> childs = new ArrayList<>();
     private Object father;
     private int ID;
 
@@ -32,7 +32,7 @@ public class Object {
     private boolean visible = true;
 
     private Vector2D origin = new Vector2D(0, 0);
-    private ArrayList<Vector2D> points = new ArrayList<>();
+    private List<Vector2D> points = new ArrayList<>();
 
     public Object(Sprite sprite) {
         image = sprite;
@@ -154,7 +154,7 @@ public class Object {
         return this;
     }
 
-    public Collection<Object> getChilds() { return childs; }
+    public List<Object> getChilds() { return childs; }
 
     public Object getFather() { return father; }
 

@@ -7,11 +7,12 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("unused")
 public class Keyboard implements KeyListener {
 
-    private static ArrayList<Character> keys = new ArrayList<>();
+    private static List<Character> keys = new ArrayList<>();
     private static char last = 0;
     private static char pressed = 0;
 

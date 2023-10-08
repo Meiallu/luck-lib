@@ -4,12 +4,13 @@ import org.luck.type.Object;
 import org.luck.type.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("unused")
 public class Layer {
 
-    private ArrayList<Object> objects = new ArrayList<>();
-    private ArrayList<Text> texts = new ArrayList<>();
+    private List<Object> objects = new ArrayList<>();
+    private List<Text> texts = new ArrayList<>();
     private boolean visible = true;
 
     public Layer() { Game.getScene().getLayers().add(this); }
@@ -34,7 +35,7 @@ public class Layer {
         return this;
     }
 
-    public ArrayList<Object> getObjects() { return objects; }
+    public List<Object> getObjects() { return objects; }
 
-    public ArrayList<Text> getTexts() { return texts; }
+    public List<Text> getTexts() { return texts; }
 }

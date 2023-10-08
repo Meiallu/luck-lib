@@ -1,20 +1,21 @@
 package org.luck.system;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("unused")
 public class Scene {
 
     public int lastID = 0;
     private String name;
-    private ArrayList<Layer> layers = new ArrayList<>();
+    private List<Layer> layers = new ArrayList<>();
 
     public Scene(String name) {
         this.name = name;
         new Layer(this);
     }
 
-    public ArrayList<Layer> getLayers() { return layers; }
+    public List<Layer> getLayers() { return layers; }
 
     public String getName() { return name; }
 

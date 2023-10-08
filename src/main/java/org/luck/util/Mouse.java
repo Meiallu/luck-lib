@@ -6,13 +6,14 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Mouse implements MouseListener {
 
     public static final int LEFT_BUTTON = 1;
     public static final int MIDDLE_BUTTON = 2;
     public static final int RIGHT_BUTTON = 3;
-    private static ArrayList<Integer> buttons = new ArrayList<>();
+    private static List<Integer> buttons = new ArrayList<>();
     private static int pressed = 0;
     private static int released = 0;
 

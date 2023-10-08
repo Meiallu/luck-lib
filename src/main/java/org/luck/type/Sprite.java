@@ -10,7 +10,7 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class Sprite {
 
-    private ArrayList<Image> frames = new ArrayList<>();
+    private List<Image> frames = new ArrayList<>();
     private byte speed = 5;
 
     public Sprite setupFrames(String folder, String prefix, String suffix) {
