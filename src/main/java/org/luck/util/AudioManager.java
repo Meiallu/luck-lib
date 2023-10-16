@@ -18,7 +18,7 @@ public class AudioManager {
         clip.start();
     }
 
-    public static void stop(Audio a) { a.getClip().stop(); }
+    public static void stop(Audio a) {a.getClip().stop();}
 
     public static void resume(Audio a) {
         a.getClip().setMicrosecondPosition(a.getLastPauseMicrosecond());

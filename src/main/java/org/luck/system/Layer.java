@@ -13,11 +13,11 @@ public class Layer {
     private List<Text> texts = new ArrayList<>();
     private boolean visible = true;
 
-    public Layer() { Game.getScene().getLayers().add(this); }
+    public Layer() {Game.getScene().getLayers().add(this);}
 
-    public Layer(Scene scene) { scene.getLayers().add(this); }
+    public Layer(Scene scene) {scene.getLayers().add(this);}
 
-    public int getIndex() { return Game.getScene().getLayers().indexOf(this); }
+    public int getIndex() {return Game.getScene().getLayers().indexOf(this);}
 
     public Layer setIndex(int index) {
         int idx = Game.getScene().getLayers().indexOf(this);
@@ -26,16 +26,16 @@ public class Layer {
         return this;
     }
 
-    public int getIndex(Scene cena) { return cena.getLayers().indexOf(this); }
+    public int getIndex(Scene cena) {return cena.getLayers().indexOf(this);}
 
-    public boolean isVisible() { return visible; }
+    public boolean isVisible() {return visible;}
 
     public Layer setVisible(boolean bool) {
         visible = bool;
         return this;
     }
 
-    public List<Object> getObjects() { return objects; }
+    public List<Object> getObjects() {return objects;}
 
-    public List<Text> getTexts() { return texts; }
+    public List<Text> getTexts() {return texts;}
 }

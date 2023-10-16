@@ -1,14 +1,12 @@
 package org.luck.system;
 
-import org.luck.type.Object;
-import org.luck.type.Text;
 import org.luck.util.Device;
 import org.luck.util.Vector2D;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.Timer;
+import java.util.TimerTask;
 
 @SuppressWarnings("unused")
 public class Canvas extends JPanel {
@@ -28,25 +26,30 @@ public class Canvas extends JPanel {
         super.setBounds(0, 0, 1, 1);
         Instance.getWindow().add(this);
 
-        Executors.newScheduledThreadPool(1).scheduleAtFixedRate(this::repaint, Device.refreshTime, Device.refreshTime, TimeUnit.MILLISECONDS);
-        Executors.newScheduledThreadPool(1).scheduleAtFixedRate(this::adjust, Device.refreshTime, Device.refreshTime, TimeUnit.MILLISECONDS);
+        new Timer().scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                adjust();
+                repaint();
+            }
+        }, Device.refreshTime, Device.refreshTime);
     }
 
-    public static Scale getType() { return type; }
+    public static Scale getType() {return type;}
 
-    public static void setType(Scale t) { type = t; }
+    public static void setType(Scale t) {type = t;}
 
-    public static double getLetterboxPrecision() { return precision; }
+    public static double getLetterboxPrecision() {return precision;}
 
-    public static void setLetterboxPrecision(double pres) { precision = pres; }
+    public static void setLetterboxPrecision(double pres) {precision = pres;}
 
     public void paintComponent(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
         super.paintComponent(g2D);
 
-        for (Layer l : Game.getScene().getLayers()) {
+        Game.getScene().getLayers().forEach(l -> {
             if (l.isVisible()) {
-                for (Object o : l.getObjects()) {
+                l.getObjects().forEach(o -> {
                     if (o.isVisible()) {
                         if (tick % (Device.refreshRate / o.getSpeed()) == 0) {
                             if (o.getSprite().getFrames().size() == o.getFrame() + 1)
@@ -68,9 +71,9 @@ public class Canvas extends JPanel {
                         g2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, o.getOpacity()));
                         g2D.drawImage(img, (int) (x * scale), (int) (y * scale), (int) (width * scale), (int) (height * scale), null);
                     }
-                }
+                });
 
-                for (Text t : l.getTexts()) {
+                l.getTexts().forEach(t -> {
                     if (t.isVisible()) {
                         double xOff = (offX / scale) + Camera.getX();
                         double yOff = (offX / scale) + Camera.getX();
@@ -83,20 +86,20 @@ public class Canvas extends JPanel {
                         g2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, t.getOpacity()));
                         g2D.drawString(t.getText(), (int) x, (int) y);
                     }
-                }
+                });
             }
-        }
+        });
         if (tick == Device.refreshRate)
             tick = 1;
         else
             tick++;
     }
 
-    public float getScale() { return scale; }
+    public float getScale() {return scale;}
 
-    public JPanel getPanel() { return this; }
+    public JPanel getPanel() {return this;}
 
-    public Vector2D getOffset() { return new Vector2D(offX, offY); }
+    public Vector2D getOffset() {return new Vector2D(offX, offY);}
 
     private void adjust() {
         int rootX = Instance.getWindow().getRootPane().getWidth();

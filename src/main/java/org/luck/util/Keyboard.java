@@ -19,11 +19,11 @@ public class Keyboard implements KeyListener {
     private JFrame window = Instance.getWindow();
     private GraphicsDevice dev = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
 
-    public Keyboard() { Instance.getWindow().addKeyListener(this); }
+    public Keyboard() {Instance.getWindow().addKeyListener(this);}
 
-    public static boolean isPressingAnyKey() { return (keys.size() > 0); }
+    public static boolean isPressingAnyKey() {return (keys.size() > 0);}
 
-    public static boolean isPressed(char key) { return keys.contains(key); }
+    public static boolean isPressed(char key) {return keys.contains(key);}
 
     public static boolean onPressAnyKey() {
         boolean i = (pressed != 0);
@@ -42,7 +42,7 @@ public class Keyboard implements KeyListener {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) { }
+    public void keyTyped(KeyEvent e) {}
 
     @Override
     public void keyPressed(KeyEvent e) {
