@@ -35,16 +35,24 @@ public class Canvas extends JPanel {
         }, Device.refreshTime, Device.refreshTime);
     }
 
-    public static Scale getType() {return type;}
+    public static Scale getType() {
+        return type;
+    }
 
-    public static void setType(Scale t) {type = t;}
+    public static void setType(Scale type) {
+        this.type = type;
+    }
 
-    public static double getLetterboxPrecision() {return precision;}
+    public static double getLetterboxPrecision() {
+        return precision;
+    }
 
-    public static void setLetterboxPrecision(double pres) {precision = pres;}
+    public static void setLetterboxPrecision(double pres) {
+        precision = pres;
+    }
 
-    public void paintComponent(Graphics g) {
-        Graphics2D g2D = (Graphics2D) g;
+    public void paintComponent(Graphics graphics) {
+        Graphics2D g2D = (Graphics2D) graphics;
         super.paintComponent(g2D);
 
         Game.getScene().getLayers().forEach(l -> {
@@ -95,11 +103,17 @@ public class Canvas extends JPanel {
             tick++;
     }
 
-    public float getScale() {return scale;}
+    public float getScale() {
+        return scale;
+    }
 
-    public JPanel getPanel() {return this;}
+    public JPanel getPanel() {
+        return this;
+    }
 
-    public Vector2D getOffset() {return new Vector2D(offX, offY);}
+    public Vector2D getOffset() {
+        return new Vector2D(offX, offY);
+    }
 
     private void adjust() {
         int rootX = Instance.getWindow().getRootPane().getWidth();

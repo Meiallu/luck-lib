@@ -63,8 +63,7 @@ public class Object {
     }
 
     public void destroy() {
-        childs.forEach(o ->
-                o.getLayer().getObjects().remove(o));
+        childs.forEach(o -> o.getLayer().getObjects().remove(o));
         getLayer().getObjects().remove(this);
         childs = new ArrayList<>();
     }
@@ -86,13 +85,14 @@ public class Object {
         childs.add(o);
     }
 
-    public Sprite getSprite() {return image;}
+    public Sprite getSprite() {
+        return image;
+    }
 
     public Object setSprite(Sprite i) {
         image = i;
         if (father == null)
-            childs.forEach(o ->
-                    o.image = i);
+            childs.forEach(o -> o.image = i);
         return this;
     }
 
@@ -106,9 +106,13 @@ public class Object {
         return this;
     }
 
-    public double getAbX() {return x;}
+    public double getAbX() {
+        return x;
+    }
 
-    public double getAbY() {return y;}
+    public double getAbY() {
+        return y;
+    }
 
     public double getX() {
         float dif = width / image.getFrame(0).getWidth(null);
@@ -154,31 +158,39 @@ public class Object {
         return this;
     }
 
-    public List<Object> getChilds() {return childs;}
+    public List<Object> getChilds() {
+        return childs;
+    }
 
-    public Object getFather() {return father;}
+    public Object getFather() {
+        return father;
+    }
 
-    public int getFrame() {return frame;}
+    public int getFrame() {
+        return frame;
+    }
 
     public Object setFrame(int i) {
         frame = (byte) i;
         if (father == null)
-            childs.forEach(o ->
-                    o.frame = (byte) i);
+            childs.forEach(o -> o.frame = (byte) i);
         return this;
     }
 
-    public int getSpeed() {return speed;}
+    public int getSpeed() {
+        return speed;
+    }
 
     public Object setSpeed(int fps) {
         speed = (byte) fps;
         if (father == null)
-            childs.forEach(o ->
-                    o.speed = (byte) fps);
+            childs.forEach(o -> o.speed = (byte) fps);
         return this;
     }
 
-    public float getScaleX() {return x_scale;}
+    public float getScaleX() {
+        return x_scale;
+    }
 
     public Object setScaleX(float i) {
         double div = origin.getX() / image.getFrame(0).getWidth(null);
@@ -195,7 +207,9 @@ public class Object {
         return this;
     }
 
-    public float getScaleY() {return y_scale;}
+    public float getScaleY() {
+        return y_scale;
+    }
 
     public Object setScaleY(float i) {
         double div = origin.getY() / image.getFrame(0).getHeight(null);
@@ -212,11 +226,17 @@ public class Object {
         return this;
     }
 
-    public float getAbWidth() {return width * x_scale;}
+    public float getAbWidth() {
+        return width * x_scale;
+    }
 
-    public float getAbHeight() {return height * y_scale;}
+    public float getAbHeight() {
+        return height * y_scale;
+    }
 
-    public float getWidth() {return width;}
+    public float getWidth() {
+        return width;
+    }
 
     public Object setWidth(float i) {
         double div = origin.getX() / image.getFrame(0).getWidth(null);
@@ -233,7 +253,9 @@ public class Object {
         return this;
     }
 
-    public float getHeight() {return height;}
+    public float getHeight() {
+        return height;
+    }
 
     public Object setHeight(float i) {
         double div = origin.getY() / image.getFrame(0).getHeight(null);
@@ -250,23 +272,25 @@ public class Object {
         return this;
     }
 
-    public float getOpacity() {return opacity;}
+    public float getOpacity() {
+        return opacity;
+    }
 
     public Object setOpacity(float i) {
         opacity = i;
         if (father == null)
-            childs.forEach(o ->
-                    o.opacity = i);
+            childs.forEach(o -> o.opacity = i);
         return this;
     }
 
-    public boolean isVisible() {return visible;}
+    public boolean isVisible() {
+        return visible;
+    }
 
     public Object setVisible(boolean i) {
         visible = i;
         if (father == null)
-            childs.forEach(o ->
-                    o.visible = i);
+            childs.forEach(o -> o.visible = i);
         return this;
     }
 
@@ -339,7 +363,9 @@ public class Object {
         return Game.getScene().getLayers().get(0);
     }
 
-    public int getZ() {return getLayer().getObjects().indexOf(this);}
+    public int getZ() {
+        return getLayer().getObjects().indexOf(this);
+    }
 
     public Object setZ(int index) {
         if (father == null) {
@@ -358,7 +384,9 @@ public class Object {
         return this;
     }
 
-    public int getZ(Scene scene) {return getLayer(scene).getObjects().indexOf(this);}
+    public int getZ(Scene scene) {
+        return getLayer(scene).getObjects().indexOf(this);
+    }
 
     public Object setZ(int index, Scene scene) {
         if (father == null) {
@@ -405,7 +433,9 @@ public class Object {
         }
     }
 
-    public Vector2D getOrigin() {return origin;}
+    public Vector2D getOrigin() {
+        return origin;
+    }
 
     public Object setOrigin(int x, int y) {
         origin.setX(x);
@@ -435,20 +465,20 @@ public class Object {
     public Object removePoint(int index) {
         points.remove(index);
         if (father == null)
-            childs.forEach(o ->
-                    o.points.remove(index));
+            childs.forEach(o -> o.points.remove(index));
         return this;
     }
 
     public Object removePoint(Vector2D point) {
         points.remove(point);
         if (father == null)
-            childs.forEach(o ->
-                    o.points.remove(point));
+            childs.forEach(o -> o.points.remove(point));
         return this;
     }
 
-    public Vector2D getPoint(int index) {return points.get(index);}
+    public Vector2D getPoint(int index) {
+        return points.get(index);
+    }
 
     public double getPointX(int index) {
         float dif = width / image.getFrame(0).getWidth(null);
@@ -462,5 +492,7 @@ public class Object {
         return y + (org * dif);
     }
 
-    public int getID() {return ID;}
+    public int getID() {
+        return ID;
+    }
 }

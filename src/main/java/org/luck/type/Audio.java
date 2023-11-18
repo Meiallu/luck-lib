@@ -28,14 +28,18 @@ public class Audio {
         return str;
     }
 
-    public float getVolume() {return vol;}
+    public float getVolume() {
+        return vol;
+    }
 
     public Audio setVolume(float volume) {
         vol = volume;
         return this;
     }
 
-    public Clip getClip() {return clip;}
+    public Clip getClip() {
+        return clip;
+    }
 
     public Audio setClip(Clip clip) {
         this.clip = clip;
@@ -52,7 +56,9 @@ public class Audio {
         return this;
     }
 
-    public long getLastPauseMicrosecond() {return time;}
+    public long getLastPauseMicrosecond() {
+        return time;
+    }
 
     public Audio setPauseMicrosecond(long i) {
         time = i;
@@ -69,11 +75,17 @@ public class Audio {
         return this;
     }
 
-    public boolean isOpen() {return clip.isOpen();}
+    public boolean isOpen() {
+        return clip.isOpen();
+    }
 
-    public boolean isRunning() {return clip.isRunning();}
+    public boolean isRunning() {
+        return clip.isRunning();
+    }
 
-    public boolean isActive() {return clip.isActive();}
+    public boolean isActive() {
+        return clip.isActive();
+    }
 
     public Audio play() {
         AudioManager.play(this);

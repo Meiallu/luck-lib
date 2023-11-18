@@ -57,16 +57,22 @@ public class Text {
         lay.getTexts().add(this);
     }
 
-    public Vector2D getLocation() {return new Vector2D(x, y);}
+    public Vector2D getLocation() {
+        return new Vector2D(x, y);
+    }
 
-    public double getX() {return x;}
+    public double getX() {
+        return x;
+    }
 
     public Text setX(double x) {
         this.x = x;
         return this;
     }
 
-    public double getY() {return y;}
+    public double getY() {
+        return y;
+    }
 
     public Text setY(double y) {
         this.y = y;
@@ -79,49 +85,63 @@ public class Text {
         return this;
     }
 
-    public float getOpacity() {return opacity;}
+    public float getOpacity() {
+        return opacity;
+    }
 
     public Text setOpacity(float i) {
         opacity = i;
         return this;
     }
 
-    public boolean isVisible() {return visible;}
+    public boolean isVisible() {
+        return visible;
+    }
 
     public Text setVisible(boolean i) {
         visible = i;
         return this;
     }
 
-    public String getText() {return text;}
+    public String getText() {
+        return text;
+    }
 
     public Text setText(String str) {
         text = str;
         return this;
     }
 
-    public int getSize() {return size;}
+    public int getSize() {
+        return size;
+    }
 
     public Text setSize(int i) {
         size = (short) i;
         return this;
     }
 
-    public String getFont() {return font;}
+    public String getFont() {
+        return font;
+    }
 
     public Text setFont(String str) {
         font = str;
         return this;
     }
 
-    public Color getColor() {return color;}
+    public Color getColor() {
+        return color;
+    }
 
     public Text setColor(Color col) {
         color = col;
         return this;
     }
 
-    public int getStyle() {return style;}
+    public int getStyle() {
+        return style;
+    }
 
     public Text setStyle(int styl) {
         style = (byte) styl;
@@ -166,7 +186,9 @@ public class Text {
         return null;
     }
 
-    public int getZ() {return getLayer().getTexts().indexOf(this);}
+    public int getZ() {
+        return getLayer().getTexts().indexOf(this);
+    }
 
     public Text setZ(int index) {
         Layer l = getLayer();
@@ -176,7 +198,9 @@ public class Text {
         return this;
     }
 
-    public int getZ(Scene scene) {return getLayer(scene).getTexts().indexOf(this);}
+    public int getZ(Scene scene) {
+        return getLayer(scene).getTexts().indexOf(this);
+    }
 
     public Text setZ(int index, Scene scene) {
         Layer l = getLayer(scene);
@@ -186,5 +210,7 @@ public class Text {
         return this;
     }
 
-    public int getID() {return ID;}
+    public int getID() {
+        return ID;
+    }
 }

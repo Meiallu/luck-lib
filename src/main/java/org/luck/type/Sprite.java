@@ -104,11 +104,17 @@ public class Sprite {
         return this;
     }
 
-    public Image getFrame(int index) {return frames.get(index);}
+    public Image getFrame(int index) {
+        return frames.get(index);
+    }
 
-    public List<Image> getFrames() {return frames;}
+    public List<Image> getFrames() {
+        return frames;
+    }
 
-    public byte getSpeed() {return speed;}
+    public byte getSpeed() {
+        return speed;
+    }
 
     public Sprite setSpeed(int fps) {
         speed = (byte) fps;
