@@ -21,7 +21,7 @@ new Instance("Title",320,180);
 
 // This creates the Sprite.
 Sprite spr_player = new Sprite();
- spr_player.setupFrames("images/","idle",".png");
+spr_player.setupFrames("images/","idle",".png");
 
 // This creates a Object type
 // And then creates an instance of it.
